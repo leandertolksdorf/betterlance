@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run generate-supabase-types && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-supabase-types": "source .env.local && npx openapi-typescript $NEXT_PUBLIC_SUPABASE_URL/rest/v1/?apikey=$NEXT_PUBLIC_SUPABASE_ANON_KEY --output src/types/supabase.ts"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
