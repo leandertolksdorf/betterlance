@@ -1,6 +1,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import React, { useState } from "react";
 import { supabase } from "../../lib/supabase";
+import { definitions } from "../../types/supabase";
 import { CreateCustomerFormView } from "./view";
 
 export const CreateCustomerForm = () => {
@@ -20,7 +21,7 @@ export const CreateCustomerForm = () => {
     try {
       setLoading(true);
       const { error } = await supabase
-        .from("customer")
+        .from<definitions["customer"]>("customer")
         .insert({ company, name, email, address, zip, city, country });
       if (error) throw error;
       alert("Created!");

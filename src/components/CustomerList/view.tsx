@@ -1,17 +1,10 @@
 import classNames from "classnames";
+import { definitions } from "../../types/supabase";
 import { Loading } from "../Loading";
 
 type CustomerListViewProps = {
   loading: boolean;
-  customers: {
-    name: string;
-    email: string;
-    company: string;
-    address: string;
-    zip: string;
-    city: string;
-    country: string;
-  }[];
+  customers: definitions["customer"][];
 };
 
 export const CustomerListView = (props: CustomerListViewProps) => {

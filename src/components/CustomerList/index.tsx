@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import { definitions } from "../../types/supabase";
 import { CustomerListView } from "./view";
 
 export const CustomerList = () => {
@@ -9,7 +10,9 @@ export const CustomerList = () => {
   const loadCustomers = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase.from("customer").select();
+      const { data, error } = await supabase
+        .from<definitions["customer"]>("customer")
+        .select();
       if (error) throw error;
       setCustomers(data);
     } catch (error: any) {
