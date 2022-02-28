@@ -1,8 +1,9 @@
-import { Session } from "@supabase/supabase-js";
 import { NextPage } from "next";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CustomersPage } from "../../../components/CustomersPage";
-import { Layout } from "../../../components/Layout";
+import { enforceAuthenticated } from "../../../util/enforceAuthenticated";
+
+export const getServerSideProps = enforceAuthenticated();
 
 const CustomerRoute: NextPage = () => {
   return <CustomersPage />;

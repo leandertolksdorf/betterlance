@@ -1,20 +1,12 @@
-import { Session } from "@supabase/supabase-js";
 import { NextPage } from "next";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { DashboardPage } from "../../components/DashboardPage";
-import { AuthPage } from "../../components/AuthPage";
-import { supabase } from "../../lib/supabase";
+import { enforceAuthenticated } from "../../util/enforceAuthenticated";
+
+export const getServerSideProps = enforceAuthenticated();
 
 const AppRoute: NextPage = () => {
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    setSession(supabase.auth.session());
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-  return !session ? <AuthPage /> : <DashboardPage />;
+  return <DashboardPage />;
 };
 
 export default AppRoute;

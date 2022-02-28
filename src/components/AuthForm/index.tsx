@@ -26,7 +26,9 @@ export const AuthForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signIn(data);
+      const { error } = await supabase.auth.signIn(data, {
+        redirectTo: "http://localhost:3000/app",
+      });
       if (error) throw error;
       alert("Check your email for the login link!");
     } catch (error: any) {
