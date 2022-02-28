@@ -12,7 +12,8 @@ export const CustomerList = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from<definitions["customer"]>("customer")
-        .select();
+        .select()
+        .order("name");
       if (error) throw error;
       setCustomers(data);
     } catch (error: any) {
@@ -24,6 +25,12 @@ export const CustomerList = () => {
 
   useEffect(() => {
     loadCustomers();
+    const subscription = supabase
+      .from<definitions["customer"]>("customer")
+      .on("*", (payload) => {
+        loadCustomers();
+      })
+      .subscribe();
   }, []);
   return <CustomerListView loading={loading} customers={customers} />;
 };
