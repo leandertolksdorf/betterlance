@@ -23,7 +23,10 @@ input {
   @apply focus:outline-none focus:border-primary-500;
 }
 
-button {
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
   @apply transition;
   @apply uppercase;
   @apply w-full p-4 rounded;
