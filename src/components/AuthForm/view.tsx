@@ -1,26 +1,22 @@
-import React from "react";
+import React, { FormEventHandler } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormData } from ".";
 
 type AuthFormViewProps = {
   loading: boolean;
-  email: string;
-  setEmail: (email: string) => void;
-  handleLogin: () => void;
+  register: UseFormRegister<FormData>;
+  onSubmit: FormEventHandler;
+  errors: FieldErrors;
 };
 
 export const AuthFormView = (props: AuthFormViewProps) => {
   return (
-    <div>
+    <form onSubmit={props.onSubmit}>
       <label>
         Email
-        <input
-          id="email"
-          value={props.email}
-          onChange={(e) => props.setEmail(e.target.value)}
-        />
+        <input {...props.register("email")} />
       </label>
-      <button onClick={(e) => props.handleLogin()} disabled={props.loading}>
-        {props.loading ? "Ich arbeite..." : "Anmelden"}
-      </button>
-    </div>
+      <button type="submit">Anmelden</button>
+    </form>
   );
 };
