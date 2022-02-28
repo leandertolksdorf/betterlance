@@ -8,7 +8,7 @@ type CreateCustomerFormViewProps = {
   onOpen: () => void;
   loading: boolean;
   register: UseFormRegister<FormData>;
-  handleSubmit: FormEventHandler;
+  onSubmit: FormEventHandler;
   errors: FieldErrors;
 };
 
@@ -20,7 +20,7 @@ export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
       </button>
       <div className={classNames(!props.isOpen && "hidden")}>
         <div className={classNames("p-4")}>
-          <form onSubmit={props.handleSubmit}>
+          <form onSubmit={props.onSubmit}>
             <label>
               Firma
               <input {...props.register("company")} />

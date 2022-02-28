@@ -61,7 +61,7 @@ export const CreateCustomerForm = () => {
       onOpen={() => setIsOpen(!isOpen)}
       loading={loading}
       register={register}
-      handleSubmit={onSubmit}
+      onSubmit={onSubmit}
       errors={errors}
     />
   );
