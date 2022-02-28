@@ -19,7 +19,7 @@ export const NavigationItemView = (props: NavigationItemViewProps) => {
           "transition",
           props.isActive && "bg-primary-100",
           props.isActive && "text-primary-500",
-          "hover:bg-gray-100",
+          !props.isActive && "hover:bg-gray-100",
           "active:bg-primary-100",
           "active:text-primary-500",
           "rounded",
