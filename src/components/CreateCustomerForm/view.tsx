@@ -1,25 +1,15 @@
 import classNames from "classnames";
-import React from "react";
+import React, { FormEventHandler } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormData } from ".";
 
 type CreateCustomerFormViewProps = {
   isOpen: boolean;
   onOpen: () => void;
   loading: boolean;
-  company: string;
-  setCompany: (value: string) => void;
-  name: string;
-  setName: (value: string) => void;
-  email: string;
-  setEmail: (value: string) => void;
-  address: string;
-  setAddress: (value: string) => void;
-  zip: string;
-  setZip: (value: string) => void;
-  city: string;
-  setCity: (value: string) => void;
-  country: string;
-  setCountry: (value: string) => void;
-  onSubmit: () => void;
+  register: UseFormRegister<FormData>;
+  handleSubmit: FormEventHandler;
+  errors: FieldErrors;
 };
 
 export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
@@ -30,71 +20,36 @@ export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
       </button>
       <div className={classNames(!props.isOpen && "hidden")}>
         <div className={classNames("p-4")}>
-          <form>
+          <form onSubmit={props.handleSubmit}>
             <label>
               Firma
-              <input
-                type="text"
-                value={props.company}
-                onChange={(e) => props.setCompany(e.target.value)}
-              ></input>
+              <input {...props.register("company")} />
             </label>
             <label>
               Name
-              <input
-                type="text"
-                value={props.name}
-                onChange={(e) => props.setName(e.target.value)}
-              ></input>
+              <input {...props.register("name")} />
             </label>
             <label>
               Email
-              <input
-                type="email"
-                value={props.email}
-                onChange={(e) => props.setEmail(e.target.value)}
-              ></input>
+              <input {...props.register("email", {})} />
             </label>
             <label>
-              Straße und Hausnummer
-              <input
-                type="text"
-                value={props.address}
-                onChange={(e) => props.setAddress(e.target.value)}
-              ></input>
+              Straße & Hausnummer
+              <input {...props.register("address")} />
             </label>
             <label>
               Postleitzahl
-              <input
-                type="text"
-                value={props.zip}
-                onChange={(e) => props.setZip(e.target.value)}
-              ></input>
+              <input {...props.register("zip")} />
             </label>
             <label>
               Stadt
-              <input
-                type="text"
-                value={props.city}
-                onChange={(e) => props.setCity(e.target.value)}
-              ></input>
+              <input {...props.register("city")} />
             </label>
             <label>
               Land
-              <input
-                type="text"
-                value={props.country}
-                onChange={(e) => props.setCountry(e.target.value)}
-              ></input>
+              <input {...props.register("country")} />
             </label>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                props.onSubmit();
-              }}
-            >
-              Absenden
-            </button>
+            <button type="submit">Absenden</button>
           </form>
         </div>
       </div>

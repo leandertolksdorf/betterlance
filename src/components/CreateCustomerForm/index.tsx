@@ -1,57 +1,68 @@
-import { SupabaseClient } from "@supabase/supabase-js";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { CreateCustomerFormView } from "./view";
 
+export type FormData = Omit<
+  definitions["customer"],
+  "id" | "created_by" | "created_at"
+>;
+
+export const schema = yup
+  .object({
+    name: yup.string().required(),
+    company: yup.string(),
+    email: yup.string().email(),
+    address: yup.string(),
+    zip: yup.string(),
+    city: yup.string(),
+    country: yup.string(),
+  })
+  .required();
+
 export const CreateCustomerForm = () => {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Form state
-  const [company, setCompany] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [zip, setZip] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubmit = async () => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
       const { error } = await supabase
         .from<definitions["customer"]>("customer")
-        .insert({ company, name, email, address, zip, city, country });
+        .insert(data);
       if (error) throw error;
-      alert("Created!");
+      reset();
+      router.reload();
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
-      setIsOpen(false);
     }
-  };
+  });
+
   return (
     <CreateCustomerFormView
       isOpen={isOpen}
-      loading={loading}
       onOpen={() => setIsOpen(!isOpen)}
-      company={company}
-      setCompany={setCompany}
-      name={name}
-      setName={setName}
-      email={email}
-      setEmail={setEmail}
-      address={address}
-      setAddress={setAddress}
-      zip={zip}
-      setZip={setZip}
-      city={city}
-      setCity={setCity}
-      country={country}
-      setCountry={setCountry}
-      onSubmit={handleSubmit}
+      loading={loading}
+      register={register}
+      handleSubmit={onSubmit}
+      errors={errors}
     />
   );
 };
