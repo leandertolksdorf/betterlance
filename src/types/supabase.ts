@@ -238,7 +238,7 @@ export interface definitions {
      */
     created_at?: string;
     /** Format: text */
-    name?: string;
+    name: string;
     /** Format: text */
     email?: string;
     /** Format: text */
