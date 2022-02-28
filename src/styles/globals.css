@@ -5,49 +5,63 @@
 .container {
   @apply px-8;
 }
+@layer base {
+  label {
+    @apply transition;
+    @apply uppercase;
+    @apply text-sm;
+    @apply font-bold;
+    @apply text-gray-400;
+    @apply focus-within:text-primary-500;
+  }
 
-label {
-  @apply transition;
-  @apply uppercase;
-  @apply text-sm;
-  @apply font-bold;
-  @apply text-gray-400;
-  @apply focus-within:text-primary-500;
-}
+  input {
+    @apply transition;
+    @apply w-full;
+    @apply px-2;
+    @apply py-1;
+    @apply mb-2;
+    @apply rounded;
+    @apply border-2;
+    @apply border-gray-300 text-lg;
+    @apply text-black;
+    @apply focus:outline-none focus:border-primary-500;
+  }
 
-input {
-  @apply transition;
-  @apply w-full p-2 mb-2 rounded border-2;
-  @apply border-gray-300 text-lg;
-  @apply text-black;
-  @apply focus:outline-none focus:border-primary-500;
-}
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    @apply transition;
+    @apply uppercase;
+    @apply w-full;
+    @apply p-2;
+    @apply rounded;
+    @apply bg-primary-500;
+    @apply hover:bg-primary-600;
+    @apply active:bg-primary-700;
+    @apply text-white;
+    @apply font-bold;
+  }
 
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  @apply transition;
-  @apply uppercase;
-  @apply w-full p-4 rounded;
-  @apply bg-primary-500;
-  @apply hover:bg-primary-600;
-  @apply active:bg-primary-700;
-  @apply text-white;
-  @apply font-bold;
-}
+  h1 {
+    @apply text-2xl;
+    @apply font-bold;
+    @apply text-primary-500;
+  }
 
-h1 {
-  @apply text-2xl;
-  @apply font-bold;
-  @apply text-primary-500;
-}
+  h2 {
+    @apply text-2xl;
+  }
 
-h2 {
-  @apply text-2xl;
-}
+  h3 {
+    @apply text-xl;
+    @apply font-bold;
+    @apply text-primary-500;
+  }
 
-h3 {
-  @apply text-xl;
-  @apply font-bold;
+  h3 {
+    @apply text-xl;
+    @apply font-bold;
+  }
 }
