@@ -5,8 +5,11 @@ import { Layout } from "../Layout";
 
 export const CustomerListPageView = () => {
   return (
-    <Layout showNavigation={true} title="Kund*innen">
-      <p>Hier kannst du alle deine Kund*innen verwalten.</p>
+    <Layout
+      showNavigation={true}
+      title="Kund*innen"
+      subtitle="Hier kannst du alle deine Kund*innen verwalten"
+    >
       <CreateOrEditCustomerForm />
       <CustomerList />
     </Layout>
