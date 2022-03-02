@@ -50,7 +50,7 @@ export const CreateOrEditCustomerForm = (
         .from<definitions["customer"]>("customer")
         .upsert({ id: props.customer?.id, ...data });
       if (error) throw error;
-      reset();
+      if (!props.customer) reset();
       setIsOpen(false);
     } catch (error: any) {
       alert(error.error_description || error.message);
