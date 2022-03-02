@@ -8,7 +8,7 @@ export const NotFoundPageView = (props: NotFoundPageProps) => {
     <Layout showNavigation={true} title="Nicht gefunden">
       <h2 className={classNames("font-bold")}>Oh je!</h2>
       <h2>
-        Diese {props.resourceName || "Ressource"} konnten wir nicht finden!
+        {props.resourceNaming || "Diese Ressource"} konnten wir nicht finden!
       </h2>
     </Layout>
   );

@@ -1,7 +1,7 @@
 import { NotFoundPageView } from "./view";
 
 export type NotFoundPageProps = {
-  resourceName?: string;
+  resourceNaming?: string;
 };
 
 export const NotFoundPage = (props: NotFoundPageProps) => {
