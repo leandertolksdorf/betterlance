@@ -5,7 +5,7 @@ import { CreateCustomerForm } from "../CreateCustomerForm";
 import { CustomerList } from "../CustomerList";
 import { Layout } from "../Layout";
 
-export const CustomersPageView = () => {
+export const CustomerListPageView = () => {
   return (
     <Layout showNavigation={true} title="Kund*innen">
       <p>Hier kannst du alle deine Kund*innen verwalten.</p>

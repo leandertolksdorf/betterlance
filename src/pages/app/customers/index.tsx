@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import React from "react";
-import { CustomersPage } from "../../../components/CustomersPage";
+import { CustomerListPage } from "../../../components/CusomterListPage";
 import { enforceAuthenticated } from "../../../util/enforceAuthenticated";
 
 export const getServerSideProps = enforceAuthenticated();
 
-const CustomerRoute: NextPage = () => {
-  return <CustomersPage />;
+const CustomerListRoute: NextPage = () => {
+  return <CustomerListPage />;
 };
 
-export default CustomerRoute;
+export default CustomerListRoute;
