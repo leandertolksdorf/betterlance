@@ -2,8 +2,8 @@ import { GetServerSideProps } from "next";
 import { supabase } from "../lib/supabase";
 
 export const enforceAuthenticated: (
-  inner?: GetServerSideProps
-) => GetServerSideProps = (inner) => {
+  callback?: GetServerSideProps
+) => GetServerSideProps = (callback) => {
   return async (context) => {
     const { req } = context;
     const { user } = await supabase.auth.api.getUserByCookie(req);
@@ -12,8 +12,8 @@ export const enforceAuthenticated: (
       return { props: {}, redirect: { destination: "/" } };
     }
 
-    if (inner) {
-      return inner(context);
+    if (callback) {
+      return callback(context);
     }
 
     return { props: {} };
