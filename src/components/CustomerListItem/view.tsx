@@ -1,4 +1,5 @@
 import {
+  ArrowDownIcon,
   ArrowRightIcon,
   LockClosedIcon,
   TrashIcon,
@@ -75,12 +76,10 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
             </div>
             <TrashIcon />
           </button>
-          <Link passHref href={"/app/customers/" + props.id.toString()}>
-            <a className={classNames("inline", "ml-2")}>
-              <button className={classNames("icon")}>
-                <ArrowRightIcon />
-              </button>
-            </a>
+          <Link href={"/app/customers/" + props.id}>
+            <button className={classNames("icon", "ml-2")}>
+              <ArrowRightIcon />
+            </button>
           </Link>
         </div>
       </div>
