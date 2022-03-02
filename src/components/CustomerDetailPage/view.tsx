@@ -22,30 +22,34 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
           : "Fehler"
       }
     >
-      <>
-        <Section loading={props.loading} title="Kontaktdaten">
-          <div className={classNames("font-bold", "text-primary-500")}>
-            {props.customer?.name}
-          </div>
-          <div className={classNames("text-primary-500")}>
-            {props.customer?.company}
-          </div>
-          <div className={classNames()}>{props.customer?.email}</div>
-          <div className={classNames("text-gray-500")}>
-            {props.customer?.address}
-          </div>
-          <div className={classNames("text-gray-500")}>
-            {props.customer?.zip} {props.customer?.city}
-          </div>
-          <div className={classNames("text-gray-500")}>
-            {props.customer?.country}
-          </div>
-          <CreateOrEditCustomerForm customer={props.customer || undefined} />
-        </Section>
-        <Section loading={props.loading} title="Aufträge">
-          Hello
-        </Section>
-      </>
+      <div className={classNames("grid", "grid-cols-2", "gap-8")}>
+        <div className={classNames("col-span-1")}>
+          <Section loading={props.loading} title="Kontaktdaten">
+            <div className={classNames("font-bold", "text-primary-500")}>
+              {props.customer?.name}
+            </div>
+            <div className={classNames("text-primary-500")}>
+              {props.customer?.company}
+            </div>
+            <div className={classNames()}>{props.customer?.email}</div>
+            <div className={classNames("text-gray-500")}>
+              {props.customer?.address}
+            </div>
+            <div className={classNames("text-gray-500")}>
+              {props.customer?.zip} {props.customer?.city}
+            </div>
+            <div className={classNames("text-gray-500")}>
+              {props.customer?.country}
+            </div>
+            <CreateOrEditCustomerForm customer={props.customer || undefined} />
+          </Section>
+        </div>
+        <div className={classNames("col-span-2")}>
+          <Section loading={props.loading} title="Aufträge">
+            Noch keine Aufträge
+          </Section>
+        </div>
+      </div>
     </Layout>
   );
 };
