@@ -8,15 +8,19 @@ import { CustomerDetailPageView } from "./view";
 
 export const CustomerDetailPage = () => {
   const router = useRouter();
-  const {
-    query: { id },
-  } = router;
   const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState<definitions["customer"] | null>(
     null
   );
   useEffect(() => {
     loadCustomer();
+    const subscription = supabase
+      .from<definitions["customer"]>("customer")
+      .on("*", loadCustomer)
+      .subscribe();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const loadCustomer = async () => {
