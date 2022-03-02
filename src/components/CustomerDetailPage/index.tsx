@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { Loading } from "../Loading";
+import { NotFoundPage } from "../NotFoundPage";
 import { CustomerDetailPageView } from "./view";
 
 export const CustomerDetailPage = () => {
@@ -38,5 +39,9 @@ export const CustomerDetailPage = () => {
       setLoading(false);
     }
   };
-  return <CustomerDetailPageView loading={loading} customer={customer} />;
+  return loading || customer ? (
+    <CustomerDetailPageView loading={loading} customer={customer} />
+  ) : (
+    <NotFoundPage />
+  );
 };
