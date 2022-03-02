@@ -1,4 +1,9 @@
-import { ArrowRightIcon, TrashIcon } from "@heroicons/react/outline";
+import {
+  ArrowRightIcon,
+  OfficeBuildingIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
+import { MailIcon, UserIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import Link from "next/link";
 import { CustomerListItemProps } from ".";
@@ -25,16 +30,39 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
         )}
       >
         <div>
-          <div className={classNames("font-bold", "text-primary-500")}>
+          <div
+            className={classNames(
+              "font-bold",
+              "text-primary-500",
+              "flex",
+              "items-center"
+            )}
+          >
+            <UserIcon className={classNames("inline-icon", "mr-2")} />
             {props.name}
           </div>
-          <div className={classNames("text-primary-500")}>{props.company}</div>
-          <div className={classNames()}>{props.email}</div>
-          <div className={classNames("text-gray-500")}>{props.address}</div>
-          <div className={classNames("text-gray-500")}>
-            {props.zip} {props.city}
+          <div
+            className={classNames(
+              "text-primary-500",
+              "flex",
+              "items-center",
+              "mb-2"
+            )}
+          >
+            <MailIcon className={classNames("inline-icon", "mr-2")} />
+            {props.email}
           </div>
-          <div className={classNames("text-gray-500")}>{props.country}</div>
+          <div className={classNames("flex", "items-center")}>
+            <OfficeBuildingIcon className={classNames("inline-icon", "mr-2")} />
+            <div>
+              {props.company}
+              <div className={classNames("text-gray-500")}>{props.address}</div>
+              <div className={classNames("text-gray-500")}>
+                {props.zip} {props.city}
+              </div>
+              <div className={classNames("text-gray-500")}>{props.country}</div>
+            </div>
+          </div>
         </div>
         <div className={classNames("flex")}>
           <button

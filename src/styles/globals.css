@@ -79,4 +79,10 @@
     @apply w-4;
     @apply h-4;
   }
+
+  .inline-icon {
+    @apply w-[1em];
+    @apply h-[1em];
+    @apply inline;
+  }
 }
