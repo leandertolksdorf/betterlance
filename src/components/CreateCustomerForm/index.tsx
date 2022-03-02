@@ -25,8 +25,6 @@ export const schema = yup
   .required();
 
 export const CreateCustomerForm = () => {
-  const router = useRouter();
-
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 

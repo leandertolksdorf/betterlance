@@ -65,3 +65,18 @@
     @apply font-bold;
   }
 }
+
+@layer components {
+  button.icon {
+    @apply bg-black/10;
+    @apply text-black/50;
+    @apply hover:bg-primary-200;
+    @apply active:text-primary-500;
+    @apply rounded-full;
+    @apply text-xs;
+  }
+  button.icon svg {
+    @apply w-4;
+    @apply h-4;
+  }
+}
