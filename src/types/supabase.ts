@@ -16,7 +16,6 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.customer.id"];
           created_at?: parameters["rowFilter.customer.created_at"];
           name?: parameters["rowFilter.customer.name"];
           email?: parameters["rowFilter.customer.email"];
@@ -26,6 +25,7 @@ export interface paths {
           city?: parameters["rowFilter.customer.city"];
           country?: parameters["rowFilter.customer.country"];
           created_by?: parameters["rowFilter.customer.created_by"];
+          id?: parameters["rowFilter.customer.id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -76,7 +76,6 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.customer.id"];
           created_at?: parameters["rowFilter.customer.created_at"];
           name?: parameters["rowFilter.customer.name"];
           email?: parameters["rowFilter.customer.email"];
@@ -86,6 +85,7 @@ export interface paths {
           city?: parameters["rowFilter.customer.city"];
           country?: parameters["rowFilter.customer.country"];
           created_by?: parameters["rowFilter.customer.created_by"];
+          id?: parameters["rowFilter.customer.id"];
         };
         header: {
           /** Preference */
@@ -100,7 +100,6 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.customer.id"];
           created_at?: parameters["rowFilter.customer.created_at"];
           name?: parameters["rowFilter.customer.name"];
           email?: parameters["rowFilter.customer.email"];
@@ -110,6 +109,7 @@ export interface paths {
           city?: parameters["rowFilter.customer.city"];
           country?: parameters["rowFilter.customer.country"];
           created_by?: parameters["rowFilter.customer.created_by"];
+          id?: parameters["rowFilter.customer.id"];
         };
         body: {
           /** customer */
@@ -132,7 +132,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -186,7 +185,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
         };
         header: {
@@ -204,7 +202,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
         };
         body: {
@@ -226,12 +223,6 @@ export interface paths {
 
 export interface definitions {
   customer: {
-    /**
-     * Format: bigint
-     * @description Note:
-     * This is a Primary Key.<pk/>
-     */
-    id: number;
     /**
      * Format: timestamp with time zone
      * @default now()
@@ -256,6 +247,13 @@ export interface definitions {
      * @default auth.uid()
      */
     created_by: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
   };
   project: {
     /**
@@ -269,12 +267,6 @@ export interface definitions {
      * @default now()
      */
     created_at?: string;
-    /**
-     * Format: bigint
-     * @description Note:
-     * This is a Foreign Key to `customer.id`.<fk table='customer' column='id'/>
-     */
-    customer_id: number;
     /** Format: text */
     name: string;
   };
@@ -306,8 +298,6 @@ export interface parameters {
   limit: string;
   /** @description customer */
   "body.customer": definitions["customer"];
-  /** Format: bigint */
-  "rowFilter.customer.id": string;
   /** Format: timestamp with time zone */
   "rowFilter.customer.created_at": string;
   /** Format: text */
@@ -326,14 +316,14 @@ export interface parameters {
   "rowFilter.customer.country": string;
   /** Format: uuid */
   "rowFilter.customer.created_by": string;
+  /** Format: uuid */
+  "rowFilter.customer.id": string;
   /** @description project */
   "body.project": definitions["project"];
   /** Format: bigint */
   "rowFilter.project.id": string;
   /** Format: timestamp with time zone */
   "rowFilter.project.created_at": string;
-  /** Format: bigint */
-  "rowFilter.project.customer_id": string;
   /** Format: text */
   "rowFilter.project.name": string;
 }
