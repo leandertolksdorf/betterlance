@@ -1,11 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { prependOnceListener } from "process";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
-import { CreateCustomerFormView } from "./view";
+import { CreateOrEditCustomerFormView } from "./view";
+
+export type CreateOrEditCustomerFormProps = {
+  customer?: definitions["customer"];
+};
 
 export type FormData = Omit<
   definitions["customer"],
@@ -24,7 +29,9 @@ export const schema = yup
   })
   .required();
 
-export const CreateCustomerForm = () => {
+export const CreateOrEditCustomerForm = (
+  props: CreateOrEditCustomerFormProps
+) => {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +42,7 @@ export const CreateCustomerForm = () => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
+    defaultValues: props.customer,
   });
 
   const onSubmit = handleSubmit(async (data) => {
@@ -42,7 +50,7 @@ export const CreateCustomerForm = () => {
       setLoading(true);
       const { error } = await supabase
         .from<definitions["customer"]>("customer")
-        .insert(data);
+        .upsert({ id: props.customer?.id, ...data });
       if (error) throw error;
       reset();
       setIsOpen(false);
@@ -54,11 +62,12 @@ export const CreateCustomerForm = () => {
   });
 
   return (
-    <CreateCustomerFormView
+    <CreateOrEditCustomerFormView
       isOpen={isOpen}
       onOpen={() => setIsOpen(!isOpen)}
       loading={loading}
       register={register}
+      customer={props.customer}
       onSubmit={onSubmit}
       errors={errors}
     />

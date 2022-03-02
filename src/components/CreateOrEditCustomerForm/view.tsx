@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import React, { FormEventHandler, useEffect, useRef, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { FormData } from ".";
+import { CreateOrEditCustomerFormProps, FormData } from ".";
 import { DimExcept } from "../DimExcept";
 
-type CreateCustomerFormViewProps = {
+type CreateCustomerFormViewProps = CreateOrEditCustomerFormProps & {
   isOpen: boolean;
   onOpen: () => void;
   loading: boolean;
@@ -13,7 +13,9 @@ type CreateCustomerFormViewProps = {
   errors: FieldErrors;
 };
 
-export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
+export const CreateOrEditCustomerFormView = (
+  props: CreateCustomerFormViewProps
+) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const [innerHeight, setInnerHeight] = useState(0);
 
@@ -24,7 +26,11 @@ export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
     <DimExcept dim={props.isOpen}>
       <div className={classNames("bg-gray-100", "rounded-lg", "my-2")}>
         <button className={classNames()} onClick={props.onOpen}>
-          {props.isOpen ? "Schließen" : "Kund*in anlegen"}
+          {props.isOpen
+            ? "Schließen"
+            : props.customer
+            ? "Kund*in bearbeiten"
+            : "Kund*in anlegen"}
         </button>
         <div
           ref={innerRef}
@@ -34,7 +40,9 @@ export const CreateCustomerFormView = (props: CreateCustomerFormViewProps) => {
           }}
         >
           <div className={classNames("p-4")}>
-            <h3 className={classNames("mb-2")}>Kund*in anlegen</h3>
+            <h3 className={classNames("mb-2")}>
+              {props.customer ? "Kund*in bearbeiten" : "Kund*in anlegen"}
+            </h3>
             <form onSubmit={props.onSubmit}>
               <label>
                 Firma
