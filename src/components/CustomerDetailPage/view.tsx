@@ -1,11 +1,8 @@
 import classNames from "classnames";
 import React from "react";
 import { definitions } from "../../types/supabase";
-import { AuthForm } from "../AuthForm";
 import { CreateOrEditCustomerForm } from "../CreateOrEditCustomerForm";
-import { CustomerList } from "../CustomerList";
 import { Layout } from "../Layout";
-import { Loading } from "../Loading";
 import { Section } from "../Section";
 
 type CustomerDetailPageViewProps = {

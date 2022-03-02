@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import React from "react";
 import { CustomerListPageView } from "./view";
 

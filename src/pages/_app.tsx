@@ -1,9 +1,9 @@
-import "../styles/globals.css";
+import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { supabase } from "../lib/supabase";
-import { AuthChangeEvent, Session } from "@supabase/supabase-js";
-import { useRouter } from "next/router";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

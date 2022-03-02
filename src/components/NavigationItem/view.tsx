@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React from "react";
 import { NavigationItemProps } from ".";
 
 type NavigationItemViewProps = NavigationItemProps & {

@@ -1,15 +1,14 @@
-import classNames from "classnames";
-import React, { ReactNode } from "react";
-import { LayoutProps } from ".";
-import { Navigation } from "../Navigation";
 import {
-  BeakerIcon,
   BriefcaseIcon,
   CashIcon,
   CollectionIcon,
   LogoutIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
+import classNames from "classnames";
+import React from "react";
+import { LayoutProps } from ".";
+import { Navigation } from "../Navigation";
 import { NavigationItem } from "../NavigationItem";
 
 export type LayoutViewProps = LayoutProps & {

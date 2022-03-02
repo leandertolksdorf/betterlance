@@ -1,11 +1,5 @@
 import { useRouter } from "next/router";
-import React, {
-  EventHandler,
-  MouseEventHandler,
-  ReactElement,
-  ReactNode,
-  ReactSVGElement,
-} from "react";
+import React, { MouseEventHandler, ReactElement } from "react";
 import { NavigationItemView } from "./view";
 
 export type NavigationItemProps = {

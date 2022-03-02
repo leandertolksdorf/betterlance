@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
 import { SectionProps } from ".";
 import { Loading } from "../Loading";
 export const SectionView = (props: SectionProps) => {

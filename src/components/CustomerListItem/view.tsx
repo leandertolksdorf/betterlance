@@ -1,9 +1,4 @@
-import {
-  ArrowDownIcon,
-  ArrowRightIcon,
-  LockClosedIcon,
-  TrashIcon,
-} from "@heroicons/react/outline";
+import { ArrowRightIcon, TrashIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
 import { CustomerListItemProps } from ".";

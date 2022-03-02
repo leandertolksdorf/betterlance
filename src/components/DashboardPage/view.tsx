@@ -1,6 +1,4 @@
-import classNames from "classnames";
 import React from "react";
-import { AuthForm } from "../AuthForm";
 import { Layout } from "../Layout";
 
 export const DashboardPageView = () => {

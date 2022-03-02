@@ -1,10 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SupabaseClient } from "@supabase/supabase-js";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { AuthFormView } from "./view";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
 
 export type FormData = {
   email: string;

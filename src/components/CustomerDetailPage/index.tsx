@@ -1,9 +1,7 @@
-import { GetStaticPropsContext, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
-import { Loading } from "../Loading";
 import { NotFoundPage } from "../NotFoundPage";
 import { CustomerDetailPageView } from "./view";
 

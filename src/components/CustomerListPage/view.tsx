@@ -1,6 +1,4 @@
-import classNames from "classnames";
 import React from "react";
-import { AuthForm } from "../AuthForm";
 import { CreateOrEditCustomerForm } from "../CreateOrEditCustomerForm";
 import { CustomerList } from "../CustomerList";
 import { Layout } from "../Layout";

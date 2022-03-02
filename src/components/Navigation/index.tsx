@@ -1,5 +1,5 @@
-import React, { ReactElement, ReactNode } from "react";
-import { NavigationItem, NavigationItemProps } from "../NavigationItem";
+import React, { ReactElement } from "react";
+import { NavigationItemProps } from "../NavigationItem";
 import { NavigationView } from "./view";
 
 export type NavigationProps = {
