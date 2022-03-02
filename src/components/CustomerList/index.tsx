@@ -27,10 +27,11 @@ export const CustomerList = () => {
     loadCustomers();
     const subscription = supabase
       .from<definitions["customer"]>("customer")
-      .on("*", (payload) => {
-        loadCustomers();
-      })
+      .on("*", loadCustomers)
       .subscribe();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
   return <CustomerListView loading={loading} customers={customers} />;
 };
