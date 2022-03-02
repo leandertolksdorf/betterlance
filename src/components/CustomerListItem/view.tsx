@@ -1,5 +1,10 @@
-import { LockClosedIcon, TrashIcon } from "@heroicons/react/outline";
+import {
+  ArrowRightIcon,
+  LockClosedIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
 import classNames from "classnames";
+import Link from "next/link";
 import { CustomerListItemProps } from ".";
 import { DimExcept } from "../DimExcept";
 
@@ -19,7 +24,8 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
           "mb-2",
           "p-4",
           "flex",
-          "justify-between"
+          "justify-between",
+          "items-end"
         )}
       >
         <div>
@@ -34,7 +40,7 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
           </div>
           <div className={classNames("text-gray-500")}>{props.country}</div>
         </div>
-        <div>
+        <div className={classNames("flex")}>
           <button
             className={classNames(
               "flex",
@@ -69,6 +75,13 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
             </div>
             <TrashIcon />
           </button>
+          <Link passHref href={"/app/customers/" + props.id.toString()}>
+            <a className={classNames("inline", "ml-2")}>
+              <button className={classNames("icon")}>
+                <ArrowRightIcon />
+              </button>
+            </a>
+          </Link>
         </div>
       </div>
     </DimExcept>
