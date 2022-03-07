@@ -1,4 +1,5 @@
 import React from "react";
+import { CreateOrEditProjectForm } from "../CreateOrEditProjectForm";
 import { Layout } from "../Layout";
 
 export const ProjectListPageView = () => {
@@ -8,7 +9,7 @@ export const ProjectListPageView = () => {
       title="Aufträge"
       subtitle="Hier kannst du alle deine Aufträge verwalten"
     >
-      Hello World
+      <CreateOrEditProjectForm />
     </Layout>
   );
 };

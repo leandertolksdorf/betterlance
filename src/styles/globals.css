@@ -28,6 +28,20 @@
     @apply focus:outline-none focus:border-primary-500;
   }
 
+  select {
+    @apply transition;
+    @apply w-full;
+    @apply p-2;
+    @apply mb-2;
+    @apply rounded;
+    @apply border-2;
+    @apply bg-white;
+    @apply border-gray-300;
+    @apply text-lg;
+    @apply text-black;
+    @apply focus:border-primary-500;
+  }
+
   button,
   [type="button"],
   [type="reset"],
