@@ -132,7 +132,8 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          name?: parameters["rowFilter.project.name"];
+          created_by?: parameters["rowFilter.project.created_by"];
+          customer_id?: parameters["rowFilter.project.customer_id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -185,7 +186,8 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          name?: parameters["rowFilter.project.name"];
+          created_by?: parameters["rowFilter.project.created_by"];
+          customer_id?: parameters["rowFilter.project.customer_id"];
         };
         header: {
           /** Preference */
@@ -202,7 +204,8 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
-          name?: parameters["rowFilter.project.name"];
+          created_by?: parameters["rowFilter.project.created_by"];
+          customer_id?: parameters["rowFilter.project.customer_id"];
         };
         body: {
           /** project */
@@ -266,9 +269,18 @@ export interface definitions {
      * Format: timestamp with time zone
      * @default now()
      */
-    created_at?: string;
-    /** Format: text */
-    name: string;
+    created_at: string;
+    /**
+     * Format: uuid
+     * @default auth.uid()
+     */
+    created_by: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `customer.id`.<fk table='customer' column='id'/>
+     */
+    customer_id?: string;
   };
 }
 
@@ -324,8 +336,10 @@ export interface parameters {
   "rowFilter.project.id": string;
   /** Format: timestamp with time zone */
   "rowFilter.project.created_at": string;
-  /** Format: text */
-  "rowFilter.project.name": string;
+  /** Format: uuid */
+  "rowFilter.project.created_by": string;
+  /** Format: uuid */
+  "rowFilter.project.customer_id": string;
 }
 
 export interface operations {}
