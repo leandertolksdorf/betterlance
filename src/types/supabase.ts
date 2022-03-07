@@ -134,6 +134,7 @@ export interface paths {
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
+          name?: parameters["rowFilter.project.name"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -188,6 +189,7 @@ export interface paths {
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
+          name?: parameters["rowFilter.project.name"];
         };
         header: {
           /** Preference */
@@ -206,6 +208,7 @@ export interface paths {
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
+          name?: parameters["rowFilter.project.name"];
         };
         body: {
           /** project */
@@ -281,6 +284,8 @@ export interface definitions {
      * This is a Foreign Key to `customer.id`.<fk table='customer' column='id'/>
      */
     customer_id?: string;
+    /** Format: text */
+    name: string;
   };
 }
 
@@ -340,6 +345,8 @@ export interface parameters {
   "rowFilter.project.created_by": string;
   /** Format: uuid */
   "rowFilter.project.customer_id": string;
+  /** Format: text */
+  "rowFilter.project.name": string;
 }
 
 export interface operations {}
