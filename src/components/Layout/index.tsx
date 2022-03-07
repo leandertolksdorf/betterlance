@@ -6,7 +6,7 @@ import { LayoutView } from "./view";
 export type LayoutProps = {
   showNavigation?: boolean;
   children?: ReactNode;
-  title: string;
+  title?: string;
   subtitle?: string;
 };
 

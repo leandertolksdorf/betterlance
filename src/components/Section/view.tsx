@@ -7,7 +7,13 @@ export const SectionView = (props: SectionProps) => {
       {props.title && (
         <h2 className={classNames("font-bold", "mb-2")}>{props.title}</h2>
       )}
-      <div className={classNames("bg-gray-100", "rounded", "p-4")}>
+      <div
+        className={classNames(
+          "bg-gray-100",
+          "rounded",
+          !props.wrapChild && "p-4"
+        )}
+      >
         {props.loading ? <Loading /> : props.children}
       </div>
     </div>

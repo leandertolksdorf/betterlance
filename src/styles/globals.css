@@ -35,7 +35,8 @@
     @apply transition;
     @apply uppercase;
     @apply w-full;
-    @apply p-2;
+    @apply px-4;
+    @apply py-2;
     @apply rounded;
     @apply bg-primary-500;
     @apply hover:bg-primary-600;
@@ -67,7 +68,14 @@
 }
 
 @layer components {
+  button.light {
+    @apply bg-gray-100;
+    @apply hover:bg-gray-200;
+    @apply text-primary-500;
+  }
+
   button.icon {
+    @apply px-2;
     @apply bg-black/10;
     @apply text-black/50;
     @apply hover:bg-primary-200;

@@ -5,6 +5,7 @@ export type SectionProps = {
   title?: string;
   children?: ReactNode;
   loading?: boolean;
+  wrapChild?: boolean;
 };
 export const Section = (props: SectionProps) => {
   return <SectionView {...props} />;

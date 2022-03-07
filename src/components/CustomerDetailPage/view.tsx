@@ -16,58 +16,48 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
   return (
     <Layout
       showNavigation={true}
-      title={
-        props.loading
-          ? "Laden..."
-          : props.customer
-          ? props.customer.name
-          : "Fehler"
-      }
+      title={props.customer ? props.customer.name : ""}
+      subtitle={props.customer ? props.customer.company : ""}
     >
       <div className={classNames("grid", "grid-cols-2", "gap-8")}>
         <div className={classNames("col-span-1")}>
-          <Section loading={props.loading} title="Kontaktdaten">
-            <div>
-              <div
-                className={classNames(
-                  "font-bold",
-                  "text-primary-500",
-                  "flex",
-                  "items-center"
-                )}
-              >
-                <UserIcon className={classNames("inline-icon", "mr-2")} />
-                {props.customer?.name}
-              </div>
-              <div
-                className={classNames(
-                  "text-primary-500",
-                  "flex",
-                  "items-center",
-                  "mb-2"
-                )}
-              >
-                <MailIcon className={classNames("inline-icon", "mr-2")} />
-                {props.customer?.email}
-              </div>
-              <div className={classNames("flex", "items-center")}>
-                <OfficeBuildingIcon
-                  className={classNames("inline-icon", "mr-2")}
-                />
-                <div>
-                  {props.customer?.company}
-                  <div className={classNames("text-gray-500")}>
-                    {props.customer?.address}
-                  </div>
-                  <div className={classNames("text-gray-500")}>
-                    {props.customer?.zip} {props.customer?.city}
-                  </div>
-                  <div className={classNames("text-gray-500")}>
-                    {props.customer?.country}
-                  </div>
+          <Section loading={props.loading} title="Kundendaten">
+            <div className={classNames("font-bold", "flex", "items-center")}>
+              <UserIcon className={classNames("inline-icon", "mr-2")} />
+              {props.customer?.name}
+            </div>
+            <div
+              className={classNames(
+                "font-bold",
+                "flex",
+                "items-center",
+                "mb-2"
+              )}
+            >
+              <MailIcon className={classNames("inline-icon", "mr-2")} />
+              {props.customer?.email}
+            </div>
+            <div className={classNames("flex", "items-center")}>
+              <OfficeBuildingIcon
+                className={classNames("inline-icon", "mr-2")}
+              />
+              <div>
+                {props.customer?.company}
+                <div className={classNames("text-gray-500")}>
+                  {props.customer?.address}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.customer?.zip} {props.customer?.city}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.customer?.country}
                 </div>
               </div>
             </div>
+          </Section>
+        </div>
+        <div className={classNames("col-span-1")}>
+          <Section wrapChild loading={props.loading} title="Bearbeiten">
             <CreateOrEditCustomerForm customer={props.customer || undefined} />
           </Section>
         </div>

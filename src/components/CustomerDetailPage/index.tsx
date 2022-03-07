@@ -8,9 +8,9 @@ import { CustomerDetailPageView } from "./view";
 export const CustomerDetailPage = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [customer, setCustomer] = useState<definitions["customer"] | null>(
-    null
-  );
+  const [customer, setCustomer] = useState<
+    definitions["customer"] | null | undefined
+  >(undefined);
   useEffect(() => {
     loadCustomer();
     const subscription = supabase

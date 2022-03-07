@@ -62,10 +62,14 @@ export const LayoutView = (props: LayoutViewProps) => {
           )}
         >
           <div className={classNames("mb-4")}>
-            <h1 className={classNames("text-2xl")}>{props.title}</h1>
+            <h1 className={classNames("text-4xl")}>{props.title}</h1>
             {props.subtitle && (
               <h2
-                className={classNames("text-2xl", "text-black", "font-normal")}
+                className={classNames(
+                  "text-2xl",
+                  "text-primary-800",
+                  "font-bold"
+                )}
               >
                 {props.subtitle}
               </h2>
