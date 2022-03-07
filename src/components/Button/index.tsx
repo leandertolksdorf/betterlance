@@ -1,5 +1,4 @@
 import assert from "assert";
-import classNames from "classnames";
 import Link from "next/link";
 import { MouseEventHandler, ReactNode } from "react";
 import { ButtonView } from "./view";
