@@ -130,11 +130,11 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
+          id?: parameters["rowFilter.project.id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -185,11 +185,11 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
+          id?: parameters["rowFilter.project.id"];
         };
         header: {
           /** Preference */
@@ -204,11 +204,11 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.project.id"];
           created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer_id?: parameters["rowFilter.project.customer_id"];
           name?: parameters["rowFilter.project.name"];
+          id?: parameters["rowFilter.project.id"];
         };
         body: {
           /** project */
@@ -263,12 +263,6 @@ export interface definitions {
   };
   project: {
     /**
-     * Format: bigint
-     * @description Note:
-     * This is a Primary Key.<pk/>
-     */
-    id: number;
-    /**
      * Format: timestamp with time zone
      * @default now()
      */
@@ -286,6 +280,13 @@ export interface definitions {
     customer_id?: string;
     /** Format: text */
     name: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
   };
 }
 
@@ -337,8 +338,6 @@ export interface parameters {
   "rowFilter.customer.id": string;
   /** @description project */
   "body.project": definitions["project"];
-  /** Format: bigint */
-  "rowFilter.project.id": string;
   /** Format: timestamp with time zone */
   "rowFilter.project.created_at": string;
   /** Format: uuid */
@@ -347,6 +346,8 @@ export interface parameters {
   "rowFilter.project.customer_id": string;
   /** Format: text */
   "rowFilter.project.name": string;
+  /** Format: uuid */
+  "rowFilter.project.id": string;
 }
 
 export interface operations {}
