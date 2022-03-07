@@ -1,7 +1,9 @@
+import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import React, { FormEventHandler, useEffect, useRef, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { CreateOrEditCustomerFormProps, FormData } from ".";
+import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
 
 type CreateCustomerFormViewProps = CreateOrEditCustomerFormProps & {
@@ -25,13 +27,17 @@ export const CreateOrEditCustomerFormView = (
   return (
     <DimExcept dim={props.isOpen}>
       <div className={classNames("bg-gray-100", "rounded-lg", "my-2")}>
-        <button className={classNames()} onClick={props.onOpen}>
+        <Button
+          light={props.isOpen}
+          onClick={props.onOpen}
+          icon={props.isOpen ? <XIcon /> : <PlusIcon />}
+        >
           {props.isOpen
             ? "Schließen"
             : props.customer
             ? "Kund*in bearbeiten"
             : "Kund*in anlegen"}
-        </button>
+        </Button>
         <div
           ref={innerRef}
           className={classNames("overflow-hidden", "transition-[max-height]")}
