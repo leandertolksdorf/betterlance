@@ -1,8 +1,14 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   important: true,
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        ...fontFamily,
+        sans: ["Manrope", ...fontFamily.sans],
+      },
       colors: {
         primary: {
           50: "#f7f8fe",

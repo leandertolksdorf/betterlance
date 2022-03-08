@@ -2,10 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "Manrope";
+    src: url("/fonts/manrope.ttf") format("truetype");
+  }
+}
+
 .container {
   @apply px-8;
 }
+
 @layer base {
+  body {
+    @apply antialiased;
+  }
   label {
     @apply transition;
     @apply uppercase;
