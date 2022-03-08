@@ -6,6 +6,8 @@ import { LayoutView } from "./view";
 export type LayoutProps = {
   showNavigation?: boolean;
   children?: ReactNode;
+  pageTypeIcon?: ReactNode;
+  pageType?: string;
   title?: string;
   subtitle?: string;
 };

@@ -62,6 +62,29 @@ export const LayoutView = (props: LayoutViewProps) => {
           )}
         >
           <div className={classNames("mb-4", "border-b", "pb-4")}>
+            {props.pageType && (
+              <div
+                className={classNames(
+                  "bg-gray-100",
+                  "inline-flex",
+                  "items-center",
+                  "py-1",
+                  "px-2",
+                  "mb-2",
+                  "rounded",
+                  "text-primary-900",
+                  "font-bold",
+                  "uppercase"
+                )}
+              >
+                {props.pageTypeIcon && (
+                  <div className={classNames("w-[1em]", "h-[1em]", "mr-1")}>
+                    {props.pageTypeIcon}
+                  </div>
+                )}
+                {props.pageType}
+              </div>
+            )}
             <h1 className={classNames("text-4xl")}>{props.title}</h1>
             {props.subtitle && (
               <h2
