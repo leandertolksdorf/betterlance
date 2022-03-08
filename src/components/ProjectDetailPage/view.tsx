@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { ProjectWithCustomer } from "../../types/composite";
 import { Box } from "../Box";
+import { IconButton } from "../IconButton";
 import { Layout } from "../Layout";
 import { Loading } from "../Loading";
 import { Section } from "../Section";
@@ -70,11 +71,10 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
               </div>
             </div>
             <div className={classNames("flex", "justify-end")}>
-              <Link href={"/app/customers/" + props.project.customer.id}>
-                <button className={classNames("icon")}>
-                  <ArrowRightIcon />
-                </button>
-              </Link>
+              <IconButton
+                icon={<ArrowRightIcon />}
+                href={"/app/customers/" + props.project.customer.id}
+              />
             </div>
           </Box>
         )}
