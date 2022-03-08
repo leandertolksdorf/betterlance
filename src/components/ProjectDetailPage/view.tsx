@@ -29,52 +29,58 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
           "Dieser Auftrag ist mit keinem Kunden verknüpft"
         ) : (
           <Box>
-            <div
-              className={classNames(
-                "font-bold",
-                "flex",
-                "items-center",
-                "text-primary-500"
-              )}
-            >
-              <UserIcon className={classNames("inline-icon", "mr-2")} />
-              {props.project.customer?.name}
-            </div>
-            <div
-              className={classNames(
-                "font-bold",
-                "flex",
-                "items-center",
-                "mb-2",
-                "text-primary-500"
-              )}
-            >
-              <MailIcon className={classNames("inline-icon", "mr-2")} />
-              {props.project.customer.email || "Email-Adresse fehlt"}
-            </div>
-            <div className={classNames("flex", "items-center")}>
-              <OfficeBuildingIcon
-                className={classNames("inline-icon", "mr-2")}
-              />
+            <div className={classNames("flex", "justify-between")}>
               <div>
-                {props.project.customer.company || "Firma fehlt"}
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.address || "Adresse fehlt"}
+                <div
+                  className={classNames(
+                    "font-bold",
+                    "flex",
+                    "items-center",
+                    "text-primary-500"
+                  )}
+                >
+                  <UserIcon className={classNames("inline-icon", "mr-2")} />
+                  {props.project.customer?.name}
                 </div>
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.zip || "PLZ fehlt"} &#183;{" "}
-                  {props.project.customer.city || "Stadt fehlt"}
+                <div
+                  className={classNames(
+                    "font-bold",
+                    "flex",
+                    "items-center",
+                    "mb-2",
+                    "text-primary-500"
+                  )}
+                >
+                  <MailIcon className={classNames("inline-icon", "mr-2")} />
+                  {props.project.customer.email || "Email-Adresse fehlt"}
                 </div>
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.country || "Land fehlt"}
+                <div className={classNames("flex", "items-center")}>
+                  <OfficeBuildingIcon
+                    className={classNames("inline-icon", "mr-2")}
+                  />
+                  <div>
+                    {props.project.customer.company || "Firma fehlt"}
+                    <div className={classNames("text-gray-500")}>
+                      {props.project.customer.address || "Adresse fehlt"}
+                    </div>
+                    <div className={classNames("text-gray-500")}>
+                      {props.project.customer.zip || "PLZ fehlt"} &#183;{" "}
+                      {props.project.customer.city || "Stadt fehlt"}
+                    </div>
+                    <div className={classNames("text-gray-500")}>
+                      {props.project.customer.country || "Land fehlt"}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={classNames("flex", "justify-end")}>
-              <IconButton
-                icon={<ArrowRightIcon />}
-                href={"/app/customers/" + props.project.customer.id}
-              />
+              <div className={classNames("flex", "items-end")}>
+                <IconButton
+                  text="Zum Kunden"
+                  alwaysShowText
+                  icon={<ArrowRightIcon />}
+                  href={"/app/customers/" + props.project.customer.id}
+                />
+              </div>
             </div>
           </Box>
         )}
