@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import { ProjectListItem, ProjectListItemResource } from "../ProjectListItem";
+import { ProjectWithCustomer } from "../../types/composite";
+import { ProjectListItem } from "../ProjectListItem";
 
 type ProjectListViewProps = {
-  projects: ProjectListItemResource[];
+  projects: ProjectWithCustomer[];
 };
 
 export const ProjectListView = (props: ProjectListViewProps) => {

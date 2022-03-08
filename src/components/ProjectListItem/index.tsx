@@ -1,16 +1,10 @@
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
+import { ProjectWithCustomer } from "../../types/composite";
 import { definitions } from "../../types/supabase";
 import { ProjectListItemView } from "./view";
 
-export type ProjectListItemResource = Omit<
-  definitions["project"],
-  "customer"
-> & {
-  customer?: definitions["customer"];
-};
-
-export type ProjectListItemProps = ProjectListItemResource;
+export type ProjectListItemProps = ProjectWithCustomer;
 
 export const ProjectListItem = (props: ProjectListItemProps) => {
   const [loading, setLoading] = useState(false);

@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import { ProjectWithCustomer } from "../../types/composite";
 import { definitions } from "../../types/supabase";
 import { Loading } from "../Loading";
-import { ProjectListItemResource } from "../ProjectListItem";
 import { ProjectListView } from "./view";
 
 export const ProjectList = () => {
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState<
-    ProjectListItemResource[] | null | undefined
+    ProjectWithCustomer[] | null | undefined
   >();
 
   const loadProjects = async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from<ProjectListItemResource>("project")
+        .from<ProjectWithCustomer>("project")
         .select("*, customer(name)")
         .order("name");
       console.log(data);
