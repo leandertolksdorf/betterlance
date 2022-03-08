@@ -8,8 +8,7 @@ export type ProjectListItemProps = ProjectWithCustomer;
 
 export const ProjectListItem = (props: ProjectListItemProps) => {
   const [loading, setLoading] = useState(false);
-  const [deleteRequested, setDeleteRequested] = useState(false);
-  const onDeleteConfirm = async () => {
+  const onDelete = async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -24,12 +23,5 @@ export const ProjectListItem = (props: ProjectListItemProps) => {
       setLoading(false);
     }
   };
-  return (
-    <ProjectListItemView
-      deleteRequested={deleteRequested}
-      onDeleteRequest={setDeleteRequested}
-      onDeleteConfirm={onDeleteConfirm}
-      {...props}
-    />
-  );
+  return <ProjectListItemView onDelete={onDelete} {...props} />;
 };
