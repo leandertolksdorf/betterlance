@@ -51,27 +51,31 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
               <MailIcon className={classNames("inline-icon", "mr-2")} />
               {props.project.customer.email || "Email-Adresse fehlt"}
             </div>
-
-            {
-              <div className={classNames("flex", "items-center")}>
-                <OfficeBuildingIcon
-                  className={classNames("inline-icon", "mr-2")}
-                />
-                <div>
-                  {props.project.customer.company || "Firma fehlt"}
-                  <div className={classNames("text-gray-500")}>
-                    {props.project.customer.address || "Adresse fehlt"}
-                  </div>
-                  <div className={classNames("text-gray-500")}>
-                    {props.project.customer.zip || "PLZ fehlt"} &#183;{" "}
-                    {props.project.customer.city || "Stadt fehlt"}
-                  </div>
-                  <div className={classNames("text-gray-500")}>
-                    {props.project.customer.country || "Land fehlt"}
-                  </div>
+            <div className={classNames("flex", "items-center")}>
+              <OfficeBuildingIcon
+                className={classNames("inline-icon", "mr-2")}
+              />
+              <div>
+                {props.project.customer.company || "Firma fehlt"}
+                <div className={classNames("text-gray-500")}>
+                  {props.project.customer.address || "Adresse fehlt"}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.project.customer.zip || "PLZ fehlt"} &#183;{" "}
+                  {props.project.customer.city || "Stadt fehlt"}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.project.customer.country || "Land fehlt"}
                 </div>
               </div>
-            }
+            </div>
+            <div className={classNames("flex", "justify-end")}>
+              <Link href={"/app/customers/" + props.project.customer.id}>
+                <button className={classNames("icon")}>
+                  <ArrowRightIcon />
+                </button>
+              </Link>
+            </div>
           </Box>
         )}
       </Section>
