@@ -7,9 +7,9 @@ import { ProjectListView } from "./view";
 
 export const ProjectList = () => {
   const [loading, setLoading] = useState(false);
-  const [projects, setProjects] = useState<
-    ProjectWithCustomer[] | null | undefined
-  >();
+  const [projects, setProjects] = useState<ProjectWithCustomer[] | undefined>(
+    undefined
+  );
 
   const loadProjects = async () => {
     try {
@@ -38,9 +38,9 @@ export const ProjectList = () => {
     };
   }, []);
 
-  return projects === undefined || loading ? (
-    <Loading />
-  ) : projects === null ? null : (
-    <ProjectListView projects={projects} />
-  );
+  if (loading || projects === undefined) {
+    return <Loading />;
+  } else {
+    return <ProjectListView projects={projects} />;
+  }
 };
