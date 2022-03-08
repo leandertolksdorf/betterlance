@@ -10,8 +10,7 @@ export type CustomerListItemProps = Omit<
 
 export const CustomerListItem = (props: CustomerListItemProps) => {
   const [loading, setLoading] = useState(false);
-  const [deleteRequested, setDeleteRequested] = useState(false);
-  const onDeleteConfirm = async () => {
+  const onDelete = async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -26,12 +25,5 @@ export const CustomerListItem = (props: CustomerListItemProps) => {
       setLoading(false);
     }
   };
-  return (
-    <CustomerListItemView
-      {...props}
-      deleteRequested={deleteRequested}
-      onDeleteRequest={setDeleteRequested}
-      onDeleteConfirm={onDeleteConfirm}
-    />
-  );
+  return <CustomerListItemView {...props} onDelete={onDelete} />;
 };
