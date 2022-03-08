@@ -9,9 +9,12 @@ import { ProjectDetailPageView } from "./view";
 export const ProjectDetailPage = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [project, setProject] = useState<
-    ProjectWithCustomer | null | undefined
-  >(undefined);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
+  const [project, setProject] = useState<ProjectWithCustomer | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     loadProject();
@@ -39,9 +42,9 @@ export const ProjectDetailPage = () => {
       setLoading(false);
     }
   };
-  return project === null ? (
-    <ErrorPage />
-  ) : (
-    <ProjectDetailPageView loading={loading} project={project} />
-  );
+  if (loading || project) {
+    return <ProjectDetailPageView loading={loading} project={project} />;
+  } else {
+    return <ErrorPage message={errorMessage} />;
+  }
 };
