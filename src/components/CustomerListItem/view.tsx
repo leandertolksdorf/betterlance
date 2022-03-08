@@ -33,9 +33,9 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
           <div
             className={classNames(
               "font-bold",
-              "text-primary-500",
               "flex",
-              "items-center"
+              "items-center",
+              "text-primary-500"
             )}
           >
             <UserIcon className={classNames("inline-icon", "mr-2")} />
@@ -43,26 +43,37 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
           </div>
           <div
             className={classNames(
-              "text-primary-500",
+              "font-bold",
               "flex",
               "items-center",
-              "mb-2"
+              "mb-2",
+              "text-primary-500"
             )}
           >
             <MailIcon className={classNames("inline-icon", "mr-2")} />
-            {props.email}
+            {props.email || "Email-Adresse fehlt"}
           </div>
-          <div className={classNames("flex", "items-center")}>
-            <OfficeBuildingIcon className={classNames("inline-icon", "mr-2")} />
-            <div>
-              {props.company}
-              <div className={classNames("text-gray-500")}>{props.address}</div>
-              <div className={classNames("text-gray-500")}>
-                {props.zip} {props.city}
+
+          {
+            <div className={classNames("flex", "items-center")}>
+              <OfficeBuildingIcon
+                className={classNames("inline-icon", "mr-2")}
+              />
+              <div>
+                {props.company || "Firma fehlt"}
+                <div className={classNames("text-gray-500")}>
+                  {props.address || "Adresse fehlt"}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.zip || "PLZ fehlt"} &#183;{" "}
+                  {props.city || "Stadt fehlt"}
+                </div>
+                <div className={classNames("text-gray-500")}>
+                  {props.country || "Land fehlt"}
+                </div>
               </div>
-              <div className={classNames("text-gray-500")}>{props.country}</div>
             </div>
-          </div>
+          }
         </div>
         <div className={classNames("flex")}>
           <button
