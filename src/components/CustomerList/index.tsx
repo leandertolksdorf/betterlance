@@ -7,7 +7,7 @@ import { CustomerListView } from "./view";
 export const CustomerList = () => {
   const [loading, setLoading] = useState(false);
   const [customers, setCustomers] = useState<
-    definitions["customer"][] | null | undefined
+    definitions["customer"][] | undefined
   >();
 
   const loadCustomers = async () => {
@@ -18,7 +18,7 @@ export const CustomerList = () => {
         .select()
         .order("name");
       if (error) throw error;
-      setCustomers(data);
+      setCustomers(data!);
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
@@ -36,9 +36,10 @@ export const CustomerList = () => {
       subscription.unsubscribe();
     };
   }, []);
-  return customers === undefined || loading ? (
-    <Loading />
-  ) : customers === null ? null : (
-    <CustomerListView customers={customers} />
-  );
+
+  if (loading || customers === undefined) {
+    return <Loading />;
+  } else {
+    return <CustomerListView customers={customers} />;
+  }
 };
