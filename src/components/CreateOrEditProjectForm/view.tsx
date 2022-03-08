@@ -57,7 +57,7 @@ export const CreateOrEditProjectFormView = (
               </label>
               <label>
                 Kunde
-                <select {...props.register("customer_id", { required: false })}>
+                <select {...props.register("customer", { required: false })}>
                   <option value={""}>keinen Kunden verknüpfen</option>
                   {props.customers?.map((customer) => (
                     <option value={customer.id}>
