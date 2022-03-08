@@ -89,7 +89,11 @@
   }
 
   button.icon {
-    @apply px-2;
+    @apply p-2;
+    @apply w-min;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
     @apply bg-black/10;
     @apply text-black/50;
     @apply hover:bg-primary-200;
