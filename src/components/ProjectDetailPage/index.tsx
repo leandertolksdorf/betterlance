@@ -32,16 +32,16 @@ export const ProjectDetailPage = () => {
         .select("*, customer(*)")
         .eq("id", router.query.id as string);
       if (error) throw error;
-      setProject(data![0]);
+      setProject(data[0] || null);
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
   };
-  return loading || project ? (
-    <ProjectDetailPageView loading={loading} project={project} />
-  ) : (
+  return project === null ? (
     <NotFoundPage />
+  ) : (
+    <ProjectDetailPageView loading={loading} project={project} />
   );
 };

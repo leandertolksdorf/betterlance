@@ -6,7 +6,7 @@ type BoxViewProps = BoxProps;
 
 export const BoxView = (props: BoxProps) => {
   return (
-    <div className={classNames("bg-gray-100", "rounded", "p-4")}>
+    <div className={classNames("bg-gray-100", "rounded", "p-4", "mb-2")}>
       {props.children}
     </div>
   );
