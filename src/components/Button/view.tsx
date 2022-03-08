@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Link from "next/link";
 import { ButtonProps } from ".";
 
 export const ButtonView = (props: ButtonProps) => {
@@ -20,9 +21,11 @@ export const ButtonView = (props: ButtonProps) => {
               "text-white"
             ),
         props.center && "justify-center",
+        "w-full",
         "flex",
         "items-center",
         "cursor-pointer",
+        "select-none",
         "transition",
         "uppercase",
         "px-4",
