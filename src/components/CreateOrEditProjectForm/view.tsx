@@ -61,7 +61,9 @@ export const CreateOrEditProjectFormView = (
                   <option value={""}>keinen Kunden verknüpfen</option>
                   {props.customers?.map((customer) => (
                     <option value={customer.id}>
-                      {[customer.name, customer.company].join(" | ")}
+                      {[customer.name, customer.company]
+                        .filter((value) => value !== "")
+                        .join(" · ")}
                     </option>
                   ))}
                 </select>
