@@ -15,6 +15,7 @@ import { Layout } from "../Layout";
 import { Loading } from "../Loading";
 import { ProjectListItem } from "../ProjectListItem";
 import { Section } from "../Section";
+import { IconButton } from "../IconButton";
 
 type CustomerDetailPageViewProps = {
   loading: boolean;
@@ -113,11 +114,12 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
                   {project.name}
                 </div>
                 <div className={classNames("flex", "justify-end")}>
-                  <Link href={"/app/projects/" + project.id}>
-                    <button className={classNames("icon")}>
-                      <ArrowRightIcon />
-                    </button>
-                  </Link>
+                  <IconButton
+                    icon={<ArrowRightIcon />}
+                    text="Zum Auftrag"
+                    alwaysShowText
+                    href={"/app/projects/" + project.id}
+                  />
                 </div>
               </div>
             </Box>
