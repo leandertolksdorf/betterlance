@@ -1,6 +1,7 @@
 import { OfficeBuildingIcon } from "@heroicons/react/outline";
-import { MailIcon, UserIcon } from "@heroicons/react/solid";
+import { ArrowRightIcon, MailIcon, UserIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
+import Link from "next/link";
 import React from "react";
 import { ProjectWithCustomer } from "../../types/composite";
 import { Box } from "../Box";
@@ -58,6 +59,13 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
                     {props.project.customer.country}
                   </div>
                 </div>
+              </div>
+              <div className={classNames("flex", "justify-end")}>
+                <Link href={"/app/customers/" + props.project.customer.id}>
+                  <button className={classNames("icon")}>
+                    <ArrowRightIcon />
+                  </button>
+                </Link>
               </div>
             </>
           ) : (
