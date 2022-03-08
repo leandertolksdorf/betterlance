@@ -1,6 +1,7 @@
 import React, { FormEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormData } from ".";
+import { Button } from "../Button";
 
 type AuthFormViewProps = {
   loading: boolean;
@@ -16,7 +17,9 @@ export const AuthFormView = (props: AuthFormViewProps) => {
         Email
         <input {...props.register("email")} />
       </label>
-      <button type="submit">Anmelden</button>
+      <Button type="submit" center>
+        Anmelden
+      </Button>
     </form>
   );
 };
