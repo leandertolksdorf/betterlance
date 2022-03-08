@@ -42,23 +42,6 @@
     @apply focus:border-primary-500;
   }
 
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    @apply transition;
-    @apply uppercase;
-    @apply w-full;
-    @apply px-4;
-    @apply py-2;
-    @apply rounded;
-    @apply bg-primary-500;
-    @apply hover:bg-primary-600;
-    @apply active:bg-primary-700;
-    @apply text-white;
-    @apply font-bold;
-  }
-
   h1 {
     @apply text-2xl;
     @apply font-bold;
@@ -82,12 +65,6 @@
 }
 
 @layer components {
-  button.light {
-    @apply bg-gray-100;
-    @apply hover:bg-gray-200;
-    @apply text-primary-500;
-  }
-
   button.icon {
     @apply p-2;
     @apply w-min;
@@ -101,6 +78,7 @@
     @apply rounded-full;
     @apply text-xs;
   }
+
   button.icon svg {
     @apply w-4;
     @apply h-4;
