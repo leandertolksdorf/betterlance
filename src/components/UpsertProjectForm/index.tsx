@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
-import { CreateOrEditProjectFormView } from "./view";
+import { UpsertProjectFormView } from "./view";
 
-export type CreateOrEditProjectFormProps = {
+export type UpsertProjectFormProps = {
   project?: definitions["project"];
 };
 
@@ -24,9 +24,7 @@ export const schema = yup
   })
   .required();
 
-export const CreateOrEditProjectForm = (
-  props: CreateOrEditProjectFormProps
-) => {
+export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -89,7 +87,7 @@ export const CreateOrEditProjectForm = (
   });
 
   return (
-    <CreateOrEditProjectFormView
+    <UpsertProjectFormView
       customers={customers}
       isOpen={isOpen}
       onOpen={() => setIsOpen(!isOpen)}

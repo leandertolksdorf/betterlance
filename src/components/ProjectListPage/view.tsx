@@ -1,5 +1,5 @@
 import React from "react";
-import { CreateOrEditProjectForm } from "../CreateOrEditProjectForm";
+import { UpsertProjectForm } from "../UpsertProjectForm";
 import { Layout } from "../Layout";
 import { ProjectList } from "../ProjectList";
 
@@ -10,7 +10,7 @@ export const ProjectListPageView = () => {
       title="Aufträge"
       subtitle="Hier kannst du alle deine Aufträge verwalten"
     >
-      <CreateOrEditProjectForm />
+      <UpsertProjectForm />
       <ProjectList />
     </Layout>
   );

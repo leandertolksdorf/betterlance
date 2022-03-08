@@ -2,12 +2,12 @@ import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { FormEventHandler, useEffect, useRef, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CreateOrEditProjectFormProps, FormData } from ".";
+import { UpsertProjectFormProps, FormData } from ".";
 import { definitions } from "../../types/supabase";
 import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
 
-type CreateOrEditProjectFormViewProps = CreateOrEditProjectFormProps & {
+type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   customers: definitions["customer"][] | null;
   isOpen: boolean;
   onOpen: () => void;
@@ -17,9 +17,7 @@ type CreateOrEditProjectFormViewProps = CreateOrEditProjectFormProps & {
   errors: FieldErrors;
 };
 
-export const CreateOrEditProjectFormView = (
-  props: CreateOrEditProjectFormViewProps
-) => {
+export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const [innerHeight, setInnerHeight] = useState(0);
 
