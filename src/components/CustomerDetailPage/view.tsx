@@ -27,6 +27,8 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
   return (
     <Layout
       showNavigation={true}
+      pageType="Kund:in"
+      pageTypeIcon={<UserIcon />}
       title={props.customer ? props.customer.name : ""}
       subtitle={props.customer ? props.customer.company : ""}
     >
