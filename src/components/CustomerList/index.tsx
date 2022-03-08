@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
+import { Loading } from "../Loading";
 import { CustomerListView } from "./view";
 
 export const CustomerList = () => {
   const [loading, setLoading] = useState(false);
-  const [customers, setCustomers] = useState<any>([]);
+  const [customers, setCustomers] = useState<
+    definitions["customer"][] | null | undefined
+  >();
 
   const loadCustomers = async () => {
     try {
@@ -33,5 +36,9 @@ export const CustomerList = () => {
       subscription.unsubscribe();
     };
   }, []);
-  return <CustomerListView loading={loading} customers={customers} />;
+  return customers === undefined || loading ? (
+    <Loading />
+  ) : customers === null ? null : (
+    <CustomerListView customers={customers} />
+  );
 };
