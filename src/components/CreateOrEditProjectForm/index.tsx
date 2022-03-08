@@ -18,7 +18,7 @@ export type FormData = Omit<
 export const schema = yup
   .object({
     name: yup.string().required(),
-    customer_id: yup
+    customer: yup
       .string()
       .transform((value) => (value === "" ? undefined : value)),
   })
@@ -70,7 +70,7 @@ export const CreateOrEditProjectForm = (
     resolver: yupResolver(schema),
     defaultValues: props.project,
   });
-  console.log(errors);
+
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
     try {
