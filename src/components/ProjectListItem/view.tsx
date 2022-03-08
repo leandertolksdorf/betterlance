@@ -79,7 +79,7 @@ export const ProjectListItemView = (props: ProjectListItemViewProps) => {
             </div>
             <TrashIcon />
           </button>
-          <Link href={"/app/customers/" + props.id}>
+          <Link href={"/app/projects/" + props.id}>
             <button className={classNames("icon", "ml-2")}>
               <ArrowRightIcon />
             </button>
