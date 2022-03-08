@@ -61,7 +61,7 @@ export const LayoutView = (props: LayoutViewProps) => {
             !props.showNavigation ? "col-span-8" : "col-span-6"
           )}
         >
-          <div className={classNames("mb-4")}>
+          <div className={classNames("mb-4", "border-b", "pb-4")}>
             <h1 className={classNames("text-4xl")}>{props.title}</h1>
             {props.subtitle && (
               <h2

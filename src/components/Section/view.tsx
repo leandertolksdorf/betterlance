@@ -13,15 +13,7 @@ export const SectionView = (props: SectionProps) => {
         {props.text && <p className={classNames("")}>{props.text}</p>}
       </div>
       <div className={classNames("col-span-2")}>
-        <div
-          className={classNames(
-            "bg-gray-100",
-            "rounded",
-            !props.wrapChild && "p-4"
-          )}
-        >
-          {props.loading ? <Loading /> : props.children}
-        </div>
+        {props.loading ? <Loading /> : props.children}
       </div>
     </div>
   );
