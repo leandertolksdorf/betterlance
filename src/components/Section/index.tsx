@@ -3,6 +3,7 @@ import { SectionView } from "./view";
 
 export type SectionProps = {
   title?: string;
+  text?: string;
   children?: ReactNode;
   loading?: boolean;
   wrapChild?: boolean;

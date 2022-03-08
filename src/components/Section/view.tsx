@@ -3,18 +3,25 @@ import { SectionProps } from ".";
 import { Loading } from "../Loading";
 export const SectionView = (props: SectionProps) => {
   return (
-    <div className={classNames("mb-4")}>
-      {props.title && (
-        <h2 className={classNames("font-bold", "mb-2")}>{props.title}</h2>
-      )}
-      <div
-        className={classNames(
-          "bg-gray-100",
-          "rounded",
-          !props.wrapChild && "p-4"
+    <div className={classNames("mb-4", "grid", "grid-cols-3", "gap-8")}>
+      <div className={classNames("col-span-1")}>
+        {props.title && (
+          <h2 className={classNames("text-primary-900", "font-bold", "mb-1")}>
+            {props.title}
+          </h2>
         )}
-      >
-        {props.loading ? <Loading /> : props.children}
+        {props.text && <p className={classNames("")}>{props.text}</p>}
+      </div>
+      <div className={classNames("col-span-2")}>
+        <div
+          className={classNames(
+            "bg-gray-100",
+            "rounded",
+            !props.wrapChild && "p-4"
+          )}
+        >
+          {props.loading ? <Loading /> : props.children}
+        </div>
       </div>
     </div>
   );
