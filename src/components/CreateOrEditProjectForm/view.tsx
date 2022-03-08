@@ -66,7 +66,9 @@ export const CreateOrEditProjectFormView = (
                   ))}
                 </select>
               </label>
-              <button type="submit">Absenden</button>
+              <Button type="submit" center>
+                Absenden
+              </Button>
             </form>
           </div>
         </div>
