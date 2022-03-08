@@ -76,25 +76,6 @@
 }
 
 @layer components {
-  button.icon {
-    @apply p-2;
-    @apply w-min;
-    @apply flex;
-    @apply justify-center;
-    @apply items-center;
-    @apply bg-black/10;
-    @apply text-black/50;
-    @apply hover:bg-primary-200;
-    @apply active:text-primary-500;
-    @apply rounded-full;
-    @apply text-xs;
-  }
-
-  button.icon svg {
-    @apply w-4;
-    @apply h-4;
-  }
-
   .inline-icon {
     @apply w-[1em];
     @apply h-[1em];
