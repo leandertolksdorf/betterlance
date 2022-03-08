@@ -9,7 +9,9 @@ export const CustomerDetailPage = () => {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
   const [customer, setCustomer] = useState<definitions["customer"] | undefined>(
     undefined
   );
@@ -50,9 +52,7 @@ export const CustomerDetailPage = () => {
       subscription.unsubscribe();
     };
   }, []);
-  if (errorMessage) {
-    return <ErrorPage message={errorMessage} />;
-  } else {
+  if (loading || customer) {
     return (
       <CustomerDetailPageView
         loading={loading}
@@ -60,5 +60,7 @@ export const CustomerDetailPage = () => {
         projects={projects}
       />
     );
+  } else {
+    return <ErrorPage message={errorMessage} />;
   }
 };
