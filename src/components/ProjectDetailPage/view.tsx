@@ -28,46 +28,50 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
           "Dieser Auftrag ist mit keinem Kunden verknüpft"
         ) : (
           <Box>
-            <div className={classNames("font-bold", "flex", "items-center")}>
+            <div
+              className={classNames(
+                "font-bold",
+                "flex",
+                "items-center",
+                "text-primary-500"
+              )}
+            >
               <UserIcon className={classNames("inline-icon", "mr-2")} />
-              {props.project.customer.name}
+              {props.project.customer?.name}
             </div>
             <div
               className={classNames(
                 "font-bold",
                 "flex",
                 "items-center",
-                "mb-2"
+                "mb-2",
+                "text-primary-500"
               )}
             >
               <MailIcon className={classNames("inline-icon", "mr-2")} />
-              {props.project.customer.email}
-            </div>
-            <div className={classNames("flex", "items-center")}>
-              <OfficeBuildingIcon
-                className={classNames("inline-icon", "mr-2")}
-              />
-              <div>
-                {props.project.customer.company}
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.address}
-                </div>
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.zip} {props.project.customer.city}
-                </div>
-                <div className={classNames("text-gray-500")}>
-                  {props.project.customer.country}
-                </div>
-              </div>
+              {props.project.customer.email || "Email-Adresse fehlt"}
             </div>
 
-            <div className={classNames("flex", "justify-end")}>
-              <Link href={"/app/customers/" + props.project.customer.id}>
-                <button className={classNames("icon")}>
-                  <ArrowRightIcon />
-                </button>
-              </Link>
-            </div>
+            {
+              <div className={classNames("flex", "items-center")}>
+                <OfficeBuildingIcon
+                  className={classNames("inline-icon", "mr-2")}
+                />
+                <div>
+                  {props.project.customer.company || "Firma fehlt"}
+                  <div className={classNames("text-gray-500")}>
+                    {props.project.customer.address || "Adresse fehlt"}
+                  </div>
+                  <div className={classNames("text-gray-500")}>
+                    {props.project.customer.zip || "PLZ fehlt"} &#183;{" "}
+                    {props.project.customer.city || "Stadt fehlt"}
+                  </div>
+                  <div className={classNames("text-gray-500")}>
+                    {props.project.customer.country || "Land fehlt"}
+                  </div>
+                </div>
+              </div>
+            }
           </Box>
         )}
       </Section>
