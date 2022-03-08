@@ -18,7 +18,7 @@ export const CustomerList = () => {
         .select()
         .order("name");
       if (error) throw error;
-      setCustomers(data!);
+      setCustomers(data);
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
