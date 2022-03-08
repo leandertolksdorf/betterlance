@@ -16,9 +16,8 @@ export const ProjectList = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from<ProjectWithCustomer>("project")
-        .select("*, customer(name)")
+        .select("*, customer(*)")
         .order("name");
-      console.log(data);
       if (error) throw error;
       setProjects(data);
     } catch (error: any) {
