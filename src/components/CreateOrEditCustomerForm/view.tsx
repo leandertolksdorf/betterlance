@@ -80,7 +80,9 @@ export const CreateOrEditCustomerFormView = (
                 Land
                 <input {...props.register("country")} />
               </label>
-              <button type="submit">Absenden</button>
+              <Button type="submit" center>
+                Absenden
+              </Button>
             </form>
           </div>
         </div>
