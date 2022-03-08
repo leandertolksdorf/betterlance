@@ -1,5 +1,10 @@
 import { OfficeBuildingIcon } from "@heroicons/react/outline";
-import { ArrowRightIcon, MailIcon, UserIcon } from "@heroicons/react/solid";
+import {
+  ArrowRightIcon,
+  BriefcaseIcon,
+  MailIcon,
+  UserIcon,
+} from "@heroicons/react/solid";
 import classNames from "classnames";
 import Link from "next/link";
 import React from "react";
@@ -19,6 +24,8 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
   return (
     <Layout
       showNavigation={true}
+      pageType="Auftrag"
+      pageTypeIcon={<BriefcaseIcon />}
       title={props.project ? props.project.name : ""}
       subtitle={props.project?.customer ? props.project.customer.name : ""}
     >
