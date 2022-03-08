@@ -12,9 +12,9 @@ export const IconButtonView = (props: IconButtonViewProps) => {
       className={classNames(
         !props.alwaysShowText && props.showText && props.color === "red"
           ? classNames(
-              "bg-red-300",
-              "text-red-800",
-              "hover:bg-red-400",
+              "bg-red-200",
+              "text-red-700",
+              "hover:bg-red-300",
               "hover:text-red-900"
             )
           : classNames(
