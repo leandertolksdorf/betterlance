@@ -1,5 +1,3 @@
-import { BriefcaseIcon, UserIcon } from "@heroicons/react/solid";
-import classNames from "classnames";
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";

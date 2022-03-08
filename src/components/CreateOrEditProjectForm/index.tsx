@@ -1,9 +1,9 @@
-import { definitions } from "../../types/supabase";
-import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
+import { definitions } from "../../types/supabase";
 import { CreateOrEditProjectFormView } from "./view";
 
 export type CreateOrEditProjectFormProps = {

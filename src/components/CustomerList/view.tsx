@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { definitions } from "../../types/supabase";
 import { CustomerListItem } from "../CustomerListItem";
-import { Loading } from "../Loading";
 
 type CustomerListViewProps = {
   customers: definitions["customer"][];

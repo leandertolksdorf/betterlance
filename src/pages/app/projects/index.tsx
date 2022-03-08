@@ -1,6 +1,5 @@
 import { NextPage } from "next";
 import React from "react";
-
 import { ProjectListPage } from "../../../components/ProjectListPage";
 import { enforceAuthenticated } from "../../../util/enforceAuthenticated";
 

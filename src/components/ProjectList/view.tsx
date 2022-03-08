@@ -1,6 +1,4 @@
 import classNames from "classnames";
-import { definitions } from "../../types/supabase";
-import { Loading } from "../Loading";
 import { ProjectListItem, ProjectListItemResource } from "../ProjectListItem";
 
 type ProjectListViewProps = {
