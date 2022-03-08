@@ -18,12 +18,11 @@ import { Section } from "../Section";
 
 type CustomerDetailPageViewProps = {
   loading: boolean;
-  customer?: definitions["customer"] | null;
+  customer?: definitions["customer"];
   projects?: definitions["project"][];
 };
 
 export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
-  console.log(props.projects);
   return (
     <Layout
       showNavigation={true}

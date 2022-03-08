@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { ProjectWithCustomer } from "../../types/composite";
 import { definitions } from "../../types/supabase";
-import { NotFoundPage } from "../NotFoundPage";
+import { ErrorPage } from "../ErrorPage";
 import { ProjectDetailPageView } from "./view";
 
 export const ProjectDetailPage = () => {
@@ -40,7 +40,7 @@ export const ProjectDetailPage = () => {
     }
   };
   return project === null ? (
-    <NotFoundPage />
+    <ErrorPage />
   ) : (
     <ProjectDetailPageView loading={loading} project={project} />
   );
