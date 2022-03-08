@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
-import { CreateOrEditCustomerFormView } from "./view";
+import { UpsertCustomerFormView } from "./view";
 
-export type CreateOrEditCustomerFormProps = {
+export type UpsertCustomerFormProps = {
   customer?: definitions["customer"];
 };
 
@@ -27,9 +27,7 @@ export const schema = yup
   })
   .required();
 
-export const CreateOrEditCustomerForm = (
-  props: CreateOrEditCustomerFormProps
-) => {
+export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,7 +58,7 @@ export const CreateOrEditCustomerForm = (
   });
 
   return (
-    <CreateOrEditCustomerFormView
+    <UpsertCustomerFormView
       isOpen={isOpen}
       onOpen={() => setIsOpen(!isOpen)}
       loading={loading}

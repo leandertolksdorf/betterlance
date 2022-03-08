@@ -10,7 +10,7 @@ import Link from "next/link";
 import React from "react";
 import { definitions } from "../../types/supabase";
 import { Box } from "../Box";
-import { CreateOrEditCustomerForm } from "../CreateOrEditCustomerForm";
+import { UpsertCustomerForm } from "../UpsertCustomerForm";
 import { Layout } from "../Layout";
 import { Loading } from "../Loading";
 import { ProjectListItem } from "../ProjectListItem";
@@ -83,7 +83,7 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
                 </div>
               }
             </Box>
-            <CreateOrEditCustomerForm customer={props.customer} />
+            <UpsertCustomerForm customer={props.customer} />
           </>
         )}
       </Section>

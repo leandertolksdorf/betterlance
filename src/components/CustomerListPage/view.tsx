@@ -1,5 +1,5 @@
 import React from "react";
-import { CreateOrEditCustomerForm } from "../CreateOrEditCustomerForm";
+import { UpsertCustomerForm } from "../UpsertCustomerForm";
 import { CustomerList } from "../CustomerList";
 import { Layout } from "../Layout";
 
@@ -10,7 +10,7 @@ export const CustomerListPageView = () => {
       title="Kund*innen"
       subtitle="Hier kannst du alle deine Kund*innen verwalten"
     >
-      <CreateOrEditCustomerForm />
+      <UpsertCustomerForm />
       <CustomerList />
     </Layout>
   );
