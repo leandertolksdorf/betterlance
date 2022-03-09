@@ -57,8 +57,8 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                 Kunde
                 <select {...props.register("customer", { required: false })}>
                   <option value={""}>keinen Kunden verknüpfen</option>
-                  {props.customers?.map((customer) => (
-                    <option value={customer.id}>
+                  {props.customers?.map((customer, index) => (
+                    <option key={index} value={customer.id}>
                       {[customer.name, customer.company]
                         .filter((value) => value !== "")
                         .join(" · ")}

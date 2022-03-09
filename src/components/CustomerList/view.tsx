@@ -9,8 +9,8 @@ type CustomerListViewProps = {
 export const CustomerListView = (props: CustomerListViewProps) => {
   return (
     <div className={classNames("my-2")}>
-      {props.customers.map((customer) => (
-        <CustomerListItem {...customer} />
+      {props.customers.map((customer, index) => (
+        <CustomerListItem key={index} {...customer} />
       ))}
     </div>
   );

@@ -51,24 +51,21 @@ export const CustomerListItemView = (props: CustomerListItemViewProps) => {
           <MailIcon className={classNames("inline-icon", "mr-2")} />
           {props.email || "Email-Adresse fehlt"}
         </div>
-
-        {
-          <div className={classNames("flex", "items-center")}>
-            <OfficeBuildingIcon className={classNames("inline-icon", "mr-2")} />
-            <div>
-              {props.company || "Firma fehlt"}
-              <div className={classNames("text-gray-500")}>
-                {props.address || "Adresse fehlt"}
-              </div>
-              <div className={classNames("text-gray-500")}>
-                {props.zip || "PLZ fehlt"} &#183; {props.city || "Stadt fehlt"}
-              </div>
-              <div className={classNames("text-gray-500")}>
-                {props.country || "Land fehlt"}
-              </div>
+        <div className={classNames("flex", "items-center")}>
+          <OfficeBuildingIcon className={classNames("inline-icon", "mr-2")} />
+          <div>
+            {props.company || "Firma fehlt"}
+            <div className={classNames("text-gray-500")}>
+              {props.address || "Adresse fehlt"}
+            </div>
+            <div className={classNames("text-gray-500")}>
+              {props.zip || "PLZ fehlt"} &#183; {props.city || "Stadt fehlt"}
+            </div>
+            <div className={classNames("text-gray-500")}>
+              {props.country || "Land fehlt"}
             </div>
           </div>
-        }
+        </div>
       </div>
       <div className={classNames("flex")}>
         <IconButton

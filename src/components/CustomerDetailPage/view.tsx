@@ -99,8 +99,8 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
         ) : props.projects.length === 0 ? (
           "Du hast noch keine Aufträge mit diesem Kunden verknüpft."
         ) : (
-          props.projects.map((project) => (
-            <Box>
+          props.projects.map((project, index) => (
+            <Box key={index}>
               <div className={classNames("flex", "justify-between")}>
                 <div
                   className={classNames(
