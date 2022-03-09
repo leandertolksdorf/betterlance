@@ -15,6 +15,8 @@ export const schema = yup
 
 export const AuthForm = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState<string | undefined>(undefined);
 
   const {
     register,
@@ -24,14 +26,18 @@ export const AuthForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setError(false);
+      setMessage(undefined);
       setLoading(true);
       const { error } = await supabase.auth.signIn(data, {
         redirectTo: "http://localhost:3000/app",
       });
       if (error) throw error;
-      alert("Check your email for the login link!");
+      setMessage("Check' deine Emails für den Login-Link!");
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      console.log(error);
+      setError(true);
+      setMessage(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
@@ -40,6 +46,8 @@ export const AuthForm = () => {
   return (
     <AuthFormView
       loading={loading}
+      error={error}
+      message={message}
       register={register}
       onSubmit={onSubmit}
       errors={errors}
