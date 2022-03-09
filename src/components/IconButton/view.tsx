@@ -1,5 +1,11 @@
 import classNames from "classnames";
-import { DOMAttributes, ReactNode } from "react";
+import {
+  DOMAttributes,
+  ReactNode,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { IconButtonProps } from ".";
 
 type IconButtonViewProps = IconButtonProps & {
@@ -7,6 +13,11 @@ type IconButtonViewProps = IconButtonProps & {
 };
 
 export const IconButtonView = (props: IconButtonViewProps) => {
+  const textRef = useRef<HTMLDivElement>(null);
+  const [textWidth, setTextWidth] = useState(0);
+  useLayoutEffect(() => {
+    setTextWidth(textRef.current?.scrollWidth || 0);
+  });
   return (
     <div
       className={classNames(
@@ -36,15 +47,19 @@ export const IconButtonView = (props: IconButtonViewProps) => {
     >
       {props.text && (
         <div
+          ref={textRef}
           className={classNames(
-            props.showText ? "max-w-xs" : "max-w-0",
-            "transition-all",
-            "w-auto",
-            "truncate",
+            "transition-[max-width]",
+            "duration-300",
+            "text-clip",
+            "whitespace-nowrap",
             "overflow-hidden",
             "uppercase",
             "font-bold"
           )}
+          style={{
+            maxWidth: props.showText ? textWidth : 0,
+          }}
         >
           {props.text}
         </div>
