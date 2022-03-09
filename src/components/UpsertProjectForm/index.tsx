@@ -55,7 +55,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
       .on("*", loadCustomers)
       .subscribe();
     return () => {
-      subscription.unsubscribe();
+      supabase.removeSubscription(subscription);
     };
   }, []);
 

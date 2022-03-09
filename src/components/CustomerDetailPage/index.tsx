@@ -49,7 +49,7 @@ export const CustomerDetailPage = () => {
       .on("*", loadCustomerAndProjects)
       .subscribe();
     return () => {
-      subscription.unsubscribe();
+      supabase.removeSubscription(subscription);
     };
   }, []);
   if (loading || customer) {

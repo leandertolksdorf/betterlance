@@ -34,7 +34,7 @@ export const ProjectList = () => {
       .on("*", loadProjects)
       .subscribe();
     return () => {
-      subscription.unsubscribe();
+      supabase.removeSubscription(subscription);
     };
   }, []);
 

@@ -23,7 +23,7 @@ export const ProjectDetailPage = () => {
       .on("*", loadProject)
       .subscribe();
     return () => {
-      subscription.unsubscribe();
+      supabase.removeSubscription(subscription);
     };
   }, []);
 

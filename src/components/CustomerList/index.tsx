@@ -28,12 +28,13 @@ export const CustomerList = () => {
 
   useEffect(() => {
     loadCustomers();
+
     const subscription = supabase
       .from<definitions["customer"]>("customer")
       .on("*", loadCustomers)
       .subscribe();
     return () => {
-      subscription.unsubscribe();
+      supabase.removeSubscription(subscription);
     };
   }, []);
 
