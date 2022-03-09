@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
 import { BoxProps } from ".";
 
 type BoxViewProps = BoxProps;

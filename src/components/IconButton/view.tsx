@@ -1,11 +1,5 @@
 import classNames from "classnames";
-import {
-  DOMAttributes,
-  ReactNode,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { IconButtonProps } from ".";
 
 type IconButtonViewProps = IconButtonProps & {

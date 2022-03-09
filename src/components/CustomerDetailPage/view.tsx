@@ -6,16 +6,14 @@ import {
   UserIcon,
 } from "@heroicons/react/solid";
 import classNames from "classnames";
-import Link from "next/link";
 import React from "react";
 import { definitions } from "../../types/supabase";
 import { Box } from "../Box";
-import { UpsertCustomerForm } from "../UpsertCustomerForm";
+import { IconButton } from "../IconButton";
 import { Layout } from "../Layout";
 import { Loading } from "../Loading";
-import { ProjectListItem } from "../ProjectListItem";
 import { Section } from "../Section";
-import { IconButton } from "../IconButton";
+import { UpsertCustomerForm } from "../UpsertCustomerForm";
 
 type CustomerDetailPageViewProps = {
   loading: boolean;

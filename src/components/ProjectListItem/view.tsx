@@ -1,9 +1,7 @@
 import { ArrowRightIcon, TrashIcon } from "@heroicons/react/outline";
 import { BriefcaseIcon, UserIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import Link from "next/link";
 import { ProjectListItemProps } from ".";
-import { DimExcept } from "../DimExcept";
 import { IconButton } from "../IconButton";
 
 type ProjectListItemViewProps = ProjectListItemProps & {

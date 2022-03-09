@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import Link from "next/link";
 import { ButtonProps } from ".";
 
 export const ButtonView = (props: ButtonProps) => {

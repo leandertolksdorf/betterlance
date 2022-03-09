@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import Link from "next/link";
 import React from "react";
 import { NavigationItemProps } from ".";
 

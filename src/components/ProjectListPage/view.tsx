@@ -1,7 +1,7 @@
 import React from "react";
-import { UpsertProjectForm } from "../UpsertProjectForm";
 import { Layout } from "../Layout";
 import { ProjectList } from "../ProjectList";
+import { UpsertProjectForm } from "../UpsertProjectForm";
 
 export const ProjectListPageView = () => {
   return (

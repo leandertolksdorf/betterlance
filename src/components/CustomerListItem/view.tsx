@@ -5,9 +5,7 @@ import {
 } from "@heroicons/react/outline";
 import { MailIcon, UserIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import Link from "next/link";
 import { CustomerListItemProps } from ".";
-import { DimExcept } from "../DimExcept";
 import { IconButton } from "../IconButton";
 
 type CustomerListItemViewProps = CustomerListItemProps & {

@@ -6,7 +6,6 @@ import {
   UserIcon,
 } from "@heroicons/react/solid";
 import classNames from "classnames";
-import Link from "next/link";
 import React from "react";
 import { ProjectWithCustomer } from "../../types/composite";
 import { Box } from "../Box";

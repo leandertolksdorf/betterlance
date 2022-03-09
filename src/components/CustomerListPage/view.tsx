@@ -1,7 +1,7 @@
 import React from "react";
-import { UpsertCustomerForm } from "../UpsertCustomerForm";
 import { CustomerList } from "../CustomerList";
 import { Layout } from "../Layout";
+import { UpsertCustomerForm } from "../UpsertCustomerForm";
 
 export const CustomerListPageView = () => {
   return (

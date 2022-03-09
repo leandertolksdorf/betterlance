@@ -2,7 +2,7 @@ import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { FormEventHandler, useEffect, useRef, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { UpsertProjectFormProps, FormData } from ".";
+import { FormData, UpsertProjectFormProps } from ".";
 import { definitions } from "../../types/supabase";
 import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
