@@ -39,6 +39,10 @@
     @apply focus:outline-none focus:border-primary-500;
   }
 
+  input[disabled] {
+    @apply bg-gray-100;
+  }
+
   select {
     @apply transition;
     @apply w-full;

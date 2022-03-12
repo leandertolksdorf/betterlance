@@ -1,3 +1,4 @@
+import { CloudIcon, RefreshIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { ButtonProps } from ".";
 
@@ -23,7 +24,7 @@ export const ButtonView = (props: ButtonProps) => {
         "w-full",
         "flex",
         "items-center",
-        "cursor-pointer",
+        props.loading ? "cursor-progress" : "cursor-pointer",
         "select-none",
         "transition",
         "uppercase",
@@ -33,9 +34,14 @@ export const ButtonView = (props: ButtonProps) => {
         "font-bold"
       )}
     >
-      {props.icon && (
-        <div className={classNames("inline-icon", "mr-2")}>{props.icon}</div>
-      )}
+      <div
+        className={classNames(
+          props.loading ? "w-[1em] mr-1 opacity-100" : "w-0 opacity-0",
+          "transition-[width]"
+        )}
+      >
+        {props.loading && <CloudIcon className={classNames("animate-pulse")} />}
+      </div>
       {props.children}
     </div>
   );

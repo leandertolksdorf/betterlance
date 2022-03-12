@@ -38,7 +38,7 @@ export const CustomerList = () => {
     };
   }, []);
 
-  if (loading || customers === undefined) {
+  if (customers === undefined) {
     return <Loading />;
   } else {
     return <CustomerListView customers={customers} />;

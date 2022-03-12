@@ -10,6 +10,7 @@ export type ButtonProps = {
   icon?: ReactNode;
   light?: boolean;
   center?: boolean;
+  loading?: boolean;
   children: ReactNode;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
 };
@@ -23,7 +24,11 @@ export const Button = (props: ButtonProps) => {
     );
   } else {
     return (
-      <button onClick={props.onClick} className={classNames("w-full")}>
+      <button
+        disabled={props.loading}
+        onClick={props.onClick}
+        className={classNames("w-full")}
+      >
         <ButtonView {...props} />
       </button>
     );

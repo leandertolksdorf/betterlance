@@ -1,9 +1,11 @@
-import { CloudIcon } from "@heroicons/react/solid";
+import { ArrowRightIcon, CloudIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import React, { FormEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormData } from ".";
 import { Button } from "../Button";
+import { ErrorMessage } from "@hookform/error-message";
+import { ExclamationIcon } from "@heroicons/react/outline";
 
 type AuthFormViewProps = {
   loading: boolean;
@@ -18,10 +20,20 @@ export const AuthFormView = (props: AuthFormViewProps) => {
   return (
     <form onSubmit={props.onSubmit}>
       <label>
-        Email
-        <input {...props.register("email", { disabled: props.loading })} />
+        Email{" "}
+        <ErrorMessage
+          errors={props.errors}
+          name="email"
+          render={({ message }) => (
+            <span className={classNames("text-red-600", "ml-1")}>
+              <ExclamationIcon className={classNames("inline-icon", "mr-1")} />
+              {message}
+            </span>
+          )}
+        />
+        <input {...props.register("email")} disabled={props.loading} />
       </label>
-      <Button icon={props.loading && <CloudIcon />} type="submit" center>
+      <Button type="submit" center loading={props.loading}>
         Anmelden
       </Button>
       {props.message && (
