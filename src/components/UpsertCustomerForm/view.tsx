@@ -166,7 +166,7 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
                 />
                 <input {...props.register("country")} />
               </label>
-              <Button type="submit" center>
+              <Button type="submit" center loading={props.loading}>
                 Absenden
               </Button>
               {props.message && (
