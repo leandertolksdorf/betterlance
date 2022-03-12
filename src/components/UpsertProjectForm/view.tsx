@@ -1,4 +1,6 @@
+import { ExclamationIcon } from "@heroicons/react/outline";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
+import { ErrorMessage } from "@hookform/error-message";
 import classNames from "classnames";
 import { FormEventHandler, useEffect, useRef, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
@@ -8,10 +10,12 @@ import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
 
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
+  loading: boolean;
+  error: boolean;
+  message?: string;
   customers: definitions["customer"][] | null;
   isOpen: boolean;
   onOpen: () => void;
-  loading: boolean;
   register: UseFormRegister<FormData>;
   onSubmit: FormEventHandler;
   errors: FieldErrors;
@@ -50,11 +54,35 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
             </h3>
             <form onSubmit={props.onSubmit}>
               <label>
-                Name
+                Name{" "}
+                <ErrorMessage
+                  errors={props.errors}
+                  name="name"
+                  render={({ message }) => (
+                    <span className={classNames("text-red-600", "ml-1")}>
+                      <ExclamationIcon
+                        className={classNames("inline-icon", "mr-1")}
+                      />
+                      {message}
+                    </span>
+                  )}
+                />
                 <input {...props.register("name")} />
               </label>
               <label>
-                Kunde
+                Kunde{" "}
+                <ErrorMessage
+                  errors={props.errors}
+                  name="customer"
+                  render={({ message }) => (
+                    <span className={classNames("text-red-600", "ml-1")}>
+                      <ExclamationIcon
+                        className={classNames("inline-icon", "mr-1")}
+                      />
+                      {message}
+                    </span>
+                  )}
+                />
                 <select {...props.register("customer", { required: false })}>
                   <option value={""}>keinen Kunden verknüpfen</option>
                   {props.customers?.map((customer, index) => (

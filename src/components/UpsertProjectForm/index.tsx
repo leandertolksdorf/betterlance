@@ -26,6 +26,8 @@ export const schema = yup
 
 export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState<string | undefined>(undefined);
   const [isOpen, setIsOpen] = useState(false);
 
   const [customers, setCustomers] = useState<definitions["customer"][] | null>(
@@ -34,6 +36,8 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
 
   const loadCustomers = async () => {
     try {
+      setError(false);
+      setMessage(undefined);
       setLoading(true);
       const { data, error } = await supabase
         .from<definitions["customer"]>("customer")
@@ -70,8 +74,9 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
     try {
+      setError(false);
+      setMessage(undefined);
       setLoading(true);
       const { error } = await supabase
         .from<definitions["project"]>("project")
@@ -80,7 +85,8 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
       if (!props.project) reset();
       setIsOpen(false);
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      setError(true);
+      setMessage(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
@@ -88,10 +94,12 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
 
   return (
     <UpsertProjectFormView
+      loading={loading}
+      error={error}
+      message={message}
       customers={customers}
       isOpen={isOpen}
       onOpen={() => setIsOpen(!isOpen)}
-      loading={loading}
       register={register}
       project={props.project}
       onSubmit={onSubmit}
