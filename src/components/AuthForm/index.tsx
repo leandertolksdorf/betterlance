@@ -35,7 +35,6 @@ export const AuthForm = () => {
       if (error) throw error;
       setMessage("Check' deine Emails für den Login-Link!");
     } catch (error: any) {
-      console.log(error);
       setError(true);
       setMessage(error.error_description || error.message);
     } finally {

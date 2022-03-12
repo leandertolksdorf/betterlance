@@ -29,6 +29,8 @@ export const schema = yup
 
 export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState<string | undefined>(undefined);
   const [isOpen, setIsOpen] = useState(false);
 
   const {
@@ -43,6 +45,8 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setError(false);
+      setMessage(undefined);
       setLoading(true);
       const { error } = await supabase
         .from<definitions["customer"]>("customer")
@@ -51,7 +55,8 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
       if (!props.customer) reset();
       setIsOpen(false);
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      setError(true);
+      setMessage(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
@@ -59,9 +64,11 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
 
   return (
     <UpsertCustomerFormView
+      loading={loading}
+      error={error}
+      message={message}
       isOpen={isOpen}
       onOpen={() => setIsOpen(!isOpen)}
-      loading={loading}
       register={register}
       customer={props.customer}
       onSubmit={onSubmit}
