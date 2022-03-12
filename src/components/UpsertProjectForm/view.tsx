@@ -97,6 +97,17 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
               <Button type="submit" center loading={props.loading}>
                 Absenden
               </Button>
+              {props.message && (
+                <div
+                  className={classNames(
+                    props.error ? "text-red-600" : "text-primary-500",
+                    "mt-2",
+                    "font-bold"
+                  )}
+                >
+                  {props.message}
+                </div>
+              )}
             </form>
           </div>
         </div>
