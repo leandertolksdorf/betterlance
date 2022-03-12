@@ -94,7 +94,7 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                   ))}
                 </select>
               </label>
-              <Button type="submit" center>
+              <Button type="submit" center loading={props.loading}>
                 Absenden
               </Button>
             </form>
