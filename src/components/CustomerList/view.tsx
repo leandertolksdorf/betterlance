@@ -17,9 +17,6 @@ type CustomerListViewProps = {
 };
 
 export const CustomerListView = (props: CustomerListViewProps) => {
-  // const refs = Array<RefObject<HTMLDivElement>>(props.customers.length).fill(
-  //   useRef<HTMLDivElement>(null)
-  // );
   const refs = useRef<(HTMLDivElement | null)[]>(
     Array(props.customers.length).fill(null)
   );
