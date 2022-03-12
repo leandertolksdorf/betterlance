@@ -1,14 +1,6 @@
 import classNames from "classnames";
-import {
-  MutableRefObject,
-  ReactElement,
-  Ref,
-  RefObject,
-  useRef,
-  useState,
-} from "react";
-import { config, useTransition, animated } from "react-spring";
-import { useMeasure } from "react-use";
+import { useRef } from "react";
+import { animated, useTransition } from "react-spring";
 import { definitions } from "../../types/supabase";
 import { CustomerListItem } from "../CustomerListItem";
 

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useRef } from "react";
-import { useTransition, animated } from "react-spring";
+import { animated, useTransition } from "react-spring";
 import { ProjectWithCustomer } from "../../types/composite";
 import { ProjectListItem } from "../ProjectListItem";
 

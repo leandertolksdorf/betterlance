@@ -1,4 +1,4 @@
-import { CloudIcon, RefreshIcon } from "@heroicons/react/solid";
+import { CloudIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { ButtonProps } from ".";
 

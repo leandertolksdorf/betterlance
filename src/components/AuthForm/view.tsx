@@ -1,11 +1,10 @@
-import { ArrowRightIcon, CloudIcon } from "@heroicons/react/solid";
+import { ExclamationIcon } from "@heroicons/react/outline";
+import { ErrorMessage } from "@hookform/error-message";
 import classNames from "classnames";
 import React, { FormEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormData } from ".";
 import { Button } from "../Button";
-import { ErrorMessage } from "@hookform/error-message";
-import { ExclamationIcon } from "@heroicons/react/outline";
 
 type AuthFormViewProps = {
   loading: boolean;
