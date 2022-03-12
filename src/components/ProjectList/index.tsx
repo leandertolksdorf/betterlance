@@ -38,7 +38,7 @@ export const ProjectList = () => {
     };
   }, []);
 
-  if (loading || projects === undefined) {
+  if (projects === undefined) {
     return <Loading />;
   } else {
     return <ProjectListView projects={projects} />;
