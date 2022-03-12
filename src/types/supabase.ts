@@ -225,6 +225,108 @@ export interface paths {
       };
     };
   };
+  "/task": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.task.id"];
+          created_at?: parameters["rowFilter.task.created_at"];
+          project?: parameters["rowFilter.task.project"];
+          title?: parameters["rowFilter.task.title"];
+          description?: parameters["rowFilter.task.description"];
+          state?: parameters["rowFilter.task.state"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["task"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** task */
+          task?: definitions["task"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.task.id"];
+          created_at?: parameters["rowFilter.task.created_at"];
+          project?: parameters["rowFilter.task.project"];
+          title?: parameters["rowFilter.task.title"];
+          description?: parameters["rowFilter.task.description"];
+          state?: parameters["rowFilter.task.state"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.task.id"];
+          created_at?: parameters["rowFilter.task.created_at"];
+          project?: parameters["rowFilter.task.project"];
+          title?: parameters["rowFilter.task.title"];
+          description?: parameters["rowFilter.task.description"];
+          state?: parameters["rowFilter.task.state"];
+        };
+        body: {
+          /** task */
+          task?: definitions["task"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
 }
 
 export interface definitions {
@@ -287,6 +389,35 @@ export interface definitions {
      * @default extensions.uuid_generate_v4()
      */
     id: string;
+  };
+  task: {
+    /**
+     * Format: bigint
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     */
+    id: number;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
+    created_at?: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `project.id`.<fk table='project' column='id'/>
+     */
+    project: string;
+    /** Format: text */
+    title: string;
+    /** Format: text */
+    description?: string;
+    /**
+     * Format: public.task_state
+     * @default todo
+     * @enum {string}
+     */
+    state: "todo" | "in_progress" | "done";
   };
 }
 
@@ -357,6 +488,20 @@ export interface parameters {
   "rowFilter.project.name": string;
   /** Format: uuid */
   "rowFilter.project.id": string;
+  /** @description task */
+  "body.task": definitions["task"];
+  /** Format: bigint */
+  "rowFilter.task.id": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.task.created_at": string;
+  /** Format: uuid */
+  "rowFilter.task.project": string;
+  /** Format: text */
+  "rowFilter.task.title": string;
+  /** Format: text */
+  "rowFilter.task.description": string;
+  /** Format: public.task_state */
+  "rowFilter.task.state": string;
 }
 
 export interface operations {}
