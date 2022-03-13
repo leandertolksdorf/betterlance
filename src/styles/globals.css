@@ -26,7 +26,8 @@
     @apply focus-within:text-primary-500;
   }
 
-  input {
+  input,
+  textarea {
     @apply transition;
     @apply w-full;
     @apply px-2;

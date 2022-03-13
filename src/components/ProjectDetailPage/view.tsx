@@ -8,15 +8,18 @@ import {
 import classNames from "classnames";
 import React from "react";
 import { ProjectWithCustomer } from "../../types/composite";
+import { definitions } from "../../types/supabase";
 import { Box } from "../Box";
 import { IconButton } from "../IconButton";
+import { KanbanBoard } from "../KanbanBoard";
 import { Layout } from "../Layout";
 import { Loading } from "../Loading";
 import { Section } from "../Section";
+import { UpsertTaskForm } from "../UpsertTaskForm";
 
 type ProjectDetailPageViewProps = {
   loading: boolean;
-  project?: ProjectWithCustomer;
+  project: ProjectWithCustomer;
 };
 
 export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
@@ -90,6 +93,13 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
             </div>
           </Box>
         )}
+      </Section>
+      <Section
+        title="Aufgaben"
+        text="Verwalte hier die Aufgaben zum Projekt"
+        wide
+      >
+        <UpsertTaskForm projectId={props.project.id} />
       </Section>
     </Layout>
   );

@@ -22,6 +22,7 @@ export const ProjectDetailPage = () => {
       .from<definitions["project"]>("project")
       .on("*", loadProject)
       .subscribe();
+
     return () => {
       supabase.removeSubscription(subscription);
     };
@@ -42,7 +43,10 @@ export const ProjectDetailPage = () => {
       setLoading(false);
     }
   };
-  if (loading || project) {
+
+  if (!project) {
+    return "Loading";
+  } else if (project) {
     return <ProjectDetailPageView loading={loading} project={project} />;
   } else {
     return <ErrorPage message={errorMessage} />;
