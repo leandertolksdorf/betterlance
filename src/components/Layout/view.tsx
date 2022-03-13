@@ -5,6 +5,12 @@ import {
   LogoutIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
+import {
+  ArrowCircleRightIcon,
+  ArrowNarrowRightIcon,
+  ArrowRightIcon,
+  ArrowSmRightIcon,
+} from "@heroicons/react/solid";
 import { triggerAsyncId } from "async_hooks";
 import classNames from "classnames";
 import { useRouter } from "next/router";
@@ -24,14 +30,30 @@ export const LayoutView = (props: LayoutViewProps) => {
     enter: { opacity: 1, x: 0 },
   });
   return (
-    <div className={classNames("container", "mx-auto")}>
-      <header className={classNames("my-8")}>
-        <h1>Betterlance</h1>
-        <h2>
-          das <b>bessere</b> freelancer tool
-        </h2>
+    <div className={classNames()}>
+      <header className={classNames("py-8", "bg-primary-500", "shadow-xl")}>
+        <div className={classNames("container", "mx-auto")}>
+          <h1 className={classNames("text-white")}>Betterlance</h1>
+          <h2 className={classNames("text-white", "flex", "items-center")}>
+            <ArrowNarrowRightIcon
+              className={classNames("inline-icon", "mr-2")}
+            />
+            <div>
+              Das <b>bessere</b> Tool für Freelancer
+            </div>
+          </h2>
+        </div>
       </header>
-      <div className={classNames("grid", "grid-cols-8", "gap-8", "my-8")}>
+      <div
+        className={classNames(
+          "container",
+          "mx-auto",
+          "grid",
+          "grid-cols-8",
+          "gap-8",
+          "my-8"
+        )}
+      >
         {props.showNavigation && (
           <nav className={classNames("col-span-2")}>
             <div className={classNames("sticky", "top-8")}>
