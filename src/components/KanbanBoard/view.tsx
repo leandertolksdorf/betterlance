@@ -52,7 +52,17 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
             </div>
             <Droppable droppableId="todo">
               {(provided, snapshot) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  className={classNames(
+                    "grow",
+                    "rounded",
+                    "p-2",
+                    "transition",
+                    snapshot.isDraggingOver && "bg-primary-200"
+                  )}
+                >
                   {props.todo.map((task, i) => (
                     <Draggable draggableId={task.id} index={i} key={task.id}>
                       {(provided, snapshot) => (
@@ -92,7 +102,13 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className={classNames("grow")}
+                  className={classNames(
+                    "grow",
+                    "rounded",
+                    "p-2",
+                    "transition",
+                    snapshot.isDraggingOver && "bg-primary-200"
+                  )}
                 >
                   {props.inProgress.map((task, i) => (
                     <Draggable draggableId={task.id} index={i} key={task.id}>
@@ -132,7 +148,13 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className={classNames("grow")}
+                  className={classNames(
+                    "grow",
+                    "rounded",
+                    "p-2",
+                    "transition",
+                    snapshot.isDraggingOver && "bg-primary-200"
+                  )}
                 >
                   {props.done.map((task, i) => (
                     <Draggable draggableId={task.id} index={i} key={task.id}>
