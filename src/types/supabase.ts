@@ -229,12 +229,14 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.task.id"];
           created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
           state?: parameters["rowFilter.task.state"];
+          created_by?: parameters["rowFilter.task.created_by"];
+          id?: parameters["rowFilter.task.id"];
+          index?: parameters["rowFilter.task.index"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -285,12 +287,14 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.task.id"];
           created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
           state?: parameters["rowFilter.task.state"];
+          created_by?: parameters["rowFilter.task.created_by"];
+          id?: parameters["rowFilter.task.id"];
+          index?: parameters["rowFilter.task.index"];
         };
         header: {
           /** Preference */
@@ -305,12 +309,14 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.task.id"];
           created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
           state?: parameters["rowFilter.task.state"];
+          created_by?: parameters["rowFilter.task.created_by"];
+          id?: parameters["rowFilter.task.id"];
+          index?: parameters["rowFilter.task.index"];
         };
         body: {
           /** task */
@@ -392,12 +398,6 @@ export interface definitions {
   };
   task: {
     /**
-     * Format: bigint
-     * @description Note:
-     * This is a Primary Key.<pk/>
-     */
-    id: number;
-    /**
      * Format: timestamp with time zone
      * @default now()
      */
@@ -418,6 +418,20 @@ export interface definitions {
      * @enum {string}
      */
     state: "todo" | "in_progress" | "done";
+    /**
+     * Format: uuid
+     * @default auth.uid()
+     */
+    created_by: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /** Format: bigint */
+    index: number;
   };
 }
 
@@ -490,8 +504,6 @@ export interface parameters {
   "rowFilter.project.id": string;
   /** @description task */
   "body.task": definitions["task"];
-  /** Format: bigint */
-  "rowFilter.task.id": string;
   /** Format: timestamp with time zone */
   "rowFilter.task.created_at": string;
   /** Format: uuid */
@@ -502,6 +514,12 @@ export interface parameters {
   "rowFilter.task.description": string;
   /** Format: public.task_state */
   "rowFilter.task.state": string;
+  /** Format: uuid */
+  "rowFilter.task.created_by": string;
+  /** Format: uuid */
+  "rowFilter.task.id": string;
+  /** Format: bigint */
+  "rowFilter.task.index": string;
 }
 
 export interface operations {}
