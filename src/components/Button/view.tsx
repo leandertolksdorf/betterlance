@@ -36,11 +36,17 @@ export const ButtonView = (props: ButtonProps) => {
     >
       <div
         className={classNames(
-          props.loading ? "w-[1em] mr-1 opacity-100" : "w-0 opacity-0",
+          props.loading || props.icon
+            ? "w-[1em] mr-1 opacity-100"
+            : "w-0 opacity-0",
           "transition-[width]"
         )}
       >
-        {props.loading && <CloudIcon className={classNames("animate-pulse")} />}
+        {props.loading ? (
+          <CloudIcon className={classNames("animate-pulse")} />
+        ) : (
+          props.icon
+        )}
       </div>
       {props.children}
     </div>
