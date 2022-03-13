@@ -100,6 +100,7 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
         wide
       >
         <UpsertTaskForm projectId={props.project.id} />
+        <KanbanBoard projectId={props.project.id} />
       </Section>
     </Layout>
   );
