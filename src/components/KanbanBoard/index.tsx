@@ -24,6 +24,14 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
 
   useEffect(() => {
     loadTasks();
+    const subscription = supabase
+      .from<definitions["task"]>("task")
+      .on("*", loadTasks)
+      .subscribe();
+
+    return () => {
+      supabase.removeSubscription(subscription);
+    };
   }, []);
 
   const loadTasks = async () => {
@@ -87,7 +95,6 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
           .update({ state, index })
           .eq("id", taskId);
         if (error) throw error;
-        loadTasks();
       } catch (error: any) {
         alert(error.error_description || error.message);
       } finally {
