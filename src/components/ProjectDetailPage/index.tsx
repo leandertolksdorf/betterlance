@@ -38,17 +38,15 @@ export const ProjectDetailPage = () => {
       if (error) throw error;
       setProject(data[0] || null);
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      setErrorMessage(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  if (!project) {
-    return "Loading";
-  } else if (project) {
-    return <ProjectDetailPageView loading={loading} project={project} />;
-  } else {
+  if (errorMessage || project === null) {
     return <ErrorPage message={errorMessage} />;
+  } else {
+    return <ProjectDetailPageView project={project} />;
   }
 };

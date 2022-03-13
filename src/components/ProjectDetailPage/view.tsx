@@ -18,8 +18,7 @@ import { Section } from "../Section";
 import { UpsertTaskForm } from "../UpsertTaskForm";
 
 type ProjectDetailPageViewProps = {
-  loading: boolean;
-  project: ProjectWithCustomer;
+  project?: ProjectWithCustomer;
 };
 
 export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
@@ -32,7 +31,7 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
       subtitle={props.project?.customer ? props.project.customer.name : ""}
     >
       <Section title="Kunde" text="Du kannst Aufträge mit Kunden verknüpfen.">
-        {props.loading || props.project === undefined ? (
+        {props.project === undefined ? (
           <Loading />
         ) : props.project.customer === undefined ? (
           "Dieser Auftrag ist mit keinem Kunden verknüpft"
@@ -99,8 +98,14 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
         text="Verwalte hier die Aufgaben zum Projekt"
         wide
       >
-        <UpsertTaskForm projectId={props.project.id} />
-        <KanbanBoard projectId={props.project.id} />
+        {props.project === undefined ? (
+          <Loading />
+        ) : (
+          <>
+            <UpsertTaskForm projectId={props.project.id} />
+            <KanbanBoard projectId={props.project.id} />
+          </>
+        )}
       </Section>
     </Layout>
   );
