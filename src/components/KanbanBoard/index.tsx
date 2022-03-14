@@ -26,7 +26,7 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     loadTasks();
     const subscription = supabase
       .from<definitions["task"]>("task")
-      .on("*", loadTasks)
+      .on("*", _.debounce(loadTasks, 500))
       .subscribe();
 
     return () => {
