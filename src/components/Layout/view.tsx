@@ -14,8 +14,8 @@ import {
 import { triggerAsyncId } from "async_hooks";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import React from "react";
-import { useTransition, animated, config } from "react-spring";
+import React, { useEffect, useState } from "react";
+import { useTransition, animated, config, useSpring } from "react-spring";
 import { LayoutProps } from ".";
 import { NavigationItem } from "../NavigationItem";
 
@@ -31,10 +31,12 @@ export const LayoutView = (props: LayoutViewProps) => {
   });
   return (
     <div className={classNames()}>
-      <header className={classNames("py-8", "bg-primary-500", "shadow-xl")}>
+      <header
+        className={classNames("py-8", "border-t-8", "border-primary-500")}
+      >
         <div className={classNames("container", "mx-auto")}>
-          <h1 className={classNames("text-white")}>Betterlance</h1>
-          <h2 className={classNames("text-white", "flex", "items-center")}>
+          <h1 className={classNames("text-primary-500")}>Betterlance</h1>
+          <h2 className={classNames("flex", "items-center")}>
             <ArrowNarrowRightIcon
               className={classNames("inline-icon", "mr-2")}
             />

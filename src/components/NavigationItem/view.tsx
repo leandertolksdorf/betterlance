@@ -16,11 +16,13 @@ export const NavigationItemView = (props: NavigationItemViewProps) => {
         "py-2",
         "transition",
         "cursor-pointer",
-        props.isActive && "bg-primary-100",
-        props.isActive && "text-primary-500",
-        !props.isActive && "hover:bg-gray-100",
-        "active:bg-primary-100",
-        "active:text-primary-500",
+        props.isActive
+          ? classNames("bg-primary-100", "text-primary-500")
+          : classNames(
+              "hover:bg-gray-100",
+              "active:bg-primary-100",
+              "active:text-primary-500"
+            ),
         "rounded",
         "mb-1",
         "flex",
