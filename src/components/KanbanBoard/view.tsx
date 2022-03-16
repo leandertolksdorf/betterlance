@@ -34,11 +34,9 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
 
   return (
     <Box>
-      <div
-        className={classNames("grid", "gap-4", "grid-cols-3", "min-h-[34rem]")}
-      >
+      <div className={classNames("grid", "grid-cols-3", "min-h-[34rem]")}>
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className={classNames("col-span-1")}>
+          <div className={classNames("col-span-1", "flex", "flex-col")}>
             <div
               className={classNames(
                 "font-bold",
