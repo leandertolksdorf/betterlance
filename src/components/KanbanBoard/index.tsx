@@ -21,7 +21,9 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
   const [done, setDone] = useState<definitions["task"][] | undefined>(
     undefined
   );
-
+  const [archived, setArchived] = useState<definitions["task"][] | undefined>(
+    undefined
+  );
   useEffect(() => {
     loadTasks();
     const subscription = supabase
@@ -46,13 +48,12 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
       setTodo(data.filter((task) => task.state === "todo"));
       setInProgress(data.filter((task) => task.state === "in_progress"));
       setDone(data.filter((task) => task.state === "done"));
+      setArchived(data.filter((task) => task.state === "archived"));
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
     }
   };
-
-  const isReady = tasks && todo && inProgress && done;
   const onDropTask = async (
     taskId: string,
     state: definitions["task"]["state"],
@@ -71,6 +72,8 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
       setInProgress(filteredInProgress);
       const filteredDone = done.filter((task) => task.id !== taskId);
       setDone(filteredDone);
+      const filteredArchived = archived.filter((task) => task.id !== taskId);
+      setArchived(filteredArchived);
       switch (state) {
         case "todo":
           const newTodo = filteredTodo;
@@ -87,6 +90,11 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
           newDone.splice(index, 0, updatedTask);
           setDone(newDone);
           break;
+        case "archived":
+          const newArchived = filteredArchived;
+          newArchived.splice(index, 0, updatedTask);
+          setArchived(newArchived);
+          break;
       }
 
       try {
@@ -102,6 +110,9 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     }
   };
 
+  const isReady = tasks && todo && inProgress && done && archived;
+  console.log(archived);
+
   if (!isReady) {
     return <p>Loading</p>;
   } else {
@@ -110,6 +121,7 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
         todo={todo}
         inProgress={inProgress}
         done={done}
+        archived={archived}
         onDropTask={onDropTask}
       />
     );

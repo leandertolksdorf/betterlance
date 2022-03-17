@@ -417,7 +417,7 @@ export interface definitions {
      * @default todo
      * @enum {string}
      */
-    state: "todo" | "in_progress" | "done";
+    state: "todo" | "in_progress" | "done" | "archived";
     /**
      * Format: uuid
      * @default auth.uid()
