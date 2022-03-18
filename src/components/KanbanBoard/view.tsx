@@ -85,14 +85,10 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <Link href={router.asPath + "/tasks/" + task.id}>
-                              <a>
-                                <KanbanBoardTask
-                                  task={task}
-                                  isDragging={snapshot.isDragging}
-                                />
-                              </a>
-                            </Link>
+                            <KanbanBoardTask
+                              task={task}
+                              isDragging={snapshot.isDragging}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -136,14 +132,10 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <Link href={router.asPath + "/tasks/" + task.id}>
-                              <a>
-                                <KanbanBoardTask
-                                  task={task}
-                                  isDragging={snapshot.isDragging}
-                                />
-                              </a>
-                            </Link>
+                            <KanbanBoardTask
+                              task={task}
+                              isDragging={snapshot.isDragging}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -187,14 +179,10 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <Link href={router.asPath + "/tasks/" + task.id}>
-                              <a>
-                                <KanbanBoardTask
-                                  task={task}
-                                  isDragging={snapshot.isDragging}
-                                />
-                              </a>
-                            </Link>
+                            <KanbanBoardTask
+                              task={task}
+                              isDragging={snapshot.isDragging}
+                            />
                           </div>
                         )}
                       </Draggable>
