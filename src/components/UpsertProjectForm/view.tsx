@@ -15,23 +15,22 @@ type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   error: boolean;
   message?: string;
   customers: definitions["customer"][] | null;
-  isOpen: boolean;
-  onOpen: () => void;
+  open: boolean;
+  setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
   onSubmit: FormEventHandler;
   errors: FieldErrors;
 };
 
 export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [innerHeight, setInnerHeight] = useState(0);
-
-  useEffect(() => {
-    setInnerHeight(innerRef.current?.scrollHeight || 0);
-  });
-
   return (
-    <Collapse dim openText="Auftrag anlegen" closeText="Schließen">
+    <Collapse
+      open={props.open}
+      onPressButton={() => props.setOpen(!props.open)}
+      dim
+      openText="Auftrag anlegen"
+      closeText="Schließen"
+    >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
           {props.project ? "Auftrag bearbeiten" : "Auftrag anlegen"}

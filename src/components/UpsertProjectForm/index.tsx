@@ -28,7 +28,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [customers, setCustomers] = useState<definitions["customer"][] | null>(
     null
@@ -67,6 +67,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -83,7 +84,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
         .upsert({ id: props.project?.id, ...data });
       if (error) throw error;
       if (!props.project) reset();
-      setIsOpen(false);
+      setOpen(false);
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
@@ -98,8 +99,8 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
       error={error}
       message={message}
       customers={customers}
-      isOpen={isOpen}
-      onOpen={() => setIsOpen(!isOpen)}
+      open={open}
+      setOpen={setOpen}
       register={register}
       project={props.project}
       onSubmit={onSubmit}
