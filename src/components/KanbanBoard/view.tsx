@@ -4,6 +4,8 @@ import {
   ChevronLeftIcon,
 } from "@heroicons/react/solid";
 import classNames from "classnames";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
   DragDropContext,
@@ -30,6 +32,8 @@ type KanbanBoardViewProps = {
 };
 
 export const KanbanBoardView = (props: KanbanBoardViewProps) => {
+  const router = useRouter();
+  console.log(router);
   const [archiveIsOpen, setArchiveIsOpen] = useState(false);
 
   const onDragEnd = (result: DropResult, provided: ResponderProvided) => {
@@ -81,10 +85,14 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <KanbanBoardTask
-                              task={task}
-                              isDragging={snapshot.isDragging}
-                            />
+                            <Link href={router.asPath + "/tasks/" + task.id}>
+                              <a>
+                                <KanbanBoardTask
+                                  task={task}
+                                  isDragging={snapshot.isDragging}
+                                />
+                              </a>
+                            </Link>
                           </div>
                         )}
                       </Draggable>
@@ -128,10 +136,14 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <KanbanBoardTask
-                              task={task}
-                              isDragging={snapshot.isDragging}
-                            />
+                            <Link href={router.asPath + "/tasks/" + task.id}>
+                              <a>
+                                <KanbanBoardTask
+                                  task={task}
+                                  isDragging={snapshot.isDragging}
+                                />
+                              </a>
+                            </Link>
                           </div>
                         )}
                       </Draggable>
@@ -175,10 +187,14 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <KanbanBoardTask
-                              task={task}
-                              isDragging={snapshot.isDragging}
-                            />
+                            <Link href={router.asPath + "/tasks/" + task.id}>
+                              <a>
+                                <KanbanBoardTask
+                                  task={task}
+                                  isDragging={snapshot.isDragging}
+                                />
+                              </a>
+                            </Link>
                           </div>
                         )}
                       </Draggable>
