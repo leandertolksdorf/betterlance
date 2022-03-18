@@ -1,23 +1,10 @@
-import { OfficeBuildingIcon } from "@heroicons/react/outline";
-import {
-  ArrowRightIcon,
-  BriefcaseIcon,
-  ClipboardListIcon,
-  MailIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
-import classNames from "classnames";
+import { ClipboardListIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import React, { Fragment } from "react";
-import { ProjectWithCustomer, TaskWithProject } from "../../types/composite";
-import { definitions } from "../../types/supabase";
+import { TaskWithProject } from "../../types/composite";
 import { Box } from "../Box";
-import { IconButton } from "../IconButton";
-import { KanbanBoard } from "../KanbanBoard";
 import { Layout } from "../Layout";
-import { Loading } from "../Loading";
 import { Section } from "../Section";
-import { UpsertTaskForm } from "../UpsertTaskForm";
 
 type TaskDetailPageViewProps = {
   task?: TaskWithProject;

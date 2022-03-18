@@ -8,7 +8,6 @@ import {
 import classNames from "classnames";
 import React from "react";
 import { ProjectWithCustomer } from "../../types/composite";
-import { definitions } from "../../types/supabase";
 import { Box } from "../Box";
 import { IconButton } from "../IconButton";
 import { KanbanBoard } from "../KanbanBoard";

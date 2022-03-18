@@ -5,17 +5,11 @@ import {
   LogoutIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
-import {
-  ArrowCircleRightIcon,
-  ArrowNarrowRightIcon,
-  ArrowRightIcon,
-  ArrowSmRightIcon,
-} from "@heroicons/react/solid";
-import { triggerAsyncId } from "async_hooks";
+import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { useTransition, animated, config, useSpring } from "react-spring";
+import React from "react";
+import { animated, useTransition } from "react-spring";
 import { LayoutProps } from ".";
 import { NavigationItem } from "../NavigationItem";
 

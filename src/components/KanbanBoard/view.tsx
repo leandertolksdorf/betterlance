@@ -1,19 +1,13 @@
-import {
-  ArchiveIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-} from "@heroicons/react/solid";
+import { ArchiveIcon, ChevronLeftIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   DragDropContext,
   Draggable,
   Droppable,
   DropResult,
   ResponderProvided,
-  DraggingStyle,
 } from "react-beautiful-dnd";
 import { definitions } from "../../types/supabase";
 import { Box } from "../Box";

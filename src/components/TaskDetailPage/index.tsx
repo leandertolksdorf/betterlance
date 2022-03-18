@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
-import { ProjectWithCustomer, TaskWithProject } from "../../types/composite";
+import { TaskWithProject } from "../../types/composite";
 import { definitions } from "../../types/supabase";
 import { ErrorPage } from "../ErrorPage";
 import { TaskDetailPageView } from "./view";

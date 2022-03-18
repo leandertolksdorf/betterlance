@@ -1,8 +1,8 @@
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { KanbanBoardView } from "./view";
-import _, { update } from "lodash";
 
 export type KanbanBoardProps = {
   projectId: definitions["project"]["id"];

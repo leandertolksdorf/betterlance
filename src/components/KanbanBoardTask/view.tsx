@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { Fragment } from "react";
-import { useSpring, animated, config } from "react-spring";
 import { KanbanBoardTaskProps } from ".";
 
 type KanbanBoardTaskViewProps = KanbanBoardTaskProps & {};

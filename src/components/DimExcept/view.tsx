@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useState } from "react";
-import { useSpring, animated, config } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { DimExceptProps } from ".";
 
 export const DimExceptView = (props: DimExceptProps) => {
