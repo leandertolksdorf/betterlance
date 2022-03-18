@@ -31,7 +31,7 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -53,7 +53,7 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
         .upsert({ id: props.customer?.id, ...data });
       if (error) throw error;
       if (!props.customer) reset();
-      setIsOpen(false);
+      setOpen(false);
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
@@ -67,8 +67,8 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
       loading={loading}
       error={error}
       message={message}
-      isOpen={isOpen}
-      onOpen={() => setIsOpen(!isOpen)}
+      open={open}
+      setOpen={setOpen}
       register={register}
       customer={props.customer}
       onSubmit={onSubmit}
