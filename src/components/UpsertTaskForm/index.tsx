@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
@@ -27,7 +27,7 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -49,7 +49,7 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
         .upsert({ id: props.task?.id, ...data });
       if (error) throw error;
       if (!props.task) reset();
-      setIsOpen(false);
+      setOpen(false);
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
@@ -64,8 +64,8 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
       loading={loading}
       error={error}
       message={message}
-      isOpen={isOpen}
-      onOpen={() => setIsOpen(!isOpen)}
+      open={open}
+      setOpen={setOpen}
       register={register}
       onSubmit={onSubmit}
       errors={errors}
