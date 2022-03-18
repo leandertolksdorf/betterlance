@@ -1,30 +1,32 @@
 import classNames from "classnames";
 import { useState } from "react";
+import { useSpring, animated, config } from "react-spring";
 import { DimExceptProps } from ".";
 
 export const DimExceptView = (props: DimExceptProps) => {
-  const [hasTransitionedIn, setHasTransitionedIn] = useState(false);
-  const onTransitionEnd = () => {
-    setHasTransitionedIn(props.dim);
-  };
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const styles = useSpring({
+    to: {
+      opacity: props.dim ? 0.5 : 0,
+    },
+    onStart: () => setIsTransitioning(true),
+    onRest: () => setIsTransitioning(false),
+  });
   return (
     <>
-      <div
-        onTransitionEnd={onTransitionEnd}
+      <animated.div
+        style={styles}
         className={classNames(
           "fixed",
           "inset-0",
-          "transition",
-          "ease-in-out",
           "bg-black",
-          props.dim ? "opacity-50" : "opacity-0",
-          props.dim || hasTransitionedIn ? "z-10" : "-z-10"
+          props.dim || isTransitioning ? "z-10" : "-z-10"
         )}
-      ></div>
+      ></animated.div>
       <div
         className={classNames(
           "relative",
-          props.dim || hasTransitionedIn ? "z-20" : null
+          (props.dim || isTransitioning) && "z-20"
         )}
       >
         {props.children}
