@@ -6,10 +6,10 @@ export type CollapseProps = {
   openText: string;
   closeText: string;
   dim?: boolean;
+  open: boolean;
+  onPressButton: () => void;
 };
 
 export const Collapse = (props: CollapseProps) => {
-  const [open, setOpen] = useState(false);
-
-  return <CollapseView open={open} setOpen={setOpen} {...props} />;
+  return <CollapseView {...props} />;
 };

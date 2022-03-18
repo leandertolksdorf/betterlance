@@ -6,10 +6,7 @@ import { CollapseProps } from ".";
 import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
 
-type CollapseViewProps = CollapseProps & {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-};
+type CollapseViewProps = CollapseProps;
 
 export const CollapseView = (props: CollapseViewProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
@@ -34,7 +31,7 @@ export const CollapseView = (props: CollapseViewProps) => {
       <div className={classNames("bg-gray-100", "rounded-lg", "my-2")}>
         <Button
           light={props.open}
-          onClick={() => props.setOpen(!props.open)}
+          onClick={props.onPressButton}
           icon={
             <PlusIcon
               className={classNames(
