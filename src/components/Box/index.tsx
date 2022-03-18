@@ -3,6 +3,8 @@ import { BoxView } from "./view";
 
 export type BoxProps = {
   children?: ReactNode;
+  title?: string;
+  wrapsChild?: boolean;
 };
 
 export const Box = (props: BoxProps) => {
