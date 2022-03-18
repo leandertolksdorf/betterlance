@@ -1,13 +1,11 @@
 import { ExclamationIcon } from "@heroicons/react/outline";
-import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import { ErrorMessage } from "@hookform/error-message";
 import classNames from "classnames";
-import React, { FormEventHandler, useEffect, useRef, useState } from "react";
+import React, { FormEventHandler } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormData, UpsertCustomerFormProps } from ".";
 import { Button } from "../Button";
 import { Collapse } from "../Collapse";
-import { DimExcept } from "../DimExcept";
 
 type UpsertCustomerFormViewProps = UpsertCustomerFormProps & {
   loading: boolean;
@@ -21,12 +19,6 @@ type UpsertCustomerFormViewProps = UpsertCustomerFormProps & {
 };
 
 export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [innerHeight, setInnerHeight] = useState(0);
-
-  useEffect(() => {
-    setInnerHeight(innerRef.current?.scrollHeight || 0);
-  });
   return (
     <Collapse
       open={props.open}
