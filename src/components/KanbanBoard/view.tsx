@@ -70,7 +70,7 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                       "p-2",
                       "transition",
                       "h-[34rem]",
-                      "overflow-scroll"
+                      "overflow-y-scroll"
                     )}
                   >
                     {props.todo.map((task, i) => (
@@ -113,7 +113,7 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                     {...provided.droppableProps}
                     className={classNames(
                       "h-[34rem]",
-                      "overflow-scroll",
+                      "overflow-y-scroll",
                       "rounded",
                       "p-2",
                       "transition",
@@ -160,7 +160,7 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                     {...provided.droppableProps}
                     className={classNames(
                       "h-[34rem]",
-                      "overflow-scroll",
+                      "overflow-y-scroll",
                       "rounded",
                       "p-2",
                       "transition",
@@ -212,7 +212,7 @@ export const KanbanBoardView = (props: KanbanBoardViewProps) => {
                     className={classNames(
                       archiveIsOpen ? "w-44" : "w-0",
                       "h-[34rem]",
-                      "overflow-scroll",
+                      "overflow-y-scroll",
                       "overflow-hidden",
                       "transition-all"
                     )}
