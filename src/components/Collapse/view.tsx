@@ -1,7 +1,7 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useLayoutEffect, useRef, useState } from "react";
-import { animated, useSpring } from "react-spring";
+import { animated, config, useSpring } from "react-spring";
 import { CollapseProps } from ".";
 import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";
@@ -21,6 +21,7 @@ export const CollapseView = (props: CollapseViewProps) => {
   const styles = useSpring({
     to: {
       height: props.open ? innerHeight : 0,
+      opacity: props.open ? 1 : 0,
     },
     onStart: () => setIsTransitioning(true),
     onRest: () => setIsTransitioning(false),
