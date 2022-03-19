@@ -20,7 +20,7 @@ export const schema = yup
     name: yup.string().required(),
     customer: yup
       .string()
-      .transform((value) => (value === "" ? undefined : value)),
+      .transform((value) => (value.value === "" ? undefined : value.value)),
   })
   .required();
 
@@ -102,6 +102,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
       open={open}
       setOpen={setOpen}
       register={register}
+      control={control}
       project={props.project}
       onSubmit={onSubmit}
       errors={errors}

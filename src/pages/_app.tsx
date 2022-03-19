@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import "../styles/globals.css";
+import "react-dropdown/style.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

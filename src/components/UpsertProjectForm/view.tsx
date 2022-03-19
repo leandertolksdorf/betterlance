@@ -2,12 +2,18 @@ import { ExclamationIcon } from "@heroicons/react/outline";
 import { ErrorMessage } from "@hookform/error-message";
 import classNames from "classnames";
 import { FormEventHandler } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldErrors,
+  UseFormRegister,
+} from "react-hook-form";
 import { FormData, UpsertProjectFormProps } from ".";
 import { definitions } from "../../types/supabase";
 import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
+import Dropdown from "react-dropdown";
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   loading: boolean;
   error: boolean;
@@ -16,6 +22,7 @@ type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
+  control: Control<FormData, any>;
   onSubmit: FormEventHandler;
   errors: FieldErrors;
 };
@@ -64,7 +71,7 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                 </span>
               )}
             />
-            <select {...props.register("customer", { required: false })}>
+            {/* <select {...props.register("customer", { required: false })}>
               <option value={""}>keinen Kunden verknüpfen</option>
               {props.customers?.map((customer, index) => (
                 <option key={index} value={customer.id}>
@@ -73,7 +80,33 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                     .join(" · ")}
                 </option>
               ))}
-            </select>
+            </select> */}
+            <Controller
+              name="customer"
+              control={props.control}
+              defaultValue={""}
+              render={({ field }) => (
+                <Dropdown
+                  {...field}
+                  className={classNames(
+                    "mb-2",
+                    "border-2",
+                    "border-gray-300",
+                    "rounded"
+                  )}
+                  controlClassName={classNames("border-none")}
+                  options={[
+                    { value: "", label: "Keinen Kunden verknüpfen" },
+                    ...(props.customers?.map((customer) => ({
+                      value: customer.id,
+                      label: [customer.name, customer.company]
+                        .filter((value) => value !== "")
+                        .join(" · "),
+                    })) || []),
+                  ]}
+                />
+              )}
+            />
           </label>
           <Button type="submit" center loading={props.loading}>
             Absenden
