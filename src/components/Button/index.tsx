@@ -13,6 +13,7 @@ export type ButtonProps = {
   loading?: boolean;
   children: ReactNode;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  asDiv?: boolean;
 };
 
 export const Button = (props: ButtonProps) => {
@@ -22,15 +23,24 @@ export const Button = (props: ButtonProps) => {
         <ButtonView {...props} />
       </Link>
     );
-  } else {
+  }
+
+  if (props.asDiv) {
     return (
-      <button
-        disabled={props.loading}
-        onClick={props.onClick}
-        className={classNames("w-full")}
-      >
+      <div onClick={props.onClick} className={classNames("w-full")}>
+        {" "}
         <ButtonView {...props} />
-      </button>
+      </div>
     );
   }
+
+  return (
+    <button
+      disabled={props.loading}
+      onClick={props.onClick}
+      className={classNames("w-full")}
+    >
+      <ButtonView {...props} />
+    </button>
+  );
 };
