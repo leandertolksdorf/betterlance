@@ -2,19 +2,13 @@ import { ExclamationIcon } from "@heroicons/react/outline";
 import { ErrorMessage } from "@hookform/error-message";
 import classNames from "classnames";
 import { FormEventHandler } from "react";
-import {
-  Control,
-  Controller,
-  FieldErrors,
-  UseFormRegister,
-} from "react-hook-form";
+import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormData, UpsertProjectFormProps } from ".";
 import { definitions } from "../../types/supabase";
 import { Button } from "../Button";
 import { Collapse } from "../Collapse";
-
-import Dropdown from "react-dropdown";
 import { Select } from "../Select";
+
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   loading: boolean;
   error: boolean;

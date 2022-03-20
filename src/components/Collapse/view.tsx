@@ -1,7 +1,7 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useLayoutEffect, useRef, useState } from "react";
-import { animated, config, useSpring } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { CollapseProps } from ".";
 import { Button } from "../Button";
 import { DimExcept } from "../DimExcept";

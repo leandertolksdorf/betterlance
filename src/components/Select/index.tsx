@@ -1,3 +1,6 @@
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import classNames from "classnames";
+import _ from "lodash";
 import {
   ChangeEventHandler,
   DetailedHTMLProps,
@@ -6,12 +9,8 @@ import {
   MouseEventHandler,
   useState,
 } from "react";
-import _ from "lodash";
-import classNames from "classnames";
-import { useSpring, animated } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { Button } from "../Button";
-import { ChevronDownIcon } from "@heroicons/react/solid";
-import { UseFormRegisterReturn } from "react-hook-form";
 
 export type SelectProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
