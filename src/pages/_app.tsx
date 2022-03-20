@@ -2,7 +2,6 @@ import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import "react-dropdown/style.css";
 import { supabase } from "../lib/supabase";
 import "../styles/globals.css";
 
