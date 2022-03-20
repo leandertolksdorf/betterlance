@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { CollapseProps } from ".";
 import { Button } from "../Button";
@@ -12,7 +12,7 @@ export const CollapseView = (props: CollapseViewProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const [innerHeight, setInnerHeight] = useState(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setInnerHeight(innerRef.current?.scrollHeight || 0);
   });
 
