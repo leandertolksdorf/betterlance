@@ -14,6 +14,7 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 import Dropdown from "react-dropdown";
+import { Select } from "../Select";
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
   loading: boolean;
   error: boolean;
@@ -28,6 +29,12 @@ type UpsertProjectFormViewProps = UpsertProjectFormProps & {
 };
 
 export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
+  const customerOptions =
+    props.customers?.map((customer) => ({
+      label: [customer.name, customer.company].filter(Boolean).join(" · "),
+      value: customer.id,
+    })) || [];
+
   return (
     <Collapse
       open={props.open}
@@ -71,42 +78,7 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                 </span>
               )}
             />
-            {/* <select {...props.register("customer", { required: false })}>
-              <option value={""}>keinen Kunden verknüpfen</option>
-              {props.customers?.map((customer, index) => (
-                <option key={index} value={customer.id}>
-                  {[customer.name, customer.company]
-                    .filter((value) => value !== "")
-                    .join(" · ")}
-                </option>
-              ))}
-            </select> */}
-            <Controller
-              name="customer"
-              control={props.control}
-              defaultValue={""}
-              render={({ field }) => (
-                <Dropdown
-                  {...field}
-                  className={classNames(
-                    "mb-2",
-                    "border-2",
-                    "border-gray-300",
-                    "rounded"
-                  )}
-                  controlClassName={classNames("border-none")}
-                  options={[
-                    { value: "", label: "Keinen Kunden verknüpfen" },
-                    ...(props.customers?.map((customer) => ({
-                      value: customer.id,
-                      label: [customer.name, customer.company]
-                        .filter((value) => value !== "")
-                        .join(" · "),
-                    })) || []),
-                  ]}
-                />
-              )}
-            />
+            <Select {...props.register("customer")} options={customerOptions} />
           </label>
           <Button type="submit" center loading={props.loading}>
             Absenden

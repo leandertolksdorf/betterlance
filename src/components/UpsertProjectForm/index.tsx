@@ -18,9 +18,7 @@ export type FormData = Omit<
 export const schema = yup
   .object({
     name: yup.string().required(),
-    customer: yup
-      .string()
-      .transform((value) => (value.value === "" ? undefined : value.value)),
+    customer: yup.string().required(),
   })
   .required();
 
@@ -33,7 +31,6 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   const [customers, setCustomers] = useState<definitions["customer"][] | null>(
     null
   );
-
   const loadCustomers = async () => {
     try {
       setError(false);
