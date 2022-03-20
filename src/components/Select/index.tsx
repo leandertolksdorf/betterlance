@@ -17,11 +17,12 @@ export type SelectProps = DetailedHTMLProps<
   HTMLInputElement
 > & {
   options: { label: string; value: string }[];
+  search?: boolean;
 };
 
 export const Select = forwardRef<HTMLInputElement, SelectProps>(
   (props, ref) => {
-    const inputProps = _.omit(props, "options");
+    const inputProps = _.omit(props, ["options", "search"]);
     const [selected, setSelected] = useState<string | null>(null);
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState(false);
@@ -52,11 +53,14 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             "bg-white",
             "hover:bg-white",
             "active:bg-white",
+            "px-2",
+            "py-1",
+            "text-lg",
             "border-2",
             open ? "border-primary-500" : "border-gray-300",
-            open && "rounded-b-none",
             open ? "text-primary-500" : "text-black",
-            "font-normal"
+            "font-normal",
+            "normal-case"
           )}
           light
           icon={
@@ -74,24 +78,26 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             "w-full",
             "h-auto",
             "bg-white",
-            "rounded",
+            "rounded-b",
             "overflow-hidden"
           )}
           style={styles}
         >
-          <input
-            type="text"
-            value={search}
-            placeholder="Suchen..."
-            onChange={handleSearchChange}
-            className={classNames(
-              "rounded-none",
-              "m-0",
-              "border-0",
-              "border-b",
-              "border-gray-300"
-            )}
-          />
+          {props.search && (
+            <input
+              type="text"
+              value={search}
+              placeholder="Suchen..."
+              onChange={handleSearchChange}
+              className={classNames(
+                "rounded-none",
+                "m-0",
+                "border-0",
+                "border-b",
+                "border-gray-300"
+              )}
+            />
+          )}
           <div className={classNames("overflow-y-scroll", "max-h-[10rem]")}>
             {props.options
               .filter((option) =>

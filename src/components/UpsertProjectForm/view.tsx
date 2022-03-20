@@ -72,7 +72,11 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
                 </span>
               )}
             />
-            <Select {...props.register("customer")} options={customerOptions} />
+            <Select
+              {...props.register("customer")}
+              options={customerOptions}
+              search
+            />
           </label>
           <Button type="submit" center loading={props.loading}>
             Absenden
