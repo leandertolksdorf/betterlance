@@ -13,8 +13,16 @@ export const CollapseView = (props: CollapseViewProps) => {
   const [innerHeight, setInnerHeight] = useState(0);
 
   useEffect(() => {
-    setInnerHeight(innerRef.current?.scrollHeight || 0);
-  });
+    handleInnerSize();
+    window.addEventListener("resize", handleInnerSize);
+
+    return () => window.removeEventListener("resize", handleInnerSize);
+  }, []);
+
+  const handleInnerSize = () => {
+    if (!innerRef.current) return;
+    setInnerHeight(innerRef.current.offsetHeight || 0);
+  };
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -45,14 +53,13 @@ export const CollapseView = (props: CollapseViewProps) => {
           {props.open ? props.closeText : props.openText}
         </Button>
         <animated.div
-          ref={innerRef}
           className={classNames(
             (!props.open || isTransitioning) && "overflow-hidden",
             "transition-[max-height]"
           )}
           style={styles}
         >
-          {props.children}
+          <div ref={innerRef}>{props.children}</div>
         </animated.div>
       </div>
     </DimExcept>
