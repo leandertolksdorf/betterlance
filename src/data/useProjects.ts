@@ -1,11 +1,11 @@
+import _ from "lodash";
 import useSWR, { Fetcher, Key } from "swr";
+import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../lib/supabase";
 import { Project } from "../types/composite";
 import { definitions } from "../types/supabase";
 import { deleteHelper, insertHelper, updateHelper } from "../util/dataHelpers";
 import { useCustomers } from "./useCustomers";
-import { v4 as uuidv4 } from "uuid";
-import _ from "lodash";
 
 const key: Key = "projects";
 
@@ -127,8 +127,6 @@ export const useProjects = () => {
       optimisticData: deleteHelper(data, id),
     });
   }
-
-  // Variants
 
   return { data, flat, error, get, insert, update, remove };
 };
