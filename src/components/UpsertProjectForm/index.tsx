@@ -2,12 +2,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { useProjects } from "../../data/useProjects";
 import { supabase } from "../../lib/supabase";
+import { Project } from "../../types/composite";
 import { definitions } from "../../types/supabase";
 import { UpsertProjectFormView } from "./view";
 
 export type UpsertProjectFormProps = {
-  project?: definitions["project"];
+  projectId?: string;
 };
 
 export type FormData = Omit<
@@ -60,6 +62,11 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
     };
   }, []);
 
+  const { get, insert, update } = useProjects();
+
+  const defaultValues =
+    (props.projectId && get(props.projectId, { flat: true })) || undefined;
+
   const {
     register,
     handleSubmit,
@@ -68,20 +75,18 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
-    defaultValues: props.project,
+    defaultValues: defaultValues,
   });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      setError(false);
-      setMessage(undefined);
-      setLoading(true);
-      const { error } = await supabase
-        .from<definitions["project"]>("project")
-        .upsert({ id: props.project?.id, ...data });
-      if (error) throw error;
-      if (!props.project) reset();
       setOpen(false);
+      if (props.projectId) {
+        update({ id: props.projectId, ...data });
+      } else {
+        insert(data);
+        reset();
+      }
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
@@ -92,6 +97,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
 
   return (
     <UpsertProjectFormView
+      projectId={props.projectId}
       loading={loading}
       error={error}
       message={message}
@@ -100,7 +106,6 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
       setOpen={setOpen}
       register={register}
       control={control}
-      project={props.project}
       onSubmit={onSubmit}
       errors={errors}
     />

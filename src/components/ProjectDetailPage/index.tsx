@@ -1,52 +1,23 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { supabase } from "../../lib/supabase";
-import { ProjectWithCustomer } from "../../types/composite";
-import { definitions } from "../../types/supabase";
+import React from "react";
+import { useProjects } from "../../data/useProjects";
 import { ErrorPage } from "../ErrorPage";
+import { Loading } from "../Loading";
 import { ProjectDetailPageView } from "./view";
 
 export const ProjectDetailPage = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
-  );
-  const [project, setProject] = useState<ProjectWithCustomer | undefined>(
-    undefined
-  );
+  const { get } = useProjects();
 
-  useEffect(() => {
-    loadProject();
-    const subscription = supabase
-      .from<definitions["project"]>("project")
-      .on("*", loadProject)
-      .subscribe();
+  const project = get(router.query.id as string);
 
-    return () => {
-      supabase.removeSubscription(subscription);
-    };
-  }, []);
-
-  const loadProject = async () => {
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from<ProjectWithCustomer>("project")
-        .select("*, customer(*)")
-        .eq("id", router.query.id as string);
-      if (error) throw error;
-      setProject(data[0] || null);
-    } catch (error: any) {
-      setErrorMessage(error.error_description || error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (errorMessage || project === null) {
-    return <ErrorPage message={errorMessage} />;
-  } else {
-    return <ProjectDetailPageView project={project} />;
+  if (project === null) {
+    return <ErrorPage />;
   }
+
+  if (project === undefined) {
+    return <Loading />;
+  }
+
+  return <ProjectDetailPageView project={project} />;
 };

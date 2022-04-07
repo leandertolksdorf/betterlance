@@ -7,17 +7,18 @@ import {
 } from "@heroicons/react/solid";
 import classNames from "classnames";
 import React from "react";
-import { ProjectWithCustomer } from "../../types/composite";
+import { Project, ProjectWithCustomer } from "../../types/composite";
 import { Box } from "../Box";
 import { IconButton } from "../IconButton";
 import { KanbanBoard } from "../KanbanBoard";
 import { Layout } from "../Layout";
 import { Loading } from "../Loading";
 import { Section } from "../Section";
+import { UpsertProjectForm } from "../UpsertProjectForm";
 import { UpsertTaskForm } from "../UpsertTaskForm";
 
 type ProjectDetailPageViewProps = {
-  project?: ProjectWithCustomer;
+  project: Project;
 };
 
 export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
@@ -91,6 +92,7 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
             </div>
           </Box>
         )}
+        <UpsertProjectForm projectId={props.project.id} />
       </Section>
       <Section
         title="Aufgaben"

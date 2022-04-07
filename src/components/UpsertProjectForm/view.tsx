@@ -34,12 +34,12 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
       open={props.open}
       onPressButton={() => props.setOpen(!props.open)}
       dim
-      openText="Auftrag anlegen"
+      openText={props.projectId ? "Auftrag bearbeiten" : "Auftrag anlegen"}
       closeText="Schließen"
     >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
-          {props.project ? "Auftrag bearbeiten" : "Auftrag anlegen"}
+          {props.projectId ? "Auftrag bearbeiten" : "Auftrag anlegen"}
         </h3>
         <form onSubmit={props.onSubmit}>
           <label>
