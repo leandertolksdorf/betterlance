@@ -30,3 +30,8 @@ export const updateHelper = <T extends { id: string }>(
   }
   return result;
 };
+
+export const deleteHelper = <T extends { id: string }>(
+  array: T[],
+  id: string
+) => array.filter((item) => item.id !== id);

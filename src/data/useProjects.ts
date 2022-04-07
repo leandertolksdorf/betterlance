@@ -2,7 +2,7 @@ import useSWR, { Fetcher, Key } from "swr";
 import { supabase } from "../lib/supabase";
 import { Project } from "../types/composite";
 import { definitions } from "../types/supabase";
-import { insertHelper, updateHelper } from "../util/dataHelpers";
+import { deleteHelper, insertHelper, updateHelper } from "../util/dataHelpers";
 import { useCustomers } from "./useCustomers";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
@@ -33,6 +33,15 @@ const updateProject = async (
     .from<definitions["project"]>("project")
     .update(params)
     .eq("id", params.id);
+  if (error) throw error;
+  return await fetcher();
+};
+
+const deleteProject = async (id: definitions["project"]["id"]) => {
+  const { error } = await supabase
+    .from<definitions["project"]>("project")
+    .delete()
+    .eq("id", id);
   if (error) throw error;
   return await fetcher();
 };
@@ -92,7 +101,7 @@ export const useProjects = () => {
     });
   };
 
-  const update = (params: definitions["project"]) => {
+  function update(params: definitions["project"]) {
     if (!data) {
       mutate(updateProject(params));
       return;
@@ -106,11 +115,20 @@ export const useProjects = () => {
     mutate(updateProject(params), {
       optimisticData: updateHelper(data, localProject, "name"),
     });
-  };
+  }
 
-  // TODO: delete(id: string)
+  function remove(id: string) {
+    if (!data) {
+      mutate(deleteProject(id));
+      return;
+    }
+
+    mutate(deleteProject(id), {
+      optimisticData: deleteHelper(data, id),
+    });
+  }
 
   // Variants
 
-  return { data, flat, error, get, insert, update };
+  return { data, flat, error, get, insert, update, remove };
 };
