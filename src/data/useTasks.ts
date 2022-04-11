@@ -50,7 +50,7 @@ const deleteTask = async (id: definitions["task"]["id"]) => {
   return await fetcher();
 };
 
-const useTasks = () => {
+export const useTasks = () => {
   const { data, error, mutate } = useSWR(key, fetcher);
 
   const { get: getProject } = useProjects();
@@ -103,6 +103,7 @@ const useTasks = () => {
       optimisticData: insertHelper(data, localTask, "index"),
     });
 
+    // TODO: separate id and update in arguments
     const update = (params: definitions["task"]) => {
       if (!data) {
         mutate(updateTask(params));
