@@ -8,7 +8,7 @@ import { UpsertTaskFormView } from "./view";
 
 export type UpsertTaskFormProps = {
   projectId: definitions["project"]["id"];
-  taskId: definitions["task"]["id"];
+  taskId?: definitions["task"]["id"];
 };
 
 export type FormData = Omit<
