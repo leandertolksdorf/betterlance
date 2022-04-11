@@ -26,8 +26,6 @@ type KanbanBoardViewProps = {
 };
 
 export const KanbanBoardView = (props: KanbanBoardViewProps) => {
-  const router = useRouter();
-  console.log(router);
   const [archiveIsOpen, setArchiveIsOpen] = useState(false);
 
   const onDragEnd = (result: DropResult, provided: ResponderProvided) => {

@@ -10,8 +10,8 @@ export type KanbanBoardProps = {
 };
 
 export const KanbanBoard = (props: KanbanBoardProps) => {
-  const { flat: tasks, update } = useTasks();
-
+  const { flat, update } = useTasks();
+  const tasks = flat?.filter((task) => task.project === props.projectId);
   const todo = tasks?.filter((task) => task.state === "todo");
   const inProgress = tasks?.filter((task) => task.state === "in_progress");
   const done = tasks?.filter((task) => task.state === "done");
