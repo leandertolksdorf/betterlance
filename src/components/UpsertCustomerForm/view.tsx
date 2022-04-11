@@ -24,12 +24,12 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
       open={props.open}
       onPressButton={() => props.setOpen(!props.open)}
       dim
-      openText="Kund:in anlegen"
+      openText={props.customerId ? "Kund:in bearbeiten" : "Kund:in anlegen"}
       closeText="Schließen"
     >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
-          {props.customer ? "Kund*in bearbeiten" : "Kund*in anlegen"}
+          {props.customerId ? "Kund:in bearbeiten" : "Kund:in anlegen"}
         </h3>
         <form onSubmit={props.onSubmit}>
           <label>

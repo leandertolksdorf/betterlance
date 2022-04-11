@@ -36,7 +36,7 @@ export const CustomerDetailPageView = (props: CustomerDetailPageViewProps) => {
         text="Hier kannst du die Stammdaten deiner Kunden bearbeiten."
       >
         <CustomerInfo customer={props.customer} />
-        <UpsertCustomerForm customer={props.customer} />
+        <UpsertCustomerForm customerId={props.customer.id} />
       </Section>
       <Section
         title="Aufträge"

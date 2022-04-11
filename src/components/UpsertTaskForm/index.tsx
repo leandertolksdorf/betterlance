@@ -24,7 +24,7 @@ export const schema = yup
   .required();
 
 export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // TODO: remove
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
@@ -40,6 +40,7 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    // TODO: use useTasks() hook
     try {
       setError(false);
       setMessage(undefined);
