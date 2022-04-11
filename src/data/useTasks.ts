@@ -118,6 +118,7 @@ export const useTasks = () => {
     const localTask: Task = {
       ...get(params.id),
       ..._.omit(params, "project"),
+      ...(params.index && { index: params.index - 0.5 }),
     };
     mutate(updateTask(params), {
       optimisticData: updateHelper(data, localTask, "index"),
