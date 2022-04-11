@@ -1,13 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useCustomers } from "../../data/useCustomers";
 import { useProjects } from "../../data/useProjects";
-import { supabase } from "../../lib/supabase";
-import { Project } from "../../types/composite";
 import { definitions } from "../../types/supabase";
-import { Loading } from "../Loading";
 import { UpsertProjectFormView } from "./view";
 
 export type UpsertProjectFormProps = {

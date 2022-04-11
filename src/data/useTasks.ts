@@ -1,13 +1,11 @@
+import _ from "lodash";
 import useSWR, { Fetcher, Key } from "swr";
-import { TaskDetailPage } from "../components/TaskDetailPage";
+import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../lib/supabase";
 import { Task } from "../types/composite";
 import { definitions } from "../types/supabase";
-import { useProjects } from "./useProjects";
-import { v4 as uuidv4 } from "uuid";
-import _ from "lodash";
-
 import { deleteHelper, insertHelper, updateHelper } from "../util/dataHelpers";
+import { useProjects } from "./useProjects";
 
 const key: Key = "tasks";
 

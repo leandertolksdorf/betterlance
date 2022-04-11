@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useProjects } from "../../data/useProjects";
 import { ErrorPage } from "../ErrorPage";
-import { Loading } from "../Loading";
 import { LoadingPage } from "../LoadingPage";
 import { ProjectDetailPageView } from "./view";
 

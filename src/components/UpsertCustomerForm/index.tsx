@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useCustomers } from "../../data/useCustomers";
-import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { UpsertCustomerFormView } from "./view";
 

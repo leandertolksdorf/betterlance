@@ -1,8 +1,5 @@
-import { useState } from "react";
 import { useProjects } from "../../data/useProjects";
-import { supabase } from "../../lib/supabase";
 import { ProjectWithCustomer } from "../../types/composite";
-import { definitions } from "../../types/supabase";
 import { ProjectListItemView } from "./view";
 
 export type ProjectListItemProps = ProjectWithCustomer;

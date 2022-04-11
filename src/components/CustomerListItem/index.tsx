@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useCustomers } from "../../data/useCustomers";
-import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { CustomerListItemView } from "./view";
 

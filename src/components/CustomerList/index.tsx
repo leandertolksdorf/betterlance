@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useCustomers } from "../../data/useCustomers";
-import { supabase } from "../../lib/supabase";
-import { definitions } from "../../types/supabase";
 import { Error } from "../Error";
 import { Loading } from "../Loading";
 import { CustomerListView } from "./view";

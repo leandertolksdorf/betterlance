@@ -2,9 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useProjects } from "../../data/useProjects";
 import { useTasks } from "../../data/useTasks";
-import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { UpsertTaskFormView } from "./view";
 

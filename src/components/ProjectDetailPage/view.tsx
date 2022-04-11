@@ -1,19 +1,9 @@
-import { OfficeBuildingIcon } from "@heroicons/react/outline";
-import {
-  ArrowRightIcon,
-  BriefcaseIcon,
-  MailIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
-import classNames from "classnames";
+import { BriefcaseIcon } from "@heroicons/react/solid";
 import React from "react";
-import { Project, ProjectWithCustomer } from "../../types/composite";
-import { Box } from "../Box";
+import { Project } from "../../types/composite";
 import { CustomerInfo } from "../CustomerInfo";
-import { IconButton } from "../IconButton";
 import { KanbanBoard } from "../KanbanBoard";
 import { Layout } from "../Layout";
-import { Loading } from "../Loading";
 import { Section } from "../Section";
 import { UpsertProjectForm } from "../UpsertProjectForm";
 import { UpsertTaskForm } from "../UpsertTaskForm";

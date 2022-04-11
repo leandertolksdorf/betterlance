@@ -1,7 +1,4 @@
-import _ from "lodash";
-import { useEffect, useState } from "react";
 import { useTasks } from "../../data/useTasks";
-import { supabase } from "../../lib/supabase";
 import { definitions } from "../../types/supabase";
 import { KanbanBoardView } from "./view";
 

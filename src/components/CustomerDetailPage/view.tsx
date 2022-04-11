@@ -1,22 +1,11 @@
-import { OfficeBuildingIcon } from "@heroicons/react/outline";
-import {
-  ArrowRightIcon,
-  BriefcaseIcon,
-  MailIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
-import classNames from "classnames";
+import { UserIcon } from "@heroicons/react/solid";
 import React from "react";
-import { Project } from "../../types/composite";
 import { definitions } from "../../types/supabase";
-import { Box } from "../Box";
-import { IconButton } from "../IconButton";
-import { Layout } from "../Layout";
-import { Loading } from "../Loading";
-import { Section } from "../Section";
-import { ProjectList } from "../ProjectList";
-import { UpsertCustomerForm } from "../UpsertCustomerForm";
 import { CustomerInfo } from "../CustomerInfo";
+import { Layout } from "../Layout";
+import { ProjectList } from "../ProjectList";
+import { Section } from "../Section";
+import { UpsertCustomerForm } from "../UpsertCustomerForm";
 
 type CustomerDetailPageViewProps = {
   customer: definitions["customer"];

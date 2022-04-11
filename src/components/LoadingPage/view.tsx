@@ -1,6 +1,5 @@
 import { CloudIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { Loading } from "../Loading";
 
 export const LoadingPageView = () => {
   return (
