@@ -25,11 +25,11 @@ const insertCustomer = async (params: definitions["customer"]) => {
   return await fetcher();
 };
 
-// TODO: separate id and update in arguments
 const updateCustomer = async (params: definitions["customer"]) => {
   const { error } = await supabase
     .from<definitions["customer"]>("customer")
-    .insert(params);
+    .update(params)
+    .eq("id", params.id);
   if (error) throw error;
   return await fetcher();
 };
