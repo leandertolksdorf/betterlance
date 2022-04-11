@@ -101,6 +101,7 @@ export const useProjects = () => {
     });
   };
 
+  // TODO: separate id and update in arguments
   function update(params: definitions["project"]) {
     if (!data) {
       mutate(updateProject(params));
