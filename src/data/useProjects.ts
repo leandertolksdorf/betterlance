@@ -52,7 +52,7 @@ export const useProjects = () => {
 
   const flat: definitions["project"][] | undefined = data?.map((project) => ({
     ...project,
-    customer: project.id,
+    customer: project.customer.id,
   }));
 
   // Methods
