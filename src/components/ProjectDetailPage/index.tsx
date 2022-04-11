@@ -3,21 +3,16 @@ import React from "react";
 import { useProjects } from "../../data/useProjects";
 import { ErrorPage } from "../ErrorPage";
 import { Loading } from "../Loading";
+import { LoadingPage } from "../LoadingPage";
 import { ProjectDetailPageView } from "./view";
 
 export const ProjectDetailPage = () => {
   const router = useRouter();
-  const { get } = useProjects();
 
+  const { get } = useProjects();
   const project = get(router.query.id as string);
 
-  if (project === null) {
-    return <ErrorPage />;
-  }
-
-  if (project === undefined) {
-    return <Loading />;
-  }
-
+  if (project === null) return <ErrorPage />;
+  if (project === undefined) return <LoadingPage />;
   return <ProjectDetailPageView project={project} />;
 };

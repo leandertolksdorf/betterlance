@@ -10,10 +10,9 @@ import { Collapse } from "../Collapse";
 import { Select } from "../Select";
 
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
-  loading: boolean;
   error: boolean;
   message?: string;
-  customers: definitions["customer"][] | null;
+  customers?: definitions["customer"][];
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
@@ -78,7 +77,7 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
               search
             />
           </label>
-          <Button type="submit" center loading={props.loading}>
+          <Button type="submit" center>
             Absenden
           </Button>
           {props.message && (

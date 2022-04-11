@@ -2,10 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { useCustomers } from "../../data/useCustomers";
 import { useProjects } from "../../data/useProjects";
 import { supabase } from "../../lib/supabase";
 import { Project } from "../../types/composite";
 import { definitions } from "../../types/supabase";
+import { Loading } from "../Loading";
 import { UpsertProjectFormView } from "./view";
 
 export type UpsertProjectFormProps = {
@@ -25,42 +27,11 @@ export const schema = yup
   .required();
 
 export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
-  const [customers, setCustomers] = useState<definitions["customer"][] | null>(
-    null
-  );
-  const loadCustomers = async () => {
-    try {
-      setError(false);
-      setMessage(undefined);
-      setLoading(true);
-      const { data, error } = await supabase
-        .from<definitions["customer"]>("customer")
-        .select()
-        .order("name");
-      if (error) throw error;
-      setCustomers(data || []);
-    } catch (error: any) {
-      alert(error.error_description || error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadCustomers();
-    const subscription = supabase
-      .from<definitions["customer"]>("customer")
-      .on("*", loadCustomers)
-      .subscribe();
-    return () => {
-      supabase.removeSubscription(subscription);
-    };
-  }, []);
+  const { data: customers } = useCustomers();
 
   const { get, insert, update } = useProjects();
 
@@ -90,15 +61,12 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
-    } finally {
-      setLoading(false);
     }
   });
 
   return (
     <UpsertProjectFormView
       projectId={props.projectId}
-      loading={loading}
       error={error}
       message={message}
       customers={customers}
