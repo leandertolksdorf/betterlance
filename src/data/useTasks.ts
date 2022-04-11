@@ -105,7 +105,9 @@ export const useTasks = () => {
   };
 
   // TODO: separate id and update in arguments
-  const update = (params: definitions["task"]) => {
+  const update = (
+    params: Partial<definitions["task"]> & Pick<definitions["task"], "id">
+  ) => {
     if (!data) {
       mutate(updateTask(params));
       return;
