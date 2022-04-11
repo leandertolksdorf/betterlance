@@ -102,34 +102,33 @@ export const useTasks = () => {
     mutate(insertTask(publicTask), {
       optimisticData: insertHelper(data, localTask, "index"),
     });
-
-    // TODO: separate id and update in arguments
-    const update = (params: definitions["task"]) => {
-      if (!data) {
-        mutate(updateTask(params));
-        return;
-      }
-      const localTask: Task = {
-        ...get(params.id),
-        ..._.omit(params, "project"),
-      };
-
-      mutate(updateTask(params), {
-        optimisticData: updateHelper(data, localTask, "index"),
-      });
-    };
-
-    const remove = (id: string) => {
-      if (!data) {
-        mutate(deleteTask(id));
-        return;
-      }
-
-      mutate(deleteTask(id), {
-        optimisticData: deleteHelper(data, id),
-      });
-    };
-
-    return { data, flat, error, get, insert, update, remove };
   };
+
+  // TODO: separate id and update in arguments
+  const update = (params: definitions["task"]) => {
+    if (!data) {
+      mutate(updateTask(params));
+      return;
+    }
+    const localTask: Task = {
+      ...get(params.id),
+      ..._.omit(params, "project"),
+    };
+
+    mutate(updateTask(params), {
+      optimisticData: updateHelper(data, localTask, "index"),
+    });
+  };
+
+  const remove = (id: string) => {
+    if (!data) {
+      mutate(deleteTask(id));
+      return;
+    }
+
+    mutate(deleteTask(id), {
+      optimisticData: deleteHelper(data, id),
+    });
+  };
+  return { data, flat, error, get, insert, update, remove };
 };
