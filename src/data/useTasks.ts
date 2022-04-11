@@ -81,15 +81,16 @@ export const useTasks = () => {
   }
 
   const insert = (params: Omit<definitions["task"], "id">) => {
-    const publicTask = {
+    const publicTask: definitions["task"] = {
       ...params,
-      title: params.title[0].toUpperCase() + params.title.slice(1),
       id: uuidv4(),
+      title: params.title[0].toUpperCase() + params.title.slice(1),
     };
 
     const project = getProject(params.project, { flat: true });
 
     if (!project || !data) {
+      console.log("no");
       mutate(insertTask(publicTask));
       return;
     }
@@ -97,6 +98,8 @@ export const useTasks = () => {
     const localTask: Task = {
       ...publicTask,
       project,
+      state: "todo",
+      index: -1,
     };
 
     mutate(insertTask(publicTask), {
@@ -116,7 +119,6 @@ export const useTasks = () => {
       ...get(params.id),
       ..._.omit(params, "project"),
     };
-
     mutate(updateTask(params), {
       optimisticData: updateHelper(data, localTask, "index"),
     });
