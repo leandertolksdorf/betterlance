@@ -12,12 +12,11 @@ export const CustomerListItem = (props: CustomerListItemProps) => {
   const { remove } = useCustomers();
 
   const onDelete = async () => {
-    try {
-      await remove(props.id);
-      toast.success("Kund:in gelöscht");
-    } catch (error: any) {
-      toast.error("Fehler beim Löschen");
-    }
+    toast.promise(remove(props.id), {
+      pending: "Löschen...",
+      success: "Kund:in gelöscht",
+      error: "Fehler beim Löschen",
+    });
   };
   return <CustomerListItemView {...props} onDelete={onDelete} />;
 };
