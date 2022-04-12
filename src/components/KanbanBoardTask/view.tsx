@@ -10,21 +10,32 @@ export const KanbanBoardTaskView = (props: KanbanBoardTaskViewProps) => {
     <div className={classNames("pb-2")}>
       <div
         className={classNames(
-          props.isDragging
-            ? "border-primary-500 bg-primary-100"
-            : "border-gray-300 bg-white",
-          "border-2",
+          props.isDragging ? "bg-primary-500" : "bg-white",
+          "transition",
           "rounded",
           "p-4",
           "text-sm",
           "select-none"
         )}
       >
-        <div className={classNames("font-bold", "text-primary-800")}>
+        <div
+          className={classNames(
+            props.isDragging ? "text-white" : "text-primary-800",
+            "transition",
+            "font-bold"
+          )}
+        >
           {props.task.title}
         </div>
         {props.task.description && (
-          <div className={classNames("text-gray-500", "line-clamp-3", "mt-2")}>
+          <div
+            className={classNames(
+              props.isDragging ? "text-white" : "text-gray-500",
+              "transition",
+              "line-clamp-3",
+              "mt-2"
+            )}
+          >
             {props.task.description.split("\n").map((line, i) => (
               <Fragment key={i}>
                 {line} <br />
