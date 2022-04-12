@@ -28,12 +28,13 @@ const insertTask = async (params: definitions["task"]) => {
 };
 
 const updateTask = async (
-  params: Partial<definitions["task"]> & Pick<definitions["task"], "id">
+  id: definitions["task"]["id"],
+  update: Omit<Partial<definitions["task"]>, "id">
 ) => {
   const { error } = await supabase
     .from<definitions["task"]>("task")
-    .update(params)
-    .eq("id", params.id);
+    .update(update)
+    .eq("id", id);
   if (error) throw error;
   return await fetcher();
 };
@@ -105,20 +106,20 @@ export const useTasks = () => {
     });
   }
 
-  // TODO: separate id and update in arguments
   function update(
-    params: Partial<definitions["task"]> & Pick<definitions["task"], "id">
+    id: definitions["task"]["id"],
+    update: Omit<Partial<definitions["task"]>, "id">
   ) {
     if (!data) {
-      mutate(updateTask(params));
+      mutate(updateTask(id, update));
       return;
     }
     const localTask: Task = {
-      ...get(params.id),
-      ..._.omit(params, "project"),
-      ...(params.index && { index: params.index - 0.5 }),
+      ...get(id),
+      ..._.omit(update, "project"),
+      ...(update.index && { index: update.index - 0.5 }),
     };
-    mutate(updateTask(params), {
+    mutate(updateTask(id, update), {
       optimisticData: updateHelper(data, localTask, "index"),
     });
   }

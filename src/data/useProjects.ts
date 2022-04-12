@@ -27,12 +27,13 @@ const insertProject = async (params: definitions["project"]) => {
 };
 
 const updateProject = async (
-  params: Partial<definitions["project"]> & Pick<definitions["project"], "id">
+  id: definitions["project"]["id"],
+  update: Omit<Partial<definitions["project"]>, "id">
 ) => {
   const { error } = await supabase
     .from<definitions["project"]>("project")
-    .update(params)
-    .eq("id", params.id);
+    .update(update)
+    .eq("id", id);
   if (error) throw error;
   return await fetcher();
 };
@@ -101,19 +102,21 @@ export const useProjects = () => {
     });
   }
 
-  // TODO: separate id and update in arguments
-  function update(params: definitions["project"]) {
+  function update(
+    id: definitions["project"]["id"],
+    update: Omit<Partial<definitions["project"]>, "id">
+  ) {
     if (!data) {
-      mutate(updateProject(params));
+      mutate(updateProject(id, update));
       return;
     }
 
     const localProject: Project = {
-      ...get(params.id),
-      ..._.omit(params, "customer"),
+      ...get(id),
+      ..._.omit(update, "customer"),
     };
 
-    mutate(updateProject(params), {
+    mutate(updateProject(id, update), {
       optimisticData: updateHelper(data, localProject, "name"),
     });
   }

@@ -25,11 +25,14 @@ const insertCustomer = async (params: definitions["customer"]) => {
   return await fetcher();
 };
 
-const updateCustomer = async (params: definitions["customer"]) => {
+const updateCustomer = async (
+  id: definitions["customer"]["id"],
+  update: Partial<Omit<definitions["customer"], "id">>
+) => {
   const { error } = await supabase
     .from<definitions["customer"]>("customer")
-    .update(params)
-    .eq("id", params.id);
+    .update(update)
+    .eq("id", id);
   if (error) throw error;
   return await fetcher();
 };
@@ -70,15 +73,17 @@ export const useCustomers = () => {
     });
   }
 
-  // TODO: separate id and update in arguments
-  function update(params: definitions["customer"]) {
+  function update(
+    id: definitions["customer"]["id"],
+    update: Partial<Omit<definitions["customer"], "id">>
+  ) {
     if (!data) {
-      mutate(updateCustomer(params));
+      mutate(updateCustomer(id, update));
       return;
     }
 
-    mutate(updateCustomer(params), {
-      optimisticData: updateHelper(data, params, "name"),
+    mutate(updateCustomer(id, update), {
+      optimisticData: updateHelper(data, { id, ...update }, "name"),
     });
   }
 
