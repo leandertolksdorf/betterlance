@@ -1,8 +1,8 @@
 import { useProjects } from "../../data/useProjects";
-import { ProjectWithCustomer } from "../../types/composite";
+import { Project } from "../../types/composite";
 import { ProjectListItemView } from "./view";
 
-export type ProjectListItemProps = ProjectWithCustomer;
+export type ProjectListItemProps = Project;
 
 export const ProjectListItem = (props: ProjectListItemProps) => {
   const { remove } = useProjects();
