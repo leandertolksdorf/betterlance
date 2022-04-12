@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useTasks } from "../../data/useTasks";
 import { definitions } from "../../types/supabase";
 import { KanbanBoardView } from "./view";
@@ -20,9 +21,10 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     index: number
   ) => {
     try {
-      update(taskId, { state, index });
+      await update(taskId, { state, index });
+      toast.success("Aufgabe aktualisiert");
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      toast.error("Fehler beim Aktualisieren");
     }
   };
 
