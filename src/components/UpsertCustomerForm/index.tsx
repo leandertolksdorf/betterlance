@@ -61,6 +61,7 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
       success: "Kund:in erstellt",
       error: "Fehler beim Erstellen",
     });
+    reset();
   });
 
   return (
