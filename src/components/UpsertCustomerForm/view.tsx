@@ -8,7 +8,6 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 type UpsertCustomerFormViewProps = UpsertCustomerFormProps & {
-  loading: boolean;
   error: boolean;
   message?: string;
   open: boolean;
@@ -146,7 +145,7 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
             />
             <input {...props.register("country")} />
           </label>
-          <Button type="submit" center loading={props.loading}>
+          <Button type="submit" center>
             Absenden
           </Button>
           {props.message && (

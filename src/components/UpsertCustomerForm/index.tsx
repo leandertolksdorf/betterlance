@@ -28,7 +28,6 @@ export const schema = yup
   .required();
 
 export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
-  const [loading, setLoading] = useState(false); // TODO: remove
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
@@ -57,7 +56,9 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
         insert(data);
         reset();
       }
+      // TODO: show success toast
     } catch (error: any) {
+      // TODO: show error toast
       setError(true);
       setMessage(error.error_description || error.message);
     }
@@ -65,7 +66,6 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
 
   return (
     <UpsertCustomerFormView
-      loading={loading}
       error={error}
       message={message}
       open={open}
