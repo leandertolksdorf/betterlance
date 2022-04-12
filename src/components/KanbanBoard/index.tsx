@@ -20,12 +20,11 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     state: definitions["task"]["state"],
     index: number
   ) => {
-    try {
-      await update(taskId, { state, index });
-      toast.success("Aufgabe aktualisiert");
-    } catch (error: any) {
-      toast.error("Fehler beim Aktualisieren");
-    }
+    toast.promise(update(taskId, { state, index }), {
+      pending: "Aktualisieren...",
+      success: "Aufgabe aktualisiert",
+      error: "Fehler beim Aktualisieren",
+    });
   };
 
   const isReady = tasks && todo && inProgress && done && archived;
