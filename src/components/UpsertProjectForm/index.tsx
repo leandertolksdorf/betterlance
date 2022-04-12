@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import { useCustomers } from "../../data/useCustomers";
 import { useProjects } from "../../data/useProjects";
@@ -24,8 +25,6 @@ export const schema = yup
   .required();
 
 export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
   const { data: customers } = useCustomers();
@@ -47,25 +46,26 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      setOpen(false);
-      if (props.projectId) {
-        update(props.projectId, data);
-      } else {
-        insert(data);
-        reset();
-      }
-    } catch (error: any) {
-      setError(true);
-      setMessage(error.error_description || error.message);
+    setOpen(false);
+    if (props.projectId) {
+      toast.promise(update(props.projectId, data), {
+        pending: "Aktualisieren...",
+        success: "Projekt aktualisiert",
+        error: "Fehler beim Aktualisieren",
+      });
+      return;
     }
+    toast.promise(insert(data), {
+      pending: "Erstellen...",
+      success: "Projekt erstellt",
+      error: "Fehler beim Erstellen",
+    });
+    reset();
   });
 
   return (
     <UpsertProjectFormView
       projectId={props.projectId}
-      error={error}
-      message={message}
       customers={customers}
       open={open}
       setOpen={setOpen}
