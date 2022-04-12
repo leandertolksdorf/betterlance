@@ -8,9 +8,6 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 type UpsertTaskFormViewProps = UpsertTaskFormProps & {
-  loading: boolean;
-  error: boolean;
-  message?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
@@ -64,20 +61,9 @@ export const UpsertTaskFormView = (props: UpsertTaskFormViewProps) => {
             />
             <textarea rows={4} {...props.register("description")} />
           </label>
-          <Button type="submit" center loading={props.loading}>
+          <Button type="submit" center>
             Absenden
           </Button>
-          {props.message && (
-            <div
-              className={classNames(
-                props.error ? "text-red-600" : "text-primary-500",
-                "mt-2",
-                "font-bold"
-              )}
-            >
-              {props.message}
-            </div>
-          )}
         </form>
       </div>
     </Collapse>
