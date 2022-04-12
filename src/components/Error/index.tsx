@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { Box } from "../Box";
 
 type ErrorProps = {
@@ -5,6 +6,7 @@ type ErrorProps = {
 };
 
 export const Error = (props: ErrorProps) => {
+  if (props.message) toast.error("Fehler: " + props.message);
   return (
     <Box>
       <b>Fehler</b>
