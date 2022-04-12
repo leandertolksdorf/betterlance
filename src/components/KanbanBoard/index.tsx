@@ -20,7 +20,7 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     index: number
   ) => {
     try {
-      update({ id: taskId, state, index });
+      update(taskId, { state, index });
     } catch (error: any) {
       alert(error.error_description || error.message);
     }
