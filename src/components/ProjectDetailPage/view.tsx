@@ -22,7 +22,6 @@ export const ProjectDetailPageView = (props: ProjectDetailPageViewProps) => {
       subtitle={props.project.customer.name}
     >
       <Section title="Kunde" text="Du kannst Aufträge mit Kunden verknüpfen.">
-        {/* TODO: add withLink prop to CustomerInfo */}
         <CustomerInfo customer={props.project.customer} />
         <UpsertProjectForm projectId={props.project.id} />
       </Section>
