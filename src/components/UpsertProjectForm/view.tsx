@@ -10,8 +10,6 @@ import { Collapse } from "../Collapse";
 import { Select } from "../Select";
 
 type UpsertProjectFormViewProps = UpsertProjectFormProps & {
-  error: boolean;
-  message?: string;
   customers?: definitions["customer"][];
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -80,17 +78,6 @@ export const UpsertProjectFormView = (props: UpsertProjectFormViewProps) => {
           <Button type="submit" center>
             Absenden
           </Button>
-          {props.message && (
-            <div
-              className={classNames(
-                props.error ? "text-red-600" : "text-primary-500",
-                "mt-2",
-                "font-bold"
-              )}
-            >
-              {props.message}
-            </div>
-          )}
         </form>
       </div>
     </Collapse>

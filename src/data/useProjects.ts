@@ -78,7 +78,7 @@ export const useProjects = () => {
     }
   }
 
-  function insert(params: Omit<definitions["project"], "id">) {
+  async function insert(params: Omit<definitions["project"], "id">) {
     const publicProject = {
       ...params,
       name: params.name[0].toUpperCase() + params.name.slice(1),
@@ -88,7 +88,7 @@ export const useProjects = () => {
     const customer = getCustomer(params.customer);
 
     if (!customer || !data) {
-      mutate(insertProject(publicProject));
+      await mutate(insertProject(publicProject));
       return;
     }
 
@@ -97,17 +97,17 @@ export const useProjects = () => {
       customer,
     };
 
-    mutate(insertProject(publicProject), {
+    await mutate(insertProject(publicProject), {
       optimisticData: insertHelper(data, localProject, "name"),
     });
   }
 
-  function update(
+  async function update(
     id: definitions["project"]["id"],
     update: Omit<Partial<definitions["project"]>, "id">
   ) {
     if (!data) {
-      mutate(updateProject(id, update));
+      await mutate(updateProject(id, update));
       return;
     }
 
@@ -116,18 +116,18 @@ export const useProjects = () => {
       ..._.omit(update, "customer"),
     };
 
-    mutate(updateProject(id, update), {
+    await mutate(updateProject(id, update), {
       optimisticData: updateHelper(data, localProject, "name"),
     });
   }
 
-  function remove(id: string) {
+  async function remove(id: string) {
     if (!data) {
-      mutate(deleteProject(id));
+      await mutate(deleteProject(id));
       return;
     }
 
-    mutate(deleteProject(id), {
+    await mutate(deleteProject(id), {
       optimisticData: deleteHelper(data, id),
     });
   }

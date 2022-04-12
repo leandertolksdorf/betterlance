@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import { useCustomers } from "../../data/useCustomers";
 import { definitions } from "../../types/supabase";
@@ -28,9 +29,6 @@ export const schema = yup
   .required();
 
 export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
-  const [loading, setLoading] = useState(false); // TODO: remove
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
   const { get, insert, update } = useCustomers();
@@ -49,25 +47,25 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      setOpen(false);
-      if (props.customerId) {
-        update(props.customerId, data);
-      } else {
-        insert(data);
-        reset();
-      }
-    } catch (error: any) {
-      setError(true);
-      setMessage(error.error_description || error.message);
+    setOpen(false);
+    if (props.customerId) {
+      toast.promise(update(props.customerId, data), {
+        pending: "Aktualisieren...",
+        success: "Kund:in aktualisiert",
+        error: "Fehler beim Aktualisieren",
+      });
+      return;
     }
+    toast.promise(insert(data), {
+      pending: "Erstellen...",
+      success: "Kund:in erstellt",
+      error: "Fehler beim Erstellen",
+    });
+    reset();
   });
 
   return (
     <UpsertCustomerFormView
-      loading={loading}
-      error={error}
-      message={message}
       open={open}
       setOpen={setOpen}
       register={register}

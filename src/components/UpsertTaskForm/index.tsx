@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import { useTasks } from "../../data/useTasks";
 import { definitions } from "../../types/supabase";
@@ -24,9 +25,6 @@ export const schema = yup
   .required();
 
 export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
-  const [loading, setLoading] = useState(false); // TODO: remove
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
   const { get, insert, update } = useTasks();
@@ -45,27 +43,27 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      setOpen(false);
-      if (props.taskId) {
-        update(props.taskId, data);
-      } else {
-        insert(data);
-        reset();
-      }
-    } catch (error: any) {
-      setError(true);
-      setMessage(error.error_description || error.message);
+    setOpen(false);
+    if (props.taskId) {
+      toast.promise(update(props.projectId, data), {
+        pending: "Aktualisieren...",
+        success: "Aufgabe aktualisiert",
+        error: "Fehler beim Aktualisieren",
+      });
+      return;
     }
+    toast.promise(insert(data), {
+      pending: "Erstellen...",
+      success: "Aufgabe erstellt",
+      error: "Fehler beim Erstellen",
+    });
+    reset();
   });
 
   return (
     <UpsertTaskFormView
       projectId={props.projectId}
       taskId={props.taskId}
-      loading={loading}
-      error={error}
-      message={message}
       open={open}
       setOpen={setOpen}
       register={register}

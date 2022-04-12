@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useTasks } from "../../data/useTasks";
 import { definitions } from "../../types/supabase";
 import { KanbanBoardView } from "./view";
@@ -19,11 +20,11 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
     state: definitions["task"]["state"],
     index: number
   ) => {
-    try {
-      update({ id: taskId, state, index });
-    } catch (error: any) {
-      alert(error.error_description || error.message);
-    }
+    toast.promise(update(taskId, { state, index }), {
+      pending: "Aktualisieren...",
+      success: "Aufgabe aktualisiert",
+      error: "Fehler beim Aktualisieren",
+    });
   };
 
   const isReady = tasks && todo && inProgress && done && archived;
