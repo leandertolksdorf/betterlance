@@ -2,13 +2,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { supabase } from "../../lib/supabase";
+import { useTasks } from "../../data/useTasks";
 import { definitions } from "../../types/supabase";
 import { UpsertTaskFormView } from "./view";
 
 export type UpsertTaskFormProps = {
   projectId: definitions["project"]["id"];
-  task?: definitions["task"];
+  taskId?: definitions["task"]["id"];
 };
 
 export type FormData = Omit<
@@ -24,10 +24,15 @@ export const schema = yup
   .required();
 
 export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // TODO: remove
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
+
+  const { get, insert, update } = useTasks();
+
+  const defaultValues =
+    (props.taskId && get(props.taskId, { flat: true })) || undefined;
 
   const {
     register,
@@ -36,31 +41,28 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
-    defaultValues: { project: props.projectId, ...props.task },
+    defaultValues: props.taskId ? defaultValues : { project: props.projectId },
   });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      setError(false);
-      setMessage(undefined);
-      setLoading(true);
-      const { error } = await supabase
-        .from<definitions["task"]>("task")
-        .upsert({ id: props.task?.id, ...data });
-      if (error) throw error;
-      if (!props.task) reset();
       setOpen(false);
+      if (props.taskId) {
+        update(props.taskId, data);
+      } else {
+        insert(data);
+        reset();
+      }
     } catch (error: any) {
       setError(true);
       setMessage(error.error_description || error.message);
-    } finally {
-      setLoading(false);
     }
   });
 
   return (
     <UpsertTaskFormView
       projectId={props.projectId}
+      taskId={props.taskId}
       loading={loading}
       error={error}
       message={message}

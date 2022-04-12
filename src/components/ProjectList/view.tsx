@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import { useRef } from "react";
 import { animated, useTransition } from "react-spring";
-import { ProjectWithCustomer } from "../../types/composite";
+import { Project } from "../../types/composite";
 import { ProjectListItem } from "../ProjectListItem";
 
 type ProjectListViewProps = {
-  projects: ProjectWithCustomer[];
+  projects: Project[];
 };
 
 export const ProjectListView = (props: ProjectListViewProps) => {

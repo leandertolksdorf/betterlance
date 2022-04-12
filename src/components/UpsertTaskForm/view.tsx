@@ -24,12 +24,12 @@ export const UpsertTaskFormView = (props: UpsertTaskFormViewProps) => {
       open={props.open}
       onPressButton={() => props.setOpen(!props.open)}
       dim
-      openText="Kund:in anlegen"
+      openText={props.taskId ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
       closeText="Schließen"
     >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
-          {props.task ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
+          {props.taskId ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
         </h3>
         <form onSubmit={props.onSubmit}>
           <label>

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { supabase } from "../../lib/supabase";
+import { useCustomers } from "../../data/useCustomers";
 import { definitions } from "../../types/supabase";
 import { CustomerListItemView } from "./view";
 
@@ -9,20 +8,13 @@ export type CustomerListItemProps = Omit<
 >;
 
 export const CustomerListItem = (props: CustomerListItemProps) => {
-  const [loading, setLoading] = useState(false);
+  const { remove } = useCustomers();
+
   const onDelete = async () => {
     try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from<definitions["customer"]>("customer")
-        .delete()
-        .match({ id: props.id });
-      console.log(props.id);
-      if (error) throw error;
+      remove(props.id);
     } catch (error: any) {
       alert(error.error_description || error.message);
-    } finally {
-      setLoading(false);
     }
   };
   return <CustomerListItemView {...props} onDelete={onDelete} />;

@@ -1,6 +1,5 @@
 import { ArchiveIcon, ChevronLeftIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import {
   DragDropContext,
@@ -26,8 +25,6 @@ type KanbanBoardViewProps = {
 };
 
 export const KanbanBoardView = (props: KanbanBoardViewProps) => {
-  const router = useRouter();
-  console.log(router);
   const [archiveIsOpen, setArchiveIsOpen] = useState(false);
 
   const onDragEnd = (result: DropResult, provided: ResponderProvided) => {

@@ -1,19 +1,16 @@
 import { CloudIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { LoadingProps } from ".";
 
-export const LoadingView = (props: LoadingProps) => {
+export const LoadingPageView = () => {
   return (
     <div
       className={classNames(
-        props.className,
-        "w-full",
-        "p-4",
+        "w-screen",
+        "h-screen",
         "flex",
         "justify-center",
         "items-center",
-        "bg-gray-100",
-        "rounded"
+        "bg-gray-100"
       )}
     >
       <CloudIcon
