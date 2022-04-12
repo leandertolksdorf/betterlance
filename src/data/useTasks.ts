@@ -79,7 +79,7 @@ export const useTasks = () => {
     }
   }
 
-  function insert(params: Omit<definitions["task"], "id">) {
+  async function insert(params: Omit<definitions["task"], "id">) {
     const publicTask: definitions["task"] = {
       ...params,
       id: uuidv4(),
@@ -89,8 +89,7 @@ export const useTasks = () => {
     const project = getProject(params.project, { flat: true });
 
     if (!project || !data) {
-      console.log("no");
-      mutate(insertTask(publicTask));
+      await mutate(insertTask(publicTask));
       return;
     }
 
@@ -101,17 +100,17 @@ export const useTasks = () => {
       index: -1,
     };
 
-    mutate(insertTask(publicTask), {
+    await mutate(insertTask(publicTask), {
       optimisticData: insertHelper(data, localTask, "index"),
     });
   }
 
-  function update(
+  async function update(
     id: definitions["task"]["id"],
     update: Omit<Partial<definitions["task"]>, "id">
   ) {
     if (!data) {
-      mutate(updateTask(id, update));
+      await mutate(updateTask(id, update));
       return;
     }
     const localTask: Task = {
@@ -119,18 +118,18 @@ export const useTasks = () => {
       ..._.omit(update, "project"),
       ...(update.index && { index: update.index - 0.5 }),
     };
-    mutate(updateTask(id, update), {
+    await mutate(updateTask(id, update), {
       optimisticData: updateHelper(data, localTask, "index"),
     });
   }
 
-  function remove(id: string) {
+  async function remove(id: string) {
     if (!data) {
-      mutate(deleteTask(id));
+      await mutate(deleteTask(id));
       return;
     }
 
-    mutate(deleteTask(id), {
+    await mutate(deleteTask(id), {
       optimisticData: deleteHelper(data, id),
     });
   }

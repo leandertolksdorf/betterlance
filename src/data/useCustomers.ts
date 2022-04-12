@@ -55,7 +55,7 @@ export const useCustomers = () => {
     return data.find((item) => item.id === id) || null;
   }
 
-  function insert(params: Omit<definitions["customer"], "id">) {
+  async function insert(params: Omit<definitions["customer"], "id">) {
     const publicCustomer = {
       ...params,
       name: params.name[0].toUpperCase() + params.name.slice(1),
@@ -63,37 +63,37 @@ export const useCustomers = () => {
     };
 
     if (!data) {
-      mutate(insertCustomer(publicCustomer));
+      await mutate(insertCustomer(publicCustomer));
       return;
     }
 
     const localCustomer = publicCustomer;
-    mutate(insertCustomer(publicCustomer), {
+    await mutate(insertCustomer(publicCustomer), {
       optimisticData: insertHelper(data, localCustomer, "name"),
     });
   }
 
-  function update(
+  async function update(
     id: definitions["customer"]["id"],
     update: Partial<Omit<definitions["customer"], "id">>
   ) {
     if (!data) {
-      mutate(updateCustomer(id, update));
+      await mutate(updateCustomer(id, update));
       return;
     }
 
-    mutate(updateCustomer(id, update), {
+    await mutate(updateCustomer(id, update), {
       optimisticData: updateHelper(data, { id, ...update }, "name"),
     });
   }
 
-  function remove(id: string) {
+  async function remove(id: string) {
     if (!data) {
-      mutate(deleteCustomer(id));
+      await mutate(deleteCustomer(id));
       return;
     }
 
-    mutate(deleteCustomer(id), {
+    await mutate(deleteCustomer(id), {
       optimisticData: deleteHelper(data, id),
     });
   }
