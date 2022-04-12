@@ -77,7 +77,7 @@ export const useProjects = () => {
     }
   }
 
-  const insert = (params: Omit<definitions["project"], "id">) => {
+  function insert(params: Omit<definitions["project"], "id">) {
     const publicProject = {
       ...params,
       name: params.name[0].toUpperCase() + params.name.slice(1),
@@ -99,7 +99,7 @@ export const useProjects = () => {
     mutate(insertProject(publicProject), {
       optimisticData: insertHelper(data, localProject, "name"),
     });
-  };
+  }
 
   // TODO: separate id and update in arguments
   function update(params: definitions["project"]) {

@@ -78,7 +78,7 @@ export const useTasks = () => {
     }
   }
 
-  const insert = (params: Omit<definitions["task"], "id">) => {
+  function insert(params: Omit<definitions["task"], "id">) {
     const publicTask: definitions["task"] = {
       ...params,
       id: uuidv4(),
@@ -103,12 +103,12 @@ export const useTasks = () => {
     mutate(insertTask(publicTask), {
       optimisticData: insertHelper(data, localTask, "index"),
     });
-  };
+  }
 
   // TODO: separate id and update in arguments
-  const update = (
+  function update(
     params: Partial<definitions["task"]> & Pick<definitions["task"], "id">
-  ) => {
+  ) {
     if (!data) {
       mutate(updateTask(params));
       return;
@@ -121,9 +121,9 @@ export const useTasks = () => {
     mutate(updateTask(params), {
       optimisticData: updateHelper(data, localTask, "index"),
     });
-  };
+  }
 
-  const remove = (id: string) => {
+  function remove(id: string) {
     if (!data) {
       mutate(deleteTask(id));
       return;
@@ -132,6 +132,6 @@ export const useTasks = () => {
     mutate(deleteTask(id), {
       optimisticData: deleteHelper(data, id),
     });
-  };
+  }
   return { data, flat, error, get, insert, update, remove };
 };

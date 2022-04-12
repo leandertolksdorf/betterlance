@@ -47,13 +47,12 @@ export const useCustomers = () => {
   const { data, error, mutate } = useSWR(key, fetcher);
 
   // Methods
-
-  const get = (id: string) => {
+  function get(id: string) {
     if (!data) return undefined;
     return data.find((item) => item.id === id) || null;
-  };
+  }
 
-  const insert = (params: Omit<definitions["customer"], "id">) => {
+  function insert(params: Omit<definitions["customer"], "id">) {
     const publicCustomer = {
       ...params,
       name: params.name[0].toUpperCase() + params.name.slice(1),
@@ -69,10 +68,10 @@ export const useCustomers = () => {
     mutate(insertCustomer(publicCustomer), {
       optimisticData: insertHelper(data, localCustomer, "name"),
     });
-  };
+  }
 
   // TODO: separate id and update in arguments
-  const update = (params: definitions["customer"]) => {
+  function update(params: definitions["customer"]) {
     if (!data) {
       mutate(updateCustomer(params));
       return;
@@ -81,9 +80,9 @@ export const useCustomers = () => {
     mutate(updateCustomer(params), {
       optimisticData: updateHelper(data, params, "name"),
     });
-  };
+  }
 
-  const remove = (id: string) => {
+  function remove(id: string) {
     if (!data) {
       mutate(deleteCustomer(id));
       return;
@@ -92,7 +91,7 @@ export const useCustomers = () => {
     mutate(deleteCustomer(id), {
       optimisticData: deleteHelper(data, id),
     });
-  };
+  }
 
   return { data, error, get, insert, update, remove };
 };
