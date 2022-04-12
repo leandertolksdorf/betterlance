@@ -8,8 +8,6 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 type UpsertCustomerFormViewProps = UpsertCustomerFormProps & {
-  error: boolean;
-  message?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
@@ -148,17 +146,6 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
           <Button type="submit" center>
             Absenden
           </Button>
-          {props.message && (
-            <div
-              className={classNames(
-                props.error ? "text-red-600" : "text-primary-500",
-                "mt-2",
-                "font-bold"
-              )}
-            >
-              {props.message}
-            </div>
-          )}
         </form>
       </div>
     </Collapse>
