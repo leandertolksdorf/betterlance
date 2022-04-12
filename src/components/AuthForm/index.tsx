@@ -23,19 +23,21 @@ export const AuthForm = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signIn(data, {
-        redirectTo: "http://localhost:3000/app",
-      });
-      if (error) throw error;
-      toast.success("Check' deine Emails für den Login-Link!");
-    } catch (error: any) {
-      toast.error(error.error_description || error.message);
-    } finally {
-      setLoading(false);
-    }
+  const signIn = async (data: FormData) => {
+    setLoading(true);
+    const { error } = await supabase.auth.signIn(data, {
+      redirectTo: "http://localhost:3000/app",
+    });
+    setLoading(false);
+    if (error) throw error;
+  };
+
+  const onSubmit = handleSubmit(async (data: FormData) => {
+    toast.promise(signIn(data), {
+      pending: "Anmelden...",
+      success: "Klicke auf den Link in deinen Emails, um dich anzumelden.",
+      error: "Fehler beim Anmelden",
+    });
   });
 
   return (
