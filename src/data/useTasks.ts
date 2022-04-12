@@ -113,11 +113,15 @@ export const useTasks = () => {
       await mutate(updateTask(id, update));
       return;
     }
+    const oldTask = get(id);
     const localTask: Task = {
-      ...get(id),
+      ...oldTask,
       ..._.omit(update, "project"),
-      ...(update.index && { index: update.index - 0.5 }),
+      ...(update.index && {
+        index: update.index + (update.index > oldTask.index ? 0.5 : -0.5),
+      }),
     };
+    console.log(localTask);
     await mutate(updateTask(id, update), {
       optimisticData: updateHelper(data, localTask, "index"),
     });
