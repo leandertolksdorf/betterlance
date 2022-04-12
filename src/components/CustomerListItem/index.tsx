@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useCustomers } from "../../data/useCustomers";
 import { definitions } from "../../types/supabase";
 import { CustomerListItemView } from "./view";
@@ -12,9 +13,10 @@ export const CustomerListItem = (props: CustomerListItemProps) => {
 
   const onDelete = async () => {
     try {
-      remove(props.id);
+      await remove(props.id);
+      toast.success("Kund:in gelöscht");
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      toast.error("Fehler beim Löschen");
     }
   };
   return <CustomerListItemView {...props} onDelete={onDelete} />;
