@@ -48,7 +48,7 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
     try {
       setOpen(false);
       if (props.taskId) {
-        update({ id: props.taskId, ...data });
+        update(props.taskId, data);
       } else {
         insert(data);
         reset();

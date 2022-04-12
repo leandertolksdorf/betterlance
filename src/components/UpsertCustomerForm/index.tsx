@@ -52,7 +52,7 @@ export const UpsertCustomerForm = (props: UpsertCustomerFormProps) => {
     try {
       setOpen(false);
       if (props.customerId) {
-        update({ id: props.customerId, ...data });
+        update(props.customerId, data);
       } else {
         insert(data);
         reset();

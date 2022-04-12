@@ -50,7 +50,7 @@ export const UpsertProjectForm = (props: UpsertProjectFormProps) => {
     try {
       setOpen(false);
       if (props.projectId) {
-        update({ id: props.projectId, ...data });
+        update(props.projectId, data);
       } else {
         insert(data);
         reset();
