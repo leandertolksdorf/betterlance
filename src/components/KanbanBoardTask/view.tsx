@@ -10,6 +10,8 @@ export const KanbanBoardTaskView = (props: KanbanBoardTaskViewProps) => {
     <div className={classNames("pb-2")}>
       <div
         className={classNames(
+          props.isOutside && props.isDropping && "hidden",
+          props.isOutside && props.isDragging && "opacity-50",
           props.isDragging ? "bg-primary-500" : "bg-white",
           "transition",
           "rounded",

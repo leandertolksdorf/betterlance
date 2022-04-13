@@ -22,6 +22,7 @@ export const DimExceptView = (props: DimExceptProps) => {
           "bg-black",
           props.dim || isTransitioning ? "z-10" : "-z-10"
         )}
+        onClick={props.onBlur}
       ></animated.div>
       <div
         className={classNames(
