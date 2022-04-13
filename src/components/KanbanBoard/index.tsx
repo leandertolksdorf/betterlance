@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { useTasks } from "../../data/useTasks";
 import { definitions } from "../../types/supabase";
+import { Loading } from "../Loading";
 import { KanbanBoardView } from "./view";
 
 export type KanbanBoardProps = {
@@ -30,16 +31,16 @@ export const KanbanBoard = (props: KanbanBoardProps) => {
   const isReady = tasks && todo && inProgress && done && archived;
 
   if (!isReady) {
-    return <p>Loading</p>;
-  } else {
-    return (
-      <KanbanBoardView
-        todo={todo}
-        inProgress={inProgress}
-        done={done}
-        archived={archived}
-        onDropTask={onDropTask}
-      />
-    );
+    return <Loading />;
   }
+
+  return (
+    <KanbanBoardView
+      todo={todo}
+      inProgress={inProgress}
+      done={done}
+      archived={archived}
+      onDropTask={onDropTask}
+    />
+  );
 };
