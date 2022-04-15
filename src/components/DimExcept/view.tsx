@@ -7,7 +7,7 @@ export const DimExceptView = (props: DimExceptProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const styles = useSpring({
     to: {
-      opacity: props.dim ? 0.5 : 0,
+      opacity: props.dim ? 0.4 : 0,
     },
     onStart: () => setIsTransitioning(true),
     onRest: () => setIsTransitioning(false),

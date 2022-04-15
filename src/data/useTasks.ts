@@ -59,8 +59,11 @@ export const useTasks = () => {
     project: task.project.id,
   }));
 
-  function get(id: string, options?: { flat: false }): Task;
-  function get(id: string, options: { flat: true }): definitions["task"];
+  function get(id: string, options?: { flat: false }): Task | null | undefined;
+  function get(
+    id: string,
+    options: { flat: true }
+  ): definitions["task"] | null | undefined;
   function get(
     id: string,
     options?: {
@@ -70,11 +73,11 @@ export const useTasks = () => {
     if (!data || !flat) return undefined;
     if (options?.flat) {
       const task = flat.find((item) => item.id === id);
-      if (!task) throw new Error("No task found with id " + id);
+      if (!task) return null;
       return task;
     } else {
       const task = data.find((item) => item.id === id);
-      if (!task) throw new Error("No task found with id " + id);
+      if (!task) return null;
       return task;
     }
   }
@@ -109,11 +112,11 @@ export const useTasks = () => {
     id: definitions["task"]["id"],
     update: Omit<Partial<definitions["task"]>, "id">
   ) {
-    if (!data) {
+    const oldTask = get(id);
+    if (!data || !oldTask) {
       await mutate(updateTask(id, update));
       return;
     }
-    const oldTask = get(id);
     const localTask: Task = {
       ...oldTask,
       ..._.omit(update, "project"),
@@ -121,7 +124,6 @@ export const useTasks = () => {
         index: update.index + (update.index > oldTask.index ? 0.5 : -0.5),
       }),
     };
-    console.log(localTask);
     await mutate(updateTask(id, update), {
       optimisticData: updateHelper(data, localTask, "index"),
     });

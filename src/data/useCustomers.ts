@@ -52,7 +52,9 @@ export const useCustomers = () => {
   // Methods
   function get(id: string) {
     if (!data) return undefined;
-    return data.find((item) => item.id === id) || null;
+    const customer = data.find((item) => item.id === id);
+    if (!customer) return null;
+    return customer;
   }
 
   async function insert(params: Omit<definitions["customer"], "id">) {

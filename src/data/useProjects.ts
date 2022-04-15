@@ -58,8 +58,14 @@ export const useProjects = () => {
 
   // Methods
 
-  function get(id: string, options?: { flat: false }): Project;
-  function get(id: string, options: { flat: true }): definitions["project"];
+  function get(
+    id: string,
+    options?: { flat: false }
+  ): Project | null | undefined;
+  function get(
+    id: string,
+    options: { flat: true }
+  ): definitions["project"] | null | undefined;
   function get(
     id: string,
     options?: {
@@ -69,11 +75,11 @@ export const useProjects = () => {
     if (!data || !flat) return undefined;
     if (options?.flat) {
       const project = flat.find((item) => item.id === id);
-      if (!project) throw new Error("No project found with id " + id);
+      if (!project) return null;
       return project;
     } else {
       const project = data.find((item) => item.id === id);
-      if (!project) throw new Error("No project found with id " + id);
+      if (!project) return null;
       return project;
     }
   }
@@ -106,13 +112,14 @@ export const useProjects = () => {
     id: definitions["project"]["id"],
     update: Omit<Partial<definitions["project"]>, "id">
   ) {
-    if (!data) {
+    const oldProject = get(id);
+    if (!data || !oldProject) {
       await mutate(updateProject(id, update));
       return;
     }
 
     const localProject: Project = {
-      ...get(id),
+      ...oldProject,
       ..._.omit(update, "customer"),
     };
 
