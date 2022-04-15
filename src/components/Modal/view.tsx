@@ -1,5 +1,6 @@
 import { XIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
+import { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { ModalProps } from ".";
 import { DimExcept } from "../DimExcept";
@@ -24,14 +25,24 @@ export const ModalView = (props: ModalViewProps) => {
           "h-screen",
           "w-1/4",
           "bg-gray-200",
-          "p-4",
           "shadow-xl",
-          "shadow-black"
+          "shadow-black",
+          "overflow-y-scroll"
         )}
         style={styles}
       >
         <div
-          className={classNames("flex", "justify-between", "items-end", "mb-2")}
+          className={classNames(
+            "flex",
+            "justify-between",
+            "items-end",
+            "mb-4",
+            "sticky",
+            "top-0",
+            "bg-gray-200",
+            "p-4",
+            "z-10"
+          )}
         >
           <h1 className={classNames()}>{props.title}</h1>
           <IconButton
@@ -41,7 +52,7 @@ export const ModalView = (props: ModalViewProps) => {
             alwaysShowText
           />
         </div>
-        {props.children}
+        <div className={classNames("px-4")}>{props.children}</div>
       </animated.div>
     </DimExcept>
   );

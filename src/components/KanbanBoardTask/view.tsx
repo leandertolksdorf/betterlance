@@ -1,11 +1,14 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { Fragment } from "react";
+import { useRouter } from "next/router";
+import { Fragment, useState } from "react";
 import { KanbanBoardTaskProps } from ".";
+import { TaskModal } from "../TaskModal";
 
 type KanbanBoardTaskViewProps = KanbanBoardTaskProps & {};
 
 export const KanbanBoardTaskView = (props: KanbanBoardTaskViewProps) => {
+  const router = useRouter();
   return (
     <div className={classNames("pb-2")}>
       <div
@@ -27,7 +30,14 @@ export const KanbanBoardTaskView = (props: KanbanBoardTaskViewProps) => {
             "font-bold"
           )}
         >
-          {props.task.title}
+          <Link
+            href={router.asPath + "?taskId=" + props.task.id}
+            passHref
+            shallow={true}
+            replace={true}
+          >
+            <a className={classNames("hover:underline")}>{props.task.title}</a>
+          </Link>
         </div>
         {props.task.description && (
           <div

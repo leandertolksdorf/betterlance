@@ -45,7 +45,7 @@ export const UpsertTaskForm = (props: UpsertTaskFormProps) => {
   const onSubmit = handleSubmit(async (data) => {
     setOpen(false);
     if (props.taskId) {
-      toast.promise(update(props.projectId, data), {
+      toast.promise(update(props.taskId, data), {
         pending: "Aktualisieren...",
         success: "Aufgabe aktualisiert",
         error: "Fehler beim Aktualisieren",
