@@ -17,13 +17,15 @@ export const IconButton = (props: IconButtonProps) => {
   const [showText, setShowText] = useState(props.alwaysShowText || false);
 
   const onClick = () => {
-    if (showText && props.onClick) {
+    if (props.onClick && showText) {
       props.onClick();
+      return;
     }
     setShowText(props.alwaysShowText || true);
   };
 
   const onBlur = () => {
+    if (props.alwaysShowText) return;
     setShowText(false);
   };
 

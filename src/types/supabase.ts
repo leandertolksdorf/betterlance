@@ -130,11 +130,11 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer?: parameters["rowFilter.project.customer"];
           name?: parameters["rowFilter.project.name"];
           id?: parameters["rowFilter.project.id"];
+          created_at?: parameters["rowFilter.project.created_at"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -185,11 +185,11 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer?: parameters["rowFilter.project.customer"];
           name?: parameters["rowFilter.project.name"];
           id?: parameters["rowFilter.project.id"];
+          created_at?: parameters["rowFilter.project.created_at"];
         };
         header: {
           /** Preference */
@@ -204,11 +204,11 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.project.created_at"];
           created_by?: parameters["rowFilter.project.created_by"];
           customer?: parameters["rowFilter.project.customer"];
           name?: parameters["rowFilter.project.name"];
           id?: parameters["rowFilter.project.id"];
+          created_at?: parameters["rowFilter.project.created_at"];
         };
         body: {
           /** project */
@@ -229,7 +229,6 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
@@ -237,6 +236,7 @@ export interface paths {
           created_by?: parameters["rowFilter.task.created_by"];
           id?: parameters["rowFilter.task.id"];
           index?: parameters["rowFilter.task.index"];
+          created_at?: parameters["rowFilter.task.created_at"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -287,7 +287,6 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
@@ -295,6 +294,7 @@ export interface paths {
           created_by?: parameters["rowFilter.task.created_by"];
           id?: parameters["rowFilter.task.id"];
           index?: parameters["rowFilter.task.index"];
+          created_at?: parameters["rowFilter.task.created_at"];
         };
         header: {
           /** Preference */
@@ -309,7 +309,6 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.task.created_at"];
           project?: parameters["rowFilter.task.project"];
           title?: parameters["rowFilter.task.title"];
           description?: parameters["rowFilter.task.description"];
@@ -317,6 +316,7 @@ export interface paths {
           created_by?: parameters["rowFilter.task.created_by"];
           id?: parameters["rowFilter.task.id"];
           index?: parameters["rowFilter.task.index"];
+          created_at?: parameters["rowFilter.task.created_at"];
         };
         body: {
           /** task */
@@ -360,7 +360,7 @@ export interface definitions {
      * Format: uuid
      * @default auth.uid()
      */
-    created_by: string;
+    created_by?: string;
     /**
      * Format: uuid
      * @description Note:
@@ -371,21 +371,16 @@ export interface definitions {
   };
   project: {
     /**
-     * Format: timestamp with time zone
-     * @default now()
-     */
-    created_at: string;
-    /**
      * Format: uuid
      * @default auth.uid()
      */
-    created_by: string;
+    created_by?: string;
     /**
      * Format: uuid
      * @description Note:
      * This is a Foreign Key to `customer.id`.<fk table='customer' column='id'/>
      */
-    customer?: string;
+    customer: string;
     /** Format: text */
     name: string;
     /**
@@ -395,13 +390,13 @@ export interface definitions {
      * @default extensions.uuid_generate_v4()
      */
     id: string;
-  };
-  task: {
     /**
      * Format: timestamp with time zone
      * @default now()
      */
     created_at?: string;
+  };
+  task: {
     /**
      * Format: uuid
      * @description Note:
@@ -422,7 +417,7 @@ export interface definitions {
      * Format: uuid
      * @default auth.uid()
      */
-    created_by: string;
+    created_by?: string;
     /**
      * Format: uuid
      * @description Note:
@@ -432,6 +427,11 @@ export interface definitions {
     id: string;
     /** Format: bigint */
     index: number;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
+    created_at?: string;
   };
 }
 
@@ -492,8 +492,6 @@ export interface parameters {
   "rowFilter.customer.id": string;
   /** @description project */
   "body.project": definitions["project"];
-  /** Format: timestamp with time zone */
-  "rowFilter.project.created_at": string;
   /** Format: uuid */
   "rowFilter.project.created_by": string;
   /** Format: uuid */
@@ -502,10 +500,10 @@ export interface parameters {
   "rowFilter.project.name": string;
   /** Format: uuid */
   "rowFilter.project.id": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.project.created_at": string;
   /** @description task */
   "body.task": definitions["task"];
-  /** Format: timestamp with time zone */
-  "rowFilter.task.created_at": string;
   /** Format: uuid */
   "rowFilter.task.project": string;
   /** Format: text */
@@ -520,6 +518,8 @@ export interface parameters {
   "rowFilter.task.id": string;
   /** Format: bigint */
   "rowFilter.task.index": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.task.created_at": string;
 }
 
 export interface operations {}

@@ -8,9 +8,6 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 type UpsertTaskFormViewProps = UpsertTaskFormProps & {
-  loading: boolean;
-  error: boolean;
-  message?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
@@ -24,12 +21,12 @@ export const UpsertTaskFormView = (props: UpsertTaskFormViewProps) => {
       open={props.open}
       onPressButton={() => props.setOpen(!props.open)}
       dim
-      openText="Kund:in anlegen"
+      openText={props.taskId ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
       closeText="Schließen"
     >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
-          {props.task ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
+          {props.taskId ? "Aufgabe bearbeiten" : "Aufgabe anlegen"}
         </h3>
         <form onSubmit={props.onSubmit}>
           <label>
@@ -64,20 +61,9 @@ export const UpsertTaskFormView = (props: UpsertTaskFormViewProps) => {
             />
             <textarea rows={4} {...props.register("description")} />
           </label>
-          <Button type="submit" center loading={props.loading}>
+          <Button type="submit" center>
             Absenden
           </Button>
-          {props.message && (
-            <div
-              className={classNames(
-                props.error ? "text-red-600" : "text-primary-500",
-                "mt-2",
-                "font-bold"
-              )}
-            >
-              {props.message}
-            </div>
-          )}
         </form>
       </div>
     </Collapse>

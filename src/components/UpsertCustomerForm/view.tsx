@@ -8,9 +8,6 @@ import { Button } from "../Button";
 import { Collapse } from "../Collapse";
 
 type UpsertCustomerFormViewProps = UpsertCustomerFormProps & {
-  loading: boolean;
-  error: boolean;
-  message?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
   register: UseFormRegister<FormData>;
@@ -24,12 +21,12 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
       open={props.open}
       onPressButton={() => props.setOpen(!props.open)}
       dim
-      openText="Kund:in anlegen"
+      openText={props.customerId ? "Kund:in bearbeiten" : "Kund:in anlegen"}
       closeText="Schließen"
     >
       <div className={classNames("p-4")}>
         <h3 className={classNames("mb-2")}>
-          {props.customer ? "Kund*in bearbeiten" : "Kund*in anlegen"}
+          {props.customerId ? "Kund:in bearbeiten" : "Kund:in anlegen"}
         </h3>
         <form onSubmit={props.onSubmit}>
           <label>
@@ -146,20 +143,9 @@ export const UpsertCustomerFormView = (props: UpsertCustomerFormViewProps) => {
             />
             <input {...props.register("country")} />
           </label>
-          <Button type="submit" center loading={props.loading}>
+          <Button type="submit" center>
             Absenden
           </Button>
-          {props.message && (
-            <div
-              className={classNames(
-                props.error ? "text-red-600" : "text-primary-500",
-                "mt-2",
-                "font-bold"
-              )}
-            >
-              {props.message}
-            </div>
-          )}
         </form>
       </div>
     </Collapse>

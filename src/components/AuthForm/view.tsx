@@ -8,8 +8,6 @@ import { Button } from "../Button";
 
 type AuthFormViewProps = {
   loading: boolean;
-  error: boolean;
-  message?: string;
   register: UseFormRegister<FormData>;
   onSubmit: FormEventHandler;
   errors: FieldErrors;
@@ -35,17 +33,6 @@ export const AuthFormView = (props: AuthFormViewProps) => {
       <Button type="submit" center loading={props.loading}>
         Anmelden
       </Button>
-      {props.message && (
-        <div
-          className={classNames(
-            props.error ? "text-red-600" : "text-primary-500",
-            "mt-2",
-            "font-bold"
-          )}
-        >
-          {props.message}
-        </div>
-      )}
     </form>
   );
 };

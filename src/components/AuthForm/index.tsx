@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import { supabase } from "../../lib/supabase";
 import { AuthFormView } from "./view";
@@ -15,8 +16,6 @@ export const schema = yup
 
 export const AuthForm = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState<string | undefined>(undefined);
 
   const {
     register,
@@ -24,29 +23,26 @@ export const AuthForm = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      setError(false);
-      setMessage(undefined);
-      setLoading(true);
-      const { error } = await supabase.auth.signIn(data, {
-        redirectTo: "http://localhost:3000/app",
-      });
-      if (error) throw error;
-      setMessage("Check' deine Emails für den Login-Link!");
-    } catch (error: any) {
-      setError(true);
-      setMessage(error.error_description || error.message);
-    } finally {
-      setLoading(false);
-    }
+  const signIn = async (data: FormData) => {
+    setLoading(true);
+    const { error } = await supabase.auth.signIn(data, {
+      redirectTo: "http://localhost:3000/app",
+    });
+    setLoading(false);
+    if (error) throw error;
+  };
+
+  const onSubmit = handleSubmit(async (data: FormData) => {
+    toast.promise(signIn(data), {
+      pending: "Anmelden...",
+      success: "Klicke auf den Link in deinen Emails, um dich anzumelden.",
+      error: "Fehler beim Anmelden",
+    });
   });
 
   return (
     <AuthFormView
       loading={loading}
-      error={error}
-      message={message}
       register={register}
       onSubmit={onSubmit}
       errors={errors}
