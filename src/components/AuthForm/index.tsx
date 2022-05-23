@@ -26,7 +26,10 @@ export const AuthForm = () => {
   const signIn = async (data: FormData) => {
     setLoading(true);
     const { error } = await supabase.auth.signIn(data, {
-      redirectTo: "http://localhost:3000/app",
+      redirectTo:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/app"
+          : process.env.SUPABASE_REDIRECT_URL,
     });
     setLoading(false);
     if (error) throw error;
