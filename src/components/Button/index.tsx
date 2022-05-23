@@ -19,8 +19,10 @@ export type ButtonProps = {
 export const Button = (props: ButtonProps) => {
   if (props.href) {
     return (
-      <Link href={props.href}>
-        <ButtonView {...props} />
+      <Link href={props.href} passHref>
+        <a>
+          <ButtonView {...props} />
+        </a>
       </Link>
     );
   }
@@ -28,7 +30,6 @@ export const Button = (props: ButtonProps) => {
   if (props.asDiv) {
     return (
       <div onClick={props.onClick} className={classNames("w-full")}>
-        {" "}
         <ButtonView {...props} />
       </div>
     );

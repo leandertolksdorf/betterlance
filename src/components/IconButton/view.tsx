@@ -11,7 +11,7 @@ export const IconButtonView = (props: IconButtonViewProps) => {
   const [textWidth, setTextWidth] = useState(0);
   useLayoutEffect(() => {
     setTextWidth(textRef.current?.scrollWidth || 0);
-  });
+  }, [textWidth]);
   return (
     <div
       className={classNames(

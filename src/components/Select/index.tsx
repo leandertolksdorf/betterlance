@@ -103,8 +103,9 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
               .filter((option) =>
                 option.label.toLowerCase().includes(search.toLowerCase() || "")
               )
-              .map((option) => (
+              .map((option, i) => (
                 <div
+                  key={i}
                   className={classNames("flex")}
                   onClick={() => handleOptionClick(option)}
                 >
@@ -142,3 +143,5 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
     );
   }
 );
+
+Select.displayName = "Select";
