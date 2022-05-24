@@ -1,0 +1,1 @@
+FOR /F "tokens=*" %%i in ('type .env.local') do SET %%i
