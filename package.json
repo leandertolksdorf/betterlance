@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "npm run generate-supabase-types && next dev",
-    "dev-win": "npm run generate-supabase-types-win && next dev",
+    "dev:win": "npm run generate-supabase-types:win && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate-supabase-types": "source .env.local && npx openapi-typescript $NEXT_PUBLIC_SUPABASE_URL/rest/v1/?apikey=$NEXT_PUBLIC_SUPABASE_ANON_KEY --output src/types/supabase.ts",
-    "generate-supabase-types-win": "call env.local.bat && npx openapi-typescript %NEXT_PUBLIC_SUPABASE_URL%/rest/v1/?apikey=%NEXT_PUBLIC_SUPABASE_ANON_KEY% --output src/types/supabase.ts"
+    "generate-supabase-types:win": "call setenv.bat && npx openapi-typescript %NEXT_PUBLIC_SUPABASE_URL%/rest/v1/?apikey=%NEXT_PUBLIC_SUPABASE_ANON_KEY% --output src/types/supabase.ts"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
