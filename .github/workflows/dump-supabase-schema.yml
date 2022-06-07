@@ -24,7 +24,7 @@ jobs:
         with:
           database_url: "postgres://${{secrets.SUPABASE_DB_USER}}:${{secrets.SUPABASE_DB_PASSWORD}}@${{ secrets.SUPABASE_DB_URL }}:${{secrets.SUPABASE_DB_PORT}}/${{secrets.SUPABASE_DB_NAME}}"
           path: ".supabase/schema.sql" 
-          options: "--schema-only -t public.*"   
+          options: "--schema-only"   
       - name: check for file changes
         id: git_status
         run: |
