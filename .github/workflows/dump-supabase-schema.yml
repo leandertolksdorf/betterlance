@@ -19,9 +19,26 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Postgres Dump Schema
+      - name: dump postgres schema
         uses: tj-actions/pg-dump@v2.3
         with:
           database_url: "postgres://${{secrets.SUPABASE_DB_USER}}:${{secrets.SUPABASE_DB_PASSWORD}}@${{ secrets.SUPABASE_DB_URL }}:${{secrets.SUPABASE_DB_PORT}}/${{secrets.SUPABASE_DB_NAME}}"
           path: ".supabase/schema.sql" 
           options: "--schema-only"   
+      - name: check for file changes
+        id: git_status
+        run: |
+          echo "::set-output name=status::$(git status -s)"
+      - name: commit file
+        if: ${{contains(steps.git_status.outputs.status, ' ')}}
+        run: |
+          git add .supabase/schema.sql
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Update supabase schema" -a
+      - name: push changes
+        if: ${{contains(steps.git_status.outputs.status, ' ')}}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
