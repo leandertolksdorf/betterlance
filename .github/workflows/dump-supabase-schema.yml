@@ -23,7 +23,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: supabase/pgadmin-schema-diff
-          options: ${{ secrets.SUPABASE_DB_CONNECTION_STRING }} ${{ secrets.SUPABASE_EMPTY_DB_CONNECTION_STRING }} > ./supabase/schema.sql
+          options: "'${{ secrets.SUPABASE_DB_CONNECTION_STRING }}' '${{ secrets.SUPABASE_EMPTY_DB_CONNECTION_STRING }}' > ./supabase/schema.sql"
       - name: check for file changes
         id: git_status
         run: |
