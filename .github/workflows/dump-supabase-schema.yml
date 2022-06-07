@@ -20,10 +20,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: dump postgres schema
-        uses: addnab/docker-run-action@v3
-        with:
-          image: supabase/pgadmin-schema-diff
-          options: "'${{ secrets.SUPABASE_DB_CONNECTION_STRING }}' '${{ secrets.SUPABASE_EMPTY_DB_CONNECTION_STRING }}' > ./supabase/schema.sql"
+        # uses: addnab/docker-run-action@v3
+        # with:
+          # image: supabase/pgadmin-schema-diff
+        run: "docker run supabase/pgadmin-schema-diff '${{ secrets.SUPABASE_DB_CONNECTION_STRING }}' '${{ secrets.SUPABASE_EMPTY_DB_CONNECTION_STRING }}' > ./supabase/schema.sql"
       - name: check for file changes
         id: git_status
         run: |
