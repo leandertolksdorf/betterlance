@@ -25,3 +25,13 @@ As a starter, take a look into the issues for an overview of open tasks and fork
 If you have any ideas or want to report a bug, just open an issue.
 
 As of now, I'm working on an SQL script that you can run in your Supabase instance for cloning the backend.
+
+### Tech
+
+**Backend:** Supabase
+
+**Frontend:**
+- Next.js
+- useSWR
+- TailwindCSS
+- React Spring
