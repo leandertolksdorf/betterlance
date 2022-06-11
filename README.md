@@ -9,12 +9,12 @@ It aims to make your life easier by assisting with common freelancer tasks.
 
 This is a list of features that are already implemented or planned to be implemented in the future.
 
-[x] Customers
-[x] Projects
-[x] Tasks
-[ ] Communication
-[ ] Invoicing
-[ ] Embeddable contact forms
+- [x] Customers
+- [x] Projects
+- [x] Tasks
+- [ ] Communication
+- [ ] Invoicing
+- [ ] Embeddable contact forms
 
 ### Contributing
 
